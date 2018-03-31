@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'forumo.urls'
+ROOT_URLCONF = 'rengorum.urls'
 
 TEMPLATES = [
     {
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'forumo.wsgi.application'
+WSGI_APPLICATION = 'rengorum.wsgi.application'
 
 
 # Database
