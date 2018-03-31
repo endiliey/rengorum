@@ -5,6 +5,9 @@ class Category(models.Model):
     name = models.CharField(max_length=30, unique=True)
     description = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 class Thread(models.Model):
     subject = models.CharField(max_length=255)
     last_updated = models.DateTimeField()
