@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     
     'rest_framework',
     'categories',
-    'users'
 ]
 
 MIDDLEWARE = [
@@ -85,10 +84,6 @@ DATABASES = {
     }
 }
 
-
-# Substitute custom User model
-# https://docs.djangoproject.com/en/2.0/topics/auth/customizing/#substituting-a-custom-user-model
-AUTH_USER_MODEL = 'users.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
