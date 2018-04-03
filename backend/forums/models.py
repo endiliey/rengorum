@@ -1,5 +1,4 @@
 from django.db import models
-from accounts.models import UserProfile
 
 class Forum(models.Model):
     """ Model to represent forum e.g: General forum """

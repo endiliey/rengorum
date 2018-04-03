@@ -1,7 +1,8 @@
 from django.db import models
 from django.utils.text import Truncator
+from datetime import datetime
 from accounts.models import UserProfile
-from accounts.models import Forum
+from forums.models import Forum
 
 class Thread(models.Model):
     """ Model to represent a thread in a forum """
@@ -11,7 +12,7 @@ class Thread(models.Model):
     content = models.TextField(max_length=4000)
     creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='threads')
     created_at = models.DateTimeField(auto_now_add=True)
-    last_activity = models.DateTimeField(default=timezone.now)
+    last_activity = models.DateTimeField(default=datetime.now)
 
     class Meta:
         ordering = [
