@@ -13,8 +13,10 @@ class UserProfile(models.Model):
         blank=True,
         default=''
     )
-    avatar = models.ImageField(upload_to='media/%Y/%m/%d', null=True, blank=True)
-    role = models.CharField(max_length=30, default='Member')
+    # we use URL instead of imagefield because we'll use 3rd party img hosting later on
+    # https://blog.codeinfuse.com/upload-multiple-files-to-cloudinary-using-react-dropzone-axios-27883c2a5ec6
+    avatar = models.URLField(default='', blank=True)
+    status = models.CharField(max_length=30, default='', blank=True)
 
     def __str__(self):
         return self.user.username
