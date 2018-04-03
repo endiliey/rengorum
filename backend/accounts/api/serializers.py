@@ -5,7 +5,7 @@ from accounts.models import UserProfile
 
 User = get_user_model()
 
-class UserProfileSerializer(serializers.ModelSerializer):
+class UserDetailSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username')
 
     class Meta:
@@ -33,6 +33,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
             'avatar',
             'status'
         )
+        extra_kwargs = {"password": {"write_only": True} }
 
     def create(self, validated_data):
         profile_data = validated_data.pop('profile', None)
