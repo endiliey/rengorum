@@ -37,3 +37,14 @@ class UserLoginAPIView(views.APIView):
             return Response({'token': token.key}, status=HTTP_200_OK)
 
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+class UserLogoutAPIView(views.APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        try:
+            # simply delete the token in server side
+            request.user.auth_token.delete()
+            return Response(status=HTTP_200_OK)
+        except:
+            return Response(status=HTTP_400_BAD_REQUEST)
