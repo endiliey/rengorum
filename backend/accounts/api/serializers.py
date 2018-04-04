@@ -8,17 +8,74 @@ from accounts.models import UserProfile
 User = get_user_model()
 
 class UserDetailSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(source='user.username')
-
+    bio = serializers.CharField(source='profile.bio')
+    avatar = serializers.URLField(source='profile.avatar')
+    status = serializers.URLField(source='profile.status')
     class Meta:
-        model = UserProfile
+        model = User
         fields = [
             'username',
             'bio',
             'avatar',
-            'role',
             'status'
         ]
+        lookup_field = 'username'
+
+class UserListSerializer(serializers.ModelSerializer):
+    bio = serializers.CharField(source='profile.bio')
+    avatar = serializers.URLField(source='profile.avatar')
+    status = serializers.URLField(source='profile.status')
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'bio',
+            'avatar',
+            'status'
+        ]
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    # A field from the user's profile:
+    bio = serializers.CharField(source='profile.bio', allow_blank=True)
+    avatar = serializers.URLField(source='profile.avatar', allow_blank=True)
+    status = serializers.CharField(source='profile.status', allow_blank=True)
+    password = serializers.CharField(allow_blank=True, default='')
+
+    class Meta:
+        model = User
+        fields = (
+            'username',
+            'email',
+            'password',
+            'bio',
+            'avatar',
+            'status'
+        )
+        read_only_fields = ('username',)
+        extra_kwargs = {"password": {"write_only": True}}
+        lookup_field = 'username'
+
+    def update(self, instance, validated_data):
+        profile_data = validated_data.pop('profile', None)
+        # handle password
+        password = validated_data['password'] or None
+        if password:
+            instance.set_password(password)
+        validated_data.pop('password', None)
+
+        # Update user fields
+        for field, value in validated_data.items():
+            if value:
+                setattr(instance, field, value)
+
+        # Update profile fields
+        profile = instance.profile
+        for field, value in profile_data.items():
+            if value:
+                setattr(profile, field, value)
+        instance.save()
+        profile.save()
+        return instance
 
 class UserCreateSerializer(serializers.ModelSerializer):
     # A field from the user's profile:
@@ -49,13 +106,14 @@ class UserCreateSerializer(serializers.ModelSerializer):
         )
         user.set_password(password)
         user.save()
+
+        avatar = profile_data.get('avatar') or None
+        if not avatar:
+            avatar = 'http://api.adorable.io/avatar/200/' + username
         profile = UserProfile(
             user = user,
             bio = profile_data.get('bio', ''),
-            avatar = profile_data.get(
-                'avatar',
-                'http://api.adorable.io/avatar/200/' + username
-            ),
+            avatar = avatar,
             status = profile_data.get('status','')
         )
         profile.save()
