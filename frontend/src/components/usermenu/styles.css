@@ -1,10 +1,37 @@
 .userMenu {
   align-items: right;
+  height: 50px;
 }
+
+.dropdownMenu {
+  margin: 0 20px;
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  height: 50px;
+  color: white;
+  font-size: 1em;
+  outline: none;
+  padding: 0 5px;
+  border: 1px solid #555555;
+  border-radius: 15px;
+}
+
+.dropdownMenu:hover {
+  background-color: #555555;
+  color: white;
+}
+
+p.username {
+  margin-left: 5px;
+}
+
+
 
 .guestMenu {
   height: 50px;
-  padding: 5px;
+  padding: 20px;
   color: black;
   display: flex;
   flex-flow: row nowrap;

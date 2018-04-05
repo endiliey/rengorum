@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css';
 
 const Avatar = (props) => {
-  const default_avatar = 'https://i.stack.imgur.com/SE2cv.jpg'
+  const default_avatar = 'https://www.wowkeren.com/images/photo/kang_han_na.jpg';
 
   return (
     <img

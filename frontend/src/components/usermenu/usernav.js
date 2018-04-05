@@ -1,16 +1,26 @@
 import React, { Component } from 'react';
 import Avatar from '../avatar';
-import './styles.css'
+import Button from '../button';
+import './styles.css';
 
-export default class UserNav extends Component {
+class UserNav extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
+    const test_username = "kang_han_na";
     return (
       <div className="userMenu">
-        <Avatar
-          className="userAvatar"
-          avatar={'https://www.wowkeren.com/images/photo/kang_han_na.jpg'}
-        />
+        <div className="dropdownMenu">
+          <Avatar
+            className="userAvatar"
+            avatar={this.props.avatar}
+          />
+          <p class="username">{this.props.username || test_username}</p>
+        </div>
       </div>
     );
   }
 }
+
+export default UserNav;
