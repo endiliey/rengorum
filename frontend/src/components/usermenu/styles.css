@@ -1,0 +1,69 @@
+.userMenu {
+  align-items: right;
+}
+
+.guestMenu {
+  height: 50px;
+  padding: 5px;
+  color: black;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: right;
+}
+
+.userAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+}
+
+.btn-sign-in {
+  margin-top: 5px;
+  margin-left: 15px;
+  margin-right: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 12px;
+  background-color: black;
+  height: 40px;
+  color: white;
+  font-size: 0.9em;
+  border: 2px solid #555555;
+  outline: none;
+}
+
+.btn-sign-in:hover {
+  background-color: #555555;
+  color: white;
+}
+
+.btn-sign-in:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.btn-register {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 12px;
+  background-color: black;
+  height: 40px;
+  color: white;
+  font-size: 0.9em;
+  border: 2px solid #555555;
+  outline: none;
+}
+
+.btn-register:hover {
+  background-color: #555555;
+  color: white;
+}
+
+.btn-register:active {
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
