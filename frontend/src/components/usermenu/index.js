@@ -4,7 +4,7 @@ import UserNav from './usernav';
 
 class UserMenu extends Component {
   render() {
-    if (this.props.isAuthenticated) {
+    if (!this.props.isAuthenticated) {
       return (
         <UserNav
           username={this.props.username}

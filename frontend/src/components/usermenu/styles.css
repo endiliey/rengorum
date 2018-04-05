@@ -1,33 +1,66 @@
 .userMenu {
   align-items: right;
-  height: 50px;
+  position: relative;
+  display: inline-block;
+  margin: 0 25px;
 }
 
-.dropdownMenu {
-  margin: 0 20px;
+.userMenu-content {
+    display: none;
+    position: absolute;
+    border: 1px solid #555555;
+    border-radius: 15px;
+    background-color: black;
+    min-width: 155px;
+    z-index: 1;
+    outline: none;
+}
+
+.userMenu-content a {
+    color: white;
+    border-radius: 15px;
+    padding: 12px 5px;
+    text-decoration: none;
+    display: block;
+}
+
+.userMenu-content a:hover {
+  background-color: #555555;
+  color: white;
+}
+
+.userMenu:hover .userMenu-content {
+    display: block;
+}
+
+.userMenu:hover .dropProfile {
+    background-color: #555555;
+    color: white;
+}
+
+.dropProfile {
   align-items: center;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  height: 50px;
+  height: 55px;
   color: white;
   font-size: 1em;
   outline: none;
   padding: 0 5px;
   border: 1px solid #555555;
   border-radius: 15px;
+  background-color: black;
 }
 
-.dropdownMenu:hover {
+.dropProfile:hover {
   background-color: #555555;
   color: white;
 }
 
 p.username {
-  margin-left: 5px;
+  margin-left: 7px;
 }
-
-
 
 .guestMenu {
   height: 50px;
@@ -42,7 +75,7 @@ p.username {
 .userAvatar {
   width: 40px;
   height: 40px;
-  border-radius: 50px;
+  border-radius: 40px;
 }
 
 .btn-sign-in {
