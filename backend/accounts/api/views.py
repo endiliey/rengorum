@@ -63,7 +63,8 @@ class UserLoginAPIView(views.APIView):
             token, created = Token.objects.get_or_create(user=user)
             return Response({
                 'token': token.key,
-                'user': user.username
+                'username': user.username,
+                'avatar': user.profile.avatar
             }, status=HTTP_200_OK)
 
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
