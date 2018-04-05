@@ -10,17 +10,17 @@ class UserNav extends Component {
   render() {
     const test_username = "kang_han_na";
     return (
-        <div class="userMenu">
+        <div className="userMenu">
           <Button className="dropProfile" type="button">
             <Avatar
               className="userAvatar"
               avatar={this.props.avatar}
             />
-            <p class="username">{this.props.username || test_username}</p>
+            <p className="username">{this.props.username || test_username}</p>
           </Button>
-          <div class="userMenu-content">
+          <div className="userMenu-content">
             <a href="https://www.quora.com/">My profile</a>
-            <a href="#">Logout</a>
+            <Button onClick={this.props.logout}>Logout</Button>
           </div>
         </div>
     );

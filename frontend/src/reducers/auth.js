@@ -41,6 +41,27 @@ const auth = (state = initialState, action) => {
           username: null,
           avatar: null
       };
+    case LOGOUT_REQUEST:
+      return {
+        ...state,
+        isFetching: true,
+        isAuthenticated: true,
+      };
+    case LOGOUT_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        isAuthenticated: false,
+        token: null,
+        username: null,
+        avatar: null
+      };
+    case LOGOUT_FAILURE:
+      return {
+          ...state,
+          isFetching: false,
+          isAuthenticated: true
+      };
     default:
       return state;
   }

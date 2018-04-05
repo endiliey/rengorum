@@ -8,7 +8,7 @@ import {
   LOGOUT_SUCCESS,
   LOGOUT_FAILURE
 } from './types';
-import { URL, LOGIN } from './api';
+import { URL, LOGIN, LOGOUT, getHeader } from './api';
 
 // Calls the API to get a token and
 // dispatches actions along the way
@@ -16,9 +16,7 @@ export const login = (username, password) => {
   return (dispatch) => {
     dispatch(loginRequest);
 
-    // axios POST to our API_LOGIN url
-    axios
-    .post(URL + LOGIN, {
+    axios.post(URL + LOGIN, {
       username,
       password
     })
@@ -26,13 +24,7 @@ export const login = (username, password) => {
       dispatch(loginSuccess(response.data));
     })
     .catch(function (error) {
-      // raise different exception if due to invalid credentials
-      if (_.get(error, 'response.status') === 400) {
-        dispatch(loginFailure("Invalid Credentials"));
-      }
-      else {
-        dispatch(loginFailure(error));
-      }
+      dispatch(loginFailure(error));
     });
   };
 }
@@ -55,6 +47,37 @@ export const loginSuccess = (data) => {
 export const loginFailure = (error) => {
   return {
     type: LOGIN_FAILURE,
+    error
+  };
+}
+
+export const logout = () => dispatch => {
+    dispatch(logoutRequest());
+
+    axios.post(URL + LOGOUT, null, getHeader())
+    .then(function (response) {
+      dispatch(logoutSuccess(response));
+    })
+    .catch(function (error) {
+      dispatch(logoutFailure(error));
+    });
+};
+
+export const logoutRequest = () => {
+  return {
+    type: LOGOUT_REQUEST
+  };
+}
+
+export const logoutSuccess = () => {
+  return {
+    type: LOGOUT_SUCCESS
+  };
+}
+
+export const logoutFailure = (error) => {
+  return {
+    type: LOGOUT_FAILURE,
     error
   };
 }
