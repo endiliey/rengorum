@@ -1,0 +1,14 @@
+.header {
+  background-color: #222;
+  height: 60px;
+  padding: 5px;
+  color: white;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.userMenu{
+  align-items: right;
+}
