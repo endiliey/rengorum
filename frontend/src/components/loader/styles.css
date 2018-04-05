@@ -1,0 +1,20 @@
+.loader {
+  width: 100%;
+  height: 49px;
+  text-align: center;
+}
+
+.loader-spinning-wheel {
+  width: 49px;
+  height: 49px;
+  margin: 0 auto;
+  border: 5px solid #cccccc;
+  border-radius: 50%;
+  border-top: 5px solid #555;
+  animation: loader-spin infinite 1s linear;
+}
+
+@keyframes loader-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
