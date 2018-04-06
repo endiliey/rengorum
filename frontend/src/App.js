@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import Avatar from './components/avatar';
-import HeaderContainer from './containers/header';
 import Loader from './components/loader';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-          <HeaderContainer />
+      <div>
         <p className="App-intro">
           <Avatar
             avatar={'https://avatars3.githubusercontent.com/u/17883920?v=4'}
