@@ -20,7 +20,13 @@ class UserNav extends Component {
           </Button>
           <div className="userMenu-content">
             <a href="https://www.quora.com/">My profile</a>
-            <Button onClick={this.props.logout}>Logout</Button>
+            <Button
+              className="btn-logout"
+              onClick={this.props.logout}
+              loading={this.props.isFetching}
+            >
+              Logout
+            </Button>
           </div>
         </div>
     );

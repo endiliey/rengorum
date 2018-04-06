@@ -18,8 +18,7 @@ export default class Button extends Component {
         onClick={this.props.onClick}
         type={this.props.onClick ? 'button' : 'submit'}
       >
-        {this.props.children}
-        {this.props.loading ? <Loader /> : null}
+        {this.props.loading ? <Loader /> : this.props.children}
       </button>
     );
   }

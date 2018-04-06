@@ -10,7 +10,7 @@
   margin: 0 auto;
   border: 5px solid #cccccc;
   border-radius: 50%;
-  border-top: 5px solid #555;
+  border-top: 5px solid #1d4d8b;
   animation: loader-spin infinite 1s linear;
 }
 
