@@ -121,6 +121,7 @@ p.username {
   font-size: 0.9em;
   border: 2px solid #555555;
   outline: none;
+  cursor: pointer;
 }
 
 .btn-sign-in:hover {
@@ -146,6 +147,7 @@ p.username {
   font-size: 0.9em;
   border: 2px solid #555555;
   outline: none;
+  cursor: pointer;
 }
 
 .btn-register:hover {

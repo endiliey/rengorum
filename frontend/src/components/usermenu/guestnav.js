@@ -1,28 +1,30 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import Button from '../button';
 import './styles.css'
 
-export default class GuestNav extends Component {
+class GuestNav extends Component {
   render() {
     return (
       <div className="guestMenu">
         <Button
           className="btn-sign-in"
           type="button"
-          disabled={true}
+          onClick={() => this.props.history.push('/login')}
         >
-          <Link to="/login">Login</Link>
+          Login
         </Button>
         <br />
         <Button
           className="btn-register"
           type="button"
-          disabled={true}
+          onClick={() => this.props.history.push('/register')}
         >
-          <Link to="/register">Register</Link>
+          Register
         </Button>
       </div>
     );
   }
 }
+
+export default withRouter(GuestNav);

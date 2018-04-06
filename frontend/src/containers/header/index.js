@@ -10,8 +10,6 @@ class Header extends Component {
     this.props.dispatch(actions.logout());
   }
 
-  handleL
-
   render() {
     return (
       <header className="header">
