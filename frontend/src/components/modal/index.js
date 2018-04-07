@@ -38,7 +38,6 @@ export default class Modal extends Component {
         <div className="modal-content-div" style={contentStyle} onClick={this.onOverlayClick.bind(this)}>
           <div className="modal-dialog-div" style={dialogStyle} onClick={this.onDialogClick}>
             {this.props.children}
-            asdfghjk
           </div>
         </div>
       </div>

@@ -10,6 +10,10 @@ class Header extends Component {
     this.props.dispatch(actions.logout());
   }
 
+  showRegister() {
+    this.props.dispatch(actions.showModal('Register', {}));
+  }
+
   render() {
     return (
       <header className="header">
@@ -21,6 +25,9 @@ class Header extends Component {
           logout={() => this.handleLogout()}
           isFetching={this.props.isFetching}
         />
+        <button onClick={() => this.showRegister()}>
+          Show register
+        </button>
       </header>
     );
   }
