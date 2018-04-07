@@ -26,6 +26,9 @@ export default class Login extends Component {
     return (
       <div className="login-container">
         <form noValidate>
+          <div className="error" id="Error">
+            {this.props.error}
+          </div>
           <div className="form-group">
             <label id="usernameLabel">Username</label>
             <input className="form-control"
