@@ -4,9 +4,6 @@ import Button from '../button';
 import './styles.css';
 
 class UserNav extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     const test_username = "kang_han_na";
     return (

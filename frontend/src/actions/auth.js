@@ -1,5 +1,4 @@
 import axios from 'axios';
-import _ from 'lodash';
 import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,

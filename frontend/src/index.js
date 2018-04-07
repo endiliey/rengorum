@@ -4,7 +4,6 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import App from './App';
-import Register from './components/register';
 import store from './store';
 import HeaderContainer from './containers/header';
 import ModalContainer from './containers/modal';
