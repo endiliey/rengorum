@@ -7,6 +7,7 @@ import App from './App';
 import store from './store';
 import HeaderContainer from './containers/header';
 import ModalContainer from './containers/modal';
+import NotFoundPage from './components/not-found-page';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
@@ -16,7 +17,8 @@ ReactDOM.render(
         <div>
           <HeaderContainer />
           <Switch>
-            <Route path="/" component={App} />
+            <Route exact path="/" component={App} />
+            <Route component={NotFoundPage} />
           </Switch>
         </div>
         <ModalContainer />

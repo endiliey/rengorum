@@ -1,0 +1,26 @@
+.not-found-page {
+  line-height: 1.2;
+  color: #888;
+  font-family: sans-serif;
+  height: 100%;
+  text-align: center;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.not-found-page h1 {
+  color: #555;
+  font-size: 2em;
+  font-weight: 400;
+}
+
+.not-found-page p {
+  margin: 0 auto;
+  width: 280px;
+  padding: 20px;
+}
+
+.not-found-page img {
+  height: 50%;
+  width: 50%;
+}
