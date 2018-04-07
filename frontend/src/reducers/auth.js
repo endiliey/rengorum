@@ -2,9 +2,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  LOGOUT_REQUEST,
-  LOGOUT_SUCCESS,
-  LOGOUT_FAILURE
+  LOGOUT
 } from '../actions/types';
 
 const initialState = {
@@ -12,7 +10,8 @@ const initialState = {
   isAuthenticated: false,
   username: null,
   avatar: null,
-  token: null
+  token: null,
+  error: null
 };
 
 const auth = (state = initialState, action) => {
@@ -30,38 +29,21 @@ const auth = (state = initialState, action) => {
         isAuthenticated: true,
         token: action.token,
         username: action.username,
-        avatar: action.avatar
+        avatar: action.avatar,
+        error: null
       };
     case LOGIN_FAILURE:
-      return {
-          ...state,
-          isFetching: false,
-          isAuthenticated: false,
-          token: null,
-          username: null,
-          avatar: null
-      };
-    case LOGOUT_REQUEST:
-      return {
-        ...state,
-        isFetching: true,
-        isAuthenticated: true,
-      };
-    case LOGOUT_SUCCESS:
       return {
         ...state,
         isFetching: false,
         isAuthenticated: false,
         token: null,
         username: null,
-        avatar: null
+        avatar: null,
+        error: action.error
       };
-    case LOGOUT_FAILURE:
-      return {
-          ...state,
-          isFetching: false,
-          isAuthenticated: true
-      };
+    case LOGOUT:
+      return initialState;
     default:
       return state;
   }

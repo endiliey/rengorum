@@ -3,19 +3,15 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
-  LOGOUT_REQUEST,
-  LOGOUT_SUCCESS,
-  LOGOUT_FAILURE
+  LOGOUT
 } from './types';
-import { URL, LOGIN, LOGOUT, getHeader } from './api';
+import { API_URL, LOGIN_URL, LOGOUT_URL, getHeader } from './api';
 
-// Calls the API to get a token and
-// dispatches actions along the way
 export const login = (username, password) => {
   return (dispatch) => {
     dispatch(loginRequest());
 
-    axios.post(URL + LOGIN, {
+    axios.post(API_URL + LOGIN_URL, {
       username,
       password
     })
@@ -51,32 +47,14 @@ export const loginFailure = (error) => {
 }
 
 export const logout = () => dispatch => {
-    dispatch(logoutRequest());
+    dispatch(logoutAction());
 
-    axios.post(URL + LOGOUT, null, getHeader())
-    .then(function (response) {
-      dispatch(logoutSuccess(response));
-    })
-    .catch(function (error) {
-      dispatch(logoutFailure(error));
-    });
+    // api call to delete token server-side
+    axios.post(API_URL + LOGOUT_URL, null, getHeader());
 };
 
-export const logoutRequest = () => {
+export const logoutAction = () => {
   return {
-    type: LOGOUT_REQUEST
-  };
-}
-
-export const logoutSuccess = () => {
-  return {
-    type: LOGOUT_SUCCESS
-  };
-}
-
-export const logoutFailure = (error) => {
-  return {
-    type: LOGOUT_FAILURE,
-    error
+    type: LOGOUT
   };
 }
