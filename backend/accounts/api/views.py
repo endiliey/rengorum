@@ -25,6 +25,7 @@ from .serializers import (
 class UserCreateAPIView(generics.CreateAPIView):
     serializer_class = UserCreateSerializer
     queryset = User.objects.all()
+    permission_classes = [AllowAny]
 
 class UserDetailAPIView(generics.RetrieveAPIView):
     queryset = User.objects.all()

@@ -79,9 +79,9 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
 class UserCreateSerializer(serializers.ModelSerializer):
     # A field from the user's profile:
-    bio = serializers.CharField(source='profile.bio', allow_blank=True)
-    avatar = serializers.URLField(source='profile.avatar', allow_blank=True)
-    status = serializers.CharField(source='profile.status', allow_blank=True)
+    bio = serializers.CharField(source='profile.bio', allow_blank=True, default='')
+    avatar = serializers.URLField(source='profile.avatar', allow_blank=True, default='')
+    status = serializers.CharField(source='profile.status', allow_blank=True, default='')
 
     class Meta:
         model = User
