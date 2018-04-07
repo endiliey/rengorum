@@ -91,7 +91,7 @@ export default class Register extends Component {
   render() {
     return (
       <div className="register-container">
-        <form novalidate>
+        <form noValidate>
           <div className="form-group">
             <label id="usernameLabel">Username</label>
             <input className="form-control"

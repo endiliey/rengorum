@@ -4,20 +4,31 @@
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 12px;
-  background-color: black;
+  background-color: #a36eff;
   height: 35px;
   color: white;
   font-size: 0.9em;
-  border: 2px solid #555555;
+  border: 2px solid #a36eff;
   outline: none;
+  cursor: pointer;
 }
 
 .btn:hover {
-  background-color: #555555;
+  background-color: #a36effa3;
   color: white;
 }
 
 .btn:active {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+}
+
+.btn .loader{
+  height: 30px;
+  width: 100%;
+}
+
+.btn .loader .loader-spinning-wheel{
+  height: 20px;
+  width: 20px;
 }

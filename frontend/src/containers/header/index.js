@@ -11,11 +11,11 @@ class Header extends Component {
   }
 
   showRegister() {
-    this.props.dispatch(actions.showModal('Register', {}));
+    this.props.dispatch(actions.showModal('REGISTER', {}));
   }
-
+  
   showLogin() {
-    this.props.dispatch(actions.showModal('Login', {}));
+    this.props.dispatch(actions.showModal('LOGIN', {}));
   }
 
   render() {

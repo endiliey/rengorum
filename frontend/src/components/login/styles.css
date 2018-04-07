@@ -1,29 +1,10 @@
-.register-container {
+.login-container {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: Helvetica Neue;
   margin: 10px 0px;
-}
-
-.note {
-  color: gray;
-  margin: 8px 0;
-}
-
-input.active:valid {
-  box-shadow: 0 0 5px 1px green;
-}
-
-input.active:invalid {
-  box-shadow: 0 0 5px 1px red;
-}
-
-.error {
-  color: red;
-  font-size: 12px;
-  margin-top: 5px;
 }
 
 .form-group {

@@ -14,7 +14,7 @@ import { URL, LOGIN, LOGOUT, getHeader } from './api';
 // dispatches actions along the way
 export const login = (username, password) => {
   return (dispatch) => {
-    dispatch(loginRequest);
+    dispatch(loginRequest());
 
     axios.post(URL + LOGIN, {
       username,
@@ -24,7 +24,7 @@ export const login = (username, password) => {
       dispatch(loginSuccess(response.data));
     })
     .catch(function (error) {
-      dispatch(loginFailure(error));
+      dispatch(loginFailure("Wrong username or password"));
     });
   };
 }

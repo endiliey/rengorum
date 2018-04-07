@@ -1,19 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Register from '../../components/register';
+import LoginModal from './login';
 import Modal from '../../components/modal';
 import { hideModal } from '../../actions';
 
 const ModalContainer = (props) => {
-
-  const closeModal = () => {
+  const handleClose = () => {
     props.dispatch(hideModal());
   }
 
   switch (props.modalType) {
-    case 'Register':
+    case 'REGISTER':
       return (
-        <Modal title="Register" onClose={closeModal}> <Register /> </Modal>);
+        <Modal title="Register" onClose={handleClose}>
+          <Register {...props.modalProps}/>
+        </Modal>
+      );
+    case 'LOGIN':
+      return (
+        <LoginModal {...props.modalProps}/>
+      );
     default:
       return null;
   }
