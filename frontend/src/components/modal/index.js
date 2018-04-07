@@ -33,7 +33,6 @@ export default class Modal extends Component {
     const contentStyle = this.props.contentStyle ? this.props.contentStyle : {};
     const dialogStyle = this.props.dialogStyle ? this.props.dialogStyle : {};
     const headerStyle = this.props.headerStyle ? this.props.headerStyle : {};
-    const bodyStyle = this.props.bodyStyle ? this.props.bodyStyle : {};
     return (
       <div>
         <div className="modal-overlay-div" style={overlayStyle} />
