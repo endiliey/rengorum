@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router';
 import Button from '../button';
 import './styles.css'
 
@@ -10,7 +9,7 @@ class GuestNav extends Component {
         <Button
           className="btn-sign-in"
           type="button"
-          onClick={() => this.props.history.push('/login')}
+          onClick={this.props.showLogin}
         >
           Login
         </Button>
@@ -18,7 +17,7 @@ class GuestNav extends Component {
         <Button
           className="btn-register"
           type="button"
-          onClick={() => this.props.history.push('/register')}
+          onClick={this.props.showRegister}
         >
           Register
         </Button>
@@ -27,4 +26,4 @@ class GuestNav extends Component {
   }
 }
 
-export default withRouter(GuestNav);
+export default GuestNav;

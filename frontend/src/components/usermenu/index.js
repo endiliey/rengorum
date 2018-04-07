@@ -15,7 +15,10 @@ class UserMenu extends Component {
       );
     } else {
       return (
-        <GuestNav />
+        <GuestNav
+          showRegister={this.props.showRegister}
+          showLogin={this.props.showLogin}
+        />
       );
     }
   }

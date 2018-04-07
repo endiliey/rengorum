@@ -13,7 +13,7 @@ const ModalContainer = (props) => {
   switch (props.modalType) {
     case 'Register':
       return (
-        <Modal onClose={closeModal}> <Register /> </Modal>);
+        <Modal title="Register" onClose={closeModal}> <Register /> </Modal>);
     default:
       return null;
   }

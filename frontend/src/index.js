@@ -17,8 +17,6 @@ ReactDOM.render(
         <div>
           <HeaderContainer />
           <Switch>
-            <Route path="/login" component={App} /> // TODO Login
-            <Route path="/register" component={Register} /> // TODO Register
             <Route path="/" component={App} />
           </Switch>
         </div>

@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   font-family: Helvetica Neue;
-  margin-top: 50px;
+  margin: 10px 0px;
 }
 
 .note {
@@ -32,9 +32,9 @@ input.active:invalid {
 
 .form-control {
   display: block;
-  width: 90%;
+  width: 100%;
   height: 20px;
-  padding: 5px 15px;
+  padding: 5px 10px;
   font-size: 14px;
   line-height: 1.42857143;
   color: #555;
