@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Register from '../../components/register';
 import Modal from '../../components/modal';
-import { hideModal } from '../../actions';
+import { hideModal, register } from '../../actions';
 //import { hideModal, register } from '../../actions'; TODO
 
 class RegisterModal extends Component {
@@ -10,11 +10,11 @@ class RegisterModal extends Component {
     this.props.dispatch(hideModal());
   }
 
-  handleRegister() {
-    // // TODO: dispatch the registration params
-  }
-
   render() {
+    const handleRegister = (username, email, password) => {
+      this.props.dispatch(register(username, email, password));
+    }
+
     if (this.props.isAuthenticated) {
       this.handleClose();
       return null;
@@ -24,15 +24,20 @@ class RegisterModal extends Component {
         title="Register"
         onClose={() => this.handleClose()}
       >
-        <Register />
+        <Register
+          handleRegister={handleRegister}
+          loading={this.props.isFetching}
+          error={this.props.error}
+        />
       </Modal>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  // TODO
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  error: state.register.error,
+  isFetching: state.register.isFetching
 });
 
 export default connect(mapStateToProps)(RegisterModal);

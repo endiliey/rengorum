@@ -8,9 +8,10 @@ export default class Register extends Component {
     super(props);
 
     this.state = {
-      username: 'endiliey@gmail.com',
+      username: 'endiliey',
+      email: 'endiliey@gmail.com',
       password: '',
-      passwordConfirm: ''
+      passwordConfirm: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -27,6 +28,14 @@ export default class Register extends Component {
     this.showInputError(e.target.name);
   }
 
+  handleClick() {
+    this.props.handleRegister(
+      this.state.username,
+      this.state.email,
+      this.state.password
+    );
+  }
+
   handleSubmit(e) {
     e.preventDefault();
 
@@ -36,6 +45,7 @@ export default class Register extends Component {
       console.log('form is invalid: do not submit');
     } else {
       console.log('form is valid: submit');
+      this.handleClick();
     }
   }
 
@@ -75,7 +85,7 @@ export default class Register extends Component {
       if (validity.valueMissing) {
         error.textContent = `${label} is a required field`;
       } else if (validity.typeMismatch) {
-        error.textContent = `${label} should be a valid email address`;
+        error.textContent = `${label} should be a valid one`;
       } else if (isPassword && validity.patternMismatch) {
         error.textContent = `${label} should be longer than 4 chars`;
       } else if (isPasswordConfirm && validity.customError) {
@@ -92,16 +102,30 @@ export default class Register extends Component {
     return (
       <div className="register-container">
         <form noValidate>
+          <div className="error" id="Error">
+            {this.props.error}
+          </div>
           <div className="form-group">
             <label id="usernameLabel">Username</label>
             <input className="form-control"
-              type="email"
+              type="text"
               name="username"
               ref="username"
               value={ this.state.username }
               onChange={ this.handleChange }
               required />
             <div className="error" id="usernameError" />
+          </div>
+          <div className="form-group">
+            <label id="emailLabel">Email</label>
+            <input className="form-control"
+              type="email"
+              name="email"
+              ref="email"
+              value={ this.state.email }
+              onChange={ this.handleChange }
+              required />
+            <div className="error" id="emailError" />
           </div>
           <div className="form-group">
             <label id="passwordLabel">Password</label>
@@ -127,7 +151,8 @@ export default class Register extends Component {
             <div className="error" id="passwordConfirmError" />
           </div>
           <Button
-            onClick={ this.handleSubmit }>submit
+            loading={this.props.loading}
+            onClick={ this.handleSubmit }>Register
           </Button>
         </form>
       </div>
