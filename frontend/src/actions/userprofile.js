@@ -7,7 +7,7 @@ import {
 import { API_URL, USER_PROFILE_URL } from './api';
 
 export const fetchUserProfile = username => dispatch => {
-  dispatch(fetchUserProfileRequest);
+  dispatch(fetchUserProfileRequest());
 
   axios.get(API_URL + USER_PROFILE_URL + username)
   .then(function (response) {

@@ -29,6 +29,7 @@ class UserProfile extends Component {
     return (
       <div className="userProfile-loading">
         <Loader />
+        <br /><br />
         Loading user profile ...
       </div>
     );
