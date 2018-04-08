@@ -23,6 +23,7 @@ input.active:invalid {
 .error {
   color: red;
   font-size: 8px;
+  margin: 10px 0px;
 }
 
 .form-group {
