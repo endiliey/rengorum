@@ -13,6 +13,7 @@ Single-page forum application that aims to be fast, performant and simple.
 > * [Redux v5](http://redux.js.org/)
 > * [React Router v4](https://github.com/ReactTraining/react-router)
 > * [Redux Thunk v2](https://github.com/gaearon/redux-thunk)
+> * [Redux Persist v5.9](https://github.com/rt2zz/redux-persist)
 > * [etc](https://github.com/endiliey/rengorum/blob/master/frontend/package.json)
 
 ## Development setup
