@@ -19,7 +19,17 @@ export const login = (username, password) => {
       dispatch(loginSuccess(response.data));
     })
     .catch(function (error) {
-      dispatch(loginFailure("Wrong username or password"));
+      var errorMessage = "Unknown Error";
+      if (!error.response) {
+        errorMessage = "Error: Network Error";
+      } else if (error.response.data.non_field_errors){
+        errorMessage = error.response.data.non_field_errors;
+      } else if (error.response.data.username) {
+        errorMessage = "Username: " + error.response.data.username;
+      } else if (error.response.data.password) {
+        errorMessage = "Password: "+ error.response.data.password;
+      }
+      dispatch(loginFailure(errorMessage));
     });
   };
 }

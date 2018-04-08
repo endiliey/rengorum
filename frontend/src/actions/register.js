@@ -5,6 +5,7 @@ import {
   REGISTER_FAILURE
 } from './types';
 import { API_URL, REGISTER_URL } from './api';
+import { login } from './auth';
 
 export const register = (username, email, password) => {
   return (dispatch) => {
@@ -17,11 +18,23 @@ export const register = (username, email, password) => {
     })
     .then(function (response) {
       dispatch(registerSuccess());
+      dispatch(login(username, password));
     })
     .catch(function (error) {
-      // // TODO: process the error.response.data and select suitable
       console.log(error);
-      dispatch(registerFailure(error.response.data.username));
+      var errorMessage = "Unknown Error";
+      if (!error.response) {
+        errorMessage = "Error: Network Error";
+      } else if (error.response.data.non_field_errors){
+        errorMessage = error.response.data.non_field_errors;
+      } else if (error.response.data.username) {
+        errorMessage = "Username: " + error.response.data.username;
+      } else if (error.response.data.email) {
+        errorMessage = "Email: "+ error.response.data.email;
+      } else if (error.response.data.password) {
+        errorMessage = "Password: "+ error.response.data.password;
+      }
+      dispatch(registerFailure(errorMessage));
     });
   };
 }

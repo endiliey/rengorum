@@ -9,9 +9,9 @@
 
 .error {
   color: red;
-  font-size: 20px;
+  font-size: 12px;
   margin: 10px 0px;
-  padding: 5px;
+  padding: 5px 0px;
 }
 
 .form-group {
