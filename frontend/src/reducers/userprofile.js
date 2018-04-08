@@ -21,7 +21,7 @@ const userProfile = (state = initialState, action) => {
       return {
         ...state,
         isFetching: false,
-        profile: action.data,
+        profile: action.profile,
         error: null
       };
     case FETCH_USER_PROFILE_FAILURE:

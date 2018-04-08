@@ -9,6 +9,7 @@ import Loader from './components/loader';
 import store, { persistor } from './store';
 import HeaderContainer from './containers/header';
 import ModalContainer from './containers/modal';
+import UserProfileContainer from './containers/userprofile';
 import NotFoundPage from './components/not-found-page';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -20,6 +21,7 @@ ReactDOM.render(
           <div>
             <HeaderContainer />
             <Switch>
+              <Route path="/user/:username" component={UserProfileContainer} />
               <Route exact path="/" component={App} />
               <Route component={NotFoundPage} />
             </Switch>

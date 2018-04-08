@@ -11,6 +11,7 @@ export const fetchUserProfile = username => dispatch => {
 
   axios.get(API_URL + USER_PROFILE_URL + username)
   .then(function (response) {
+    console.log(response);
     dispatch(fetchUserProfileSuccess(response.data));
   })
   .catch(function (error) {
