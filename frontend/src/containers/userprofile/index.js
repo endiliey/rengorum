@@ -31,12 +31,17 @@ class UserProfile extends Component {
         <Loader />
         <br /><br />
         Loading user profile ...
+        <br /><br />
+        <img
+          alt=""
+          src="https://78.media.tumblr.com/79a05ebf968c9e3c8aabb431e0e4902f/tumblr_ozkehweZjO1tsqtheo2_r1_500.gif"
+        />
       </div>
     );
   }
 
   renderError() {
-    if (this.props.error.includes("Not Found")) {
+    if (this.props.error.includes("Not found")) {
       return (
         <NotFoundPage />
       );

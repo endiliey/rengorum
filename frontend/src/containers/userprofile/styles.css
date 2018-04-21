@@ -1,6 +1,7 @@
 .UserProfile {
   margin-top: 20px;
   display: flex;
+  flex-direction: column;
   @media largeBP { flex-flow: row nowrap; }
 }
 
