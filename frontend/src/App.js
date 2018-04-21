@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Avatar from './components/avatar';
 import Loader from './components/loader';
+import RichEditor from './components/richeditor';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
         Hello
         </p>
         <Loader />
+        <RichEditor />
       </div>
     );
   }
