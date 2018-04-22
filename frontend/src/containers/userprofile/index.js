@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import NotFoundPage from '../../components/not-found-page';
+import NotFoundPage from '../../components/notfoundpage';
 import {
   fetchUserProfile
 } from '../../actions';

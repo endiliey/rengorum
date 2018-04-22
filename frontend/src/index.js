@@ -10,7 +10,7 @@ import store, { persistor } from './store';
 import HeaderContainer from './containers/header';
 import ModalContainer from './containers/modal';
 import UserProfileContainer from './containers/userprofile';
-import NotFoundPage from './components/not-found-page';
+import NotFoundPage from './components/notfoundpage';
 import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
