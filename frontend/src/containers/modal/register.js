@@ -11,8 +11,8 @@ class RegisterModal extends Component {
   }
 
   render() {
-    const handleRegister = (username, email, password) => {
-      this.props.dispatch(register(username, email, password));
+    const handleRegister = (username, name, email, password) => {
+      this.props.dispatch(register(username, name, email, password));
     }
 
     if (this.props.isAuthenticated) {

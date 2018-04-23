@@ -8,8 +8,9 @@ export default class Register extends Component {
     super(props);
 
     this.state = {
-      username: 'endiliey',
-      email: 'endiliey@gmail.com',
+      username: 'kimjongun',
+      name: 'Kim Jong Un',
+      email: 'kimjongun@gmail.com',
       password: '',
       passwordConfirm: '',
     };
@@ -31,6 +32,7 @@ export default class Register extends Component {
   handleClick() {
     this.props.handleRegister(
       this.state.username,
+      this.state.name,
       this.state.email,
       this.state.password
     );
@@ -115,6 +117,17 @@ export default class Register extends Component {
               onChange={ this.handleChange }
               required />
             <div className="error" id="usernameError" />
+          </div>
+          <div className="form-group">
+            <label id="nameLabel">Name</label>
+            <input className="form-control"
+              type="text"
+              name="name"
+              ref="name"
+              value={ this.state.name }
+              onChange={ this.handleChange }
+              required />
+            <div className="error" id="nameError" />
           </div>
           <div className="form-group">
             <label id="emailLabel">Email</label>

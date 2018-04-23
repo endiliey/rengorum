@@ -7,12 +7,13 @@ import {
 import { API_URL, REGISTER_URL } from './api';
 import { login } from './auth';
 
-export const register = (username, email, password) => {
+export const register = (username, name, email, password) => {
   return (dispatch) => {
     dispatch(registerRequest());
 
     axios.post(API_URL + REGISTER_URL, {
       username,
+      name,
       email,
       password
     })
@@ -29,6 +30,8 @@ export const register = (username, email, password) => {
         errorMessage = error.response.data.non_field_errors;
       } else if (error.response.data.username) {
         errorMessage = "Username: " + error.response.data.username;
+      } else if (error.response.data.name) {
+        errorMessage = "Name: " + error.response.data.name;
       } else if (error.response.data.email) {
         errorMessage = "Email: "+ error.response.data.email;
       } else if (error.response.data.password) {
