@@ -5,7 +5,6 @@ import {
   fetchUserProfile
 } from '../../actions';
 import Loader from '../../components/loader';
-import Avatar from '../../components/avatar';
 import Profile from '../../components/profile';
 import './styles.css';
 

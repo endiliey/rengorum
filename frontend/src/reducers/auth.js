@@ -9,6 +9,7 @@ const initialState = {
   isFetching: false,
   isAuthenticated: false,
   username: null,
+  name: null,
   avatar: null,
   token: null,
   error: null
@@ -30,6 +31,7 @@ const auth = (state = initialState, action) => {
         token: action.token,
         username: action.username,
         avatar: action.avatar,
+        name: action.name,
         error: null
       };
     case LOGIN_FAILURE:
@@ -40,6 +42,7 @@ const auth = (state = initialState, action) => {
         token: null,
         username: null,
         avatar: null,
+        name: null,
         error: action.error
       };
     case LOGOUT:

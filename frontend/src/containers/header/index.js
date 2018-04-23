@@ -13,7 +13,7 @@ class Header extends Component {
   showRegister() {
     this.props.dispatch(actions.showModal('REGISTER', {}));
   }
-  
+
   showLogin() {
     this.props.dispatch(actions.showModal('LOGIN', {}));
   }
@@ -25,6 +25,7 @@ class Header extends Component {
         <UserMenu
           isAuthenticated={this.props.isAuthenticated}
           username={this.props.username}
+          name={this.props.name}
           avatar={this.props.avatar}
           logout={() => this.handleLogout()}
           isFetching={this.props.isFetching}
@@ -38,6 +39,7 @@ class Header extends Component {
 
 const mapStateToProps = state => ({
   username: state.auth.username,
+  name: state.auth.name,
   avatar: state.auth.avatar,
   isAuthenticated: state.auth.isAuthenticated,
   isFetching: state.auth.isFetching

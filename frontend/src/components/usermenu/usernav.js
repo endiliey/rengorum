@@ -6,7 +6,8 @@ import './styles.css';
 
 class UserNav extends Component {
   render() {
-    const username = this.props.username || "TestUser";
+    const username = this.props.username || "Unknown";
+    const displayName = this.props.name || this.props.username;
     const avatar = this.props.avatar || "http://api.adorable.io/avatar/200/TestUser";
     return (
         <div className="userMenu">
@@ -15,7 +16,7 @@ class UserNav extends Component {
               className="userAvatar"
               avatar={avatar}
             />
-            <p className="username">{username}</p>
+            <p className="displayName">{displayName}</p>
           </Button>
           <div className="userMenu-content">
             <Link to={`/user/${username}`}>My profile</Link>
