@@ -104,7 +104,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
         max_length=32
     )
     avatar = serializers.URLField(source='profile.avatar', allow_blank=True, default='')
-    status = serializers.CharField(source='profile.status', allow_blank=True, default='')
+    status = serializers.CharField(source='profile.status', allow_blank=True, default='member')
 
     class Meta:
         model = User
@@ -139,7 +139,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
             bio = profile_data.get('bio', ''),
             avatar = avatar,
             name = profile_data.get('name', ''),
-            status = profile_data.get('status','')
+            status = profile_data.get('status','member')
         )
         profile.save()
         return user
