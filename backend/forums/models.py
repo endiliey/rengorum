@@ -7,3 +7,9 @@ class Forum(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_posts_count(self):
+        return Post.objects.filter(thread__forum=self).count()
+
+    def get_last_post(self):
+        return Post.objects.filter(thread__forum=self).order_by('-created_at').first()
