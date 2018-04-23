@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 from rest_framework.compat import authenticate
+from rest_framework.validators import UniqueValidator
 
 from accounts.models import UserProfile
 
@@ -79,6 +80,14 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
 class UserCreateSerializer(serializers.ModelSerializer):
     # A field from the user's profile:
+    username = serializers.CharField(
+        max_length=32,
+        validators=[UniqueValidator(queryset=User.objects.all())]
+    )
+    email = serializers.EmailField(
+        required=True,
+        validators=[UniqueValidator(queryset=User.objects.all())]
+    )
     bio = serializers.CharField(source='profile.bio', allow_blank=True, default='')
     avatar = serializers.URLField(source='profile.avatar', allow_blank=True, default='')
     status = serializers.CharField(source='profile.status', allow_blank=True, default='')

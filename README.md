@@ -33,7 +33,7 @@ Make sure you have following software installed in your system:
 
 First, we need to clone the repository
 ```
-https://github.com/endiliey/rengorum.git
+git clone https://github.com/endiliey/rengorum.git
 ```
 
 Setup a [virtualenv](https://virtualenv.pypa.io/en/stable/)
@@ -72,6 +72,11 @@ deactivate
 Make sure you've activated your virtualenv, activate by
 ```
 source venv/bin/activate
+```
+
+Make sure backend testcases that I've wrote is not failing
+```
+python manage.py runserver
 ```
 
 Then run the server, endpoint should be available on http://localhost:8000/
