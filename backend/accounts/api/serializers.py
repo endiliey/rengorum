@@ -46,7 +46,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     name = serializers.CharField(source='profile.name', allow_blank=True)
     avatar = serializers.URLField(source='profile.avatar', allow_blank=True)
     status = serializers.CharField(source='profile.status', allow_blank=True)
-    password = serializers.CharField(allow_blank=True, default='')
+    password = serializers.CharField(allow_blank=True, default='', write_only=True)
 
     class Meta:
         model = User
