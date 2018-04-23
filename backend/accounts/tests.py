@@ -12,7 +12,7 @@ class AccountsTestCase(APITestCase):
         self.test_user = User.objects.create_user('test', 'test@rengorum.com', 'anythingcanlah')
 
         # URL for creating an account.
-        self.create_url = reverse('register')
+        self.create_url = reverse('user-register')
 
     def test_create_user(self):
         data = {
