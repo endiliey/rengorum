@@ -65,6 +65,7 @@ class UserLoginAPIView(views.APIView):
             return Response({
                 'token': token.key,
                 'username': user.username,
+                'name': user.profile.name,
                 'avatar': user.profile.avatar
             }, status=HTTP_200_OK)
 

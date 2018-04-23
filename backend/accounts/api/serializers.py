@@ -12,13 +12,16 @@ class UserDetailSerializer(serializers.ModelSerializer):
     bio = serializers.CharField(source='profile.bio')
     avatar = serializers.URLField(source='profile.avatar')
     status = serializers.URLField(source='profile.status')
+    name = serializers.CharField(source='profile.name')
     class Meta:
         model = User
         fields = [
             'username',
+            'name',
             'bio',
             'avatar',
-            'status'
+            'status',
+            'date_joined'
         ]
         lookup_field = 'username'
 
@@ -30,14 +33,17 @@ class UserListSerializer(serializers.ModelSerializer):
         model = User
         fields = [
             'username',
+            'name',
             'bio',
             'avatar',
-            'status'
+            'status',
+            'date_joined'
         ]
 
 class UserUpdateSerializer(serializers.ModelSerializer):
     # A field from the user's profile:
     bio = serializers.CharField(source='profile.bio', allow_blank=True)
+    name = serializers.CharField(source='profile.name', allow_blank=True)
     avatar = serializers.URLField(source='profile.avatar', allow_blank=True)
     status = serializers.CharField(source='profile.status', allow_blank=True)
     password = serializers.CharField(allow_blank=True, default='')
@@ -46,6 +52,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             'username',
+            'name',
             'email',
             'password',
             'bio',
@@ -89,6 +96,12 @@ class UserCreateSerializer(serializers.ModelSerializer):
         validators=[UniqueValidator(queryset=User.objects.all())]
     )
     bio = serializers.CharField(source='profile.bio', allow_blank=True, default='')
+    name = serializers.CharField(
+        source='profile.name',
+        allow_blank=True,
+        default='',
+        max_length=32
+    )
     avatar = serializers.URLField(source='profile.avatar', allow_blank=True, default='')
     status = serializers.CharField(source='profile.status', allow_blank=True, default='')
 
@@ -96,6 +109,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             'username',
+            'name',
             'email',
             'password',
             'bio',
@@ -123,6 +137,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
             user = user,
             bio = profile_data.get('bio', ''),
             avatar = avatar,
+            name = profile_data.get('name', ''),
             status = profile_data.get('status','')
         )
         profile.save()
@@ -159,10 +174,12 @@ class UserTokenSerializer(serializers.Serializer):
 
 class UserLoginSerializer(serializers.ModelSerializer):
     token = serializers.CharField(allow_blank=True, read_only=True)
+    name = serializers.CharField(source='profile.name', read_only=True)
     class Meta:
         model = User
         fields = [
             'username',
+            'name',
             'password',
             'token',
         ]

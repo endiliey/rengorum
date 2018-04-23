@@ -16,10 +16,10 @@ class AccountsTestCase(APITestCase):
 
     def test_create_user(self):
         data = {
-                'username': 'hanlindev',
-                'email': 'hanlindev@facebook.com',
-                'password': 'somepassword'
-                }
+            'username': 'hanlindev',
+            'email': 'hanlindev@facebook.com',
+            'password': 'somepassword'
+        }
 
         response = self.client.post(self.create_url , data, format='json')
         self.assertEqual(User.objects.count(), 2)
