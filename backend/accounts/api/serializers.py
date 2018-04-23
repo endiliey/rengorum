@@ -21,7 +21,9 @@ class UserDetailSerializer(serializers.ModelSerializer):
             'bio',
             'avatar',
             'status',
-            'date_joined'
+            'date_joined',
+            'threads',
+            'posts'
         ]
         lookup_field = 'username'
 

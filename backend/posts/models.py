@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.text import Truncator
-from accounts.models import UserProfile
+from django.contrib.auth.models import User
 from threads.models import Thread
 
 
@@ -15,7 +15,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
     creator = models.ForeignKey(
-        UserProfile,
+        User,
         on_delete=models.CASCADE,
         related_name='posts'
     )

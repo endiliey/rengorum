@@ -13,7 +13,7 @@ class ForumListSerializer(serializers.ModelSerializer):
             'description',
         )
 
-class ForumCreateSerializer(serializers.ModelSerializer):
+class ForumCreateUpdateDeleteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Forum
         fields = (
@@ -28,4 +28,5 @@ class ForumDetailSerializer(serializers.ModelSerializer):
         fields = (
             'name',
             'description',
+            'threads'
         )

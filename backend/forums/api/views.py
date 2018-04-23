@@ -12,7 +12,7 @@ from rest_framework.response import Response
 
 from .serializers import (
     ForumListSerializer,
-    ForumCreateSerializer,
+    ForumCreateUpdateDeleteSerializer,
     ForumDetailSerializer
 )
 
@@ -22,7 +22,7 @@ class ForumListAPIView(generics.ListAPIView):
     permission_classes = [AllowAny]
 
 class ForumCreateAPIView(generics.CreateAPIView):
-    serializer_class = ForumCreateSerializer
+    serializer_class = ForumCreateUpdateDeleteSerializer
     queryset = Forum.objects.all()
     permission_classes = [IsAdminUser]
 
@@ -33,10 +33,10 @@ class ForumDetailAPIView(generics.RetrieveAPIView):
 
 class ForumDeleteAPIView(generics.DestroyAPIView):
     queryset = Forum.objects.all()
-    serializer_class = ForumDetailSerializer
+    serializer_class = ForumCreateUpdateDeleteSerializer
     permission_classes = [IsAdminUser]
 
 class ForumUpdateAPIView(generics.UpdateAPIView):
     queryset = Forum.objects.all()
-    serializer_class = ForumDetailSerializer
+    serializer_class = ForumCreateUpdateDeleteSerializer
     permission_classes = [IsAdminUser]

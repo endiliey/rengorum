@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.text import Truncator
 from datetime import datetime
-from accounts.models import UserProfile
+from django.contrib.auth.models import User
 from forums.models import Forum
 
 class Thread(models.Model):
@@ -10,7 +10,7 @@ class Thread(models.Model):
     forum = models.ForeignKey(Forum, on_delete=models.CASCADE, related_name='threads')
     pinned = models.BooleanField(default=False)
     content = models.TextField(max_length=4000)
-    creator = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='threads')
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='threads')
     created_at = models.DateTimeField(auto_now_add=True)
     last_activity = models.DateTimeField(default=datetime.now)
 
