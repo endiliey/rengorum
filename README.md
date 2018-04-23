@@ -76,7 +76,7 @@ source venv/bin/activate
 
 Make sure backend testcases that I've wrote is not failing
 ```
-python manage.py runserver
+python manage.py test
 ```
 
 Then run the server, endpoint should be available on http://localhost:8000/
