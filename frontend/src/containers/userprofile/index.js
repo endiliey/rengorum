@@ -6,6 +6,7 @@ import {
 } from '../../actions';
 import Loader from '../../components/loader';
 import Avatar from '../../components/avatar';
+import Profile from '../../components/profile';
 import './styles.css';
 
 class UserProfile extends Component {
@@ -55,14 +56,22 @@ class UserProfile extends Component {
 
   renderProfile() {
     const {
+      name,
       username,
-      avatar
+      status,
+      bio,
+      avatar,
+      date_joined
     } = this.props.profile;
 
     return (
-      <Avatar
+      <Profile
         username={username}
+        name={name}
         avatar={avatar}
+        status={status}
+        bio={bio}
+        date_joined={date_joined}
       />
     );
   }

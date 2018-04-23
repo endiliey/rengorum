@@ -1,0 +1,25 @@
+.profileContainer {
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  border: 3px solid gray;
+  justify-content: center;
+  padding: 10px;
+}
+
+.profileAvatar .avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+}
+
+.profileInfo {
+  margin-left: 20px;
+  letter-spacing: 1px;
+}
+
+.profileInfo .name { font-size: 24px; }
+.profileInfo .username { font-size: 14px; font-weight: bold; margin-bottom: 10px;}
+.profileInfo .status { font-size: 14px; margin-bottom: 5px;}
+.profileInfo .date_joined { font-size: 14px; margin-bottom: 5px;}
+.profileInfo .bio { font-size: 14px; margin-bottom: 5px;}
