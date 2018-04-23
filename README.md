@@ -22,6 +22,7 @@ Rengorum is currently still under development so you might expect many features 
 > * [etc](https://github.com/endiliey/rengorum/blob/master/frontend/package.json)
 
 ![Screenshot 2](preview/frontend_1.PNG)
+![Screenshot 3](preview/frontend_2.PNG)
 
 ## Development setup
 

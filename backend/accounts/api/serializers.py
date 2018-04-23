@@ -29,6 +29,7 @@ class UserListSerializer(serializers.ModelSerializer):
     bio = serializers.CharField(source='profile.bio')
     avatar = serializers.URLField(source='profile.avatar')
     status = serializers.URLField(source='profile.status')
+    name = serializers.CharField(source='profile.name')
     class Meta:
         model = User
         fields = [
