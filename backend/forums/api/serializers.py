@@ -18,6 +18,7 @@ class ForumListSerializer(serializers.ModelSerializer):
             'posts_count',
             'threads_count'
         )
+        read_only_fields = ('slug',)
 
     def get_posts_count(self, obj):
         return Post.objects.filter(thread__forum=obj).count()
@@ -33,6 +34,7 @@ class ForumCreateUpdateDeleteSerializer(serializers.ModelSerializer):
             'name',
             'description'
         )
+        read_only_fields = ('slug',)
         lookup_field = 'slug'
 
 class ForumDetailSerializer(serializers.ModelSerializer):
@@ -44,4 +46,5 @@ class ForumDetailSerializer(serializers.ModelSerializer):
             'description',
             'threads'
         )
+        read_only_fields = ('slug',)
         lookup_field = 'slug'

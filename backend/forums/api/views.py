@@ -30,13 +30,16 @@ class ForumDetailAPIView(generics.RetrieveAPIView):
     queryset = Forum.objects.all()
     serializer_class = ForumDetailSerializer
     permission_classes = [AllowAny]
+    lookup_field = 'slug'
 
 class ForumDeleteAPIView(generics.DestroyAPIView):
     queryset = Forum.objects.all()
     serializer_class = ForumCreateUpdateDeleteSerializer
     permission_classes = [IsAdminUser]
+    lookup_field = 'slug'
 
 class ForumUpdateAPIView(generics.UpdateAPIView):
     queryset = Forum.objects.all()
     serializer_class = ForumCreateUpdateDeleteSerializer
     permission_classes = [IsAdminUser]
+    lookup_field = 'slug'
