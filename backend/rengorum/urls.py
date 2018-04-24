@@ -23,6 +23,6 @@ urlpatterns = [
     path('api/', include('rest_framework.urls')),
     path('api/users/', include('accounts.api.urls')),
     path('api/forums/', include('forums.api.urls')),
-    #path('api/threads/', include('threads.api.urls')),
+    path('api/threads/', include('threads.api.urls')),
     #path('api/posts/', include('posts.api.urls')),
 ]

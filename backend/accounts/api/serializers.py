@@ -10,6 +10,12 @@ class UserDetailSerializer(serializers.ModelSerializer):
     avatar = serializers.URLField(source='profile.avatar')
     status = serializers.URLField(source='profile.status')
     name = serializers.CharField(source='profile.name')
+    threads = serializers.HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name='thread-detail',
+        lookup_field='pk'
+    )
     class Meta:
         model = User
         fields = [

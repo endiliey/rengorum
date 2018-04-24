@@ -38,6 +38,12 @@ class ForumCreateUpdateDeleteSerializer(serializers.ModelSerializer):
         lookup_field = 'slug'
 
 class ForumDetailSerializer(serializers.ModelSerializer):
+    threads = serializers.HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name='thread-detail',
+        lookup_field='pk'
+    )
     class Meta:
         model = Forum
         fields = (
