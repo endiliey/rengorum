@@ -16,7 +16,7 @@ class Thread(models.Model):
 
     class Meta:
         ordering = [
-            'pinned',
+            '-pinned',
             '-last_activity'
         ]
 
