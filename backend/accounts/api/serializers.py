@@ -3,7 +3,6 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import ugettext_lazy as _
 from rest_framework.compat import authenticate
 from rest_framework.validators import UniqueValidator
-
 from accounts.models import UserProfile
 
 User = get_user_model()
@@ -90,9 +89,15 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
 class UserCreateSerializer(serializers.ModelSerializer):
     # A field from the user's profile:
-    username = serializers.CharField(
+    username = serializers.RegexField(
+        regex= r'^[\w.@+-]+$',
         max_length=32,
-        validators=[UniqueValidator(queryset=User.objects.all())]
+        help_text=_('Required. 32 characters or fewer. Letters, digits and '
+                    '@/./+/-/_ only.'),
+        validators=[
+            UniqueValidator(queryset=User.objects.all())
+        ],
+        required=True
     )
     email = serializers.EmailField(
         required=True,
