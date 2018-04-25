@@ -18,11 +18,11 @@ class Header extends Component {
       name,
       avatar,
       handleLogout,
-      isFetching,
+      isLoading,
       showRegister,
       showLogin
     } = this.props;
-    
+
     return (
       <header className="header">
         <Logo />
@@ -32,7 +32,7 @@ class Header extends Component {
           name={name}
           avatar={avatar}
           logout={handleLogout}
-          isFetching={isFetching}
+          isLoading={isLoading}
           showRegister={showRegister}
           showLogin={showLogin}
         />
@@ -46,7 +46,7 @@ const mapStateToProps = state => ({
   name: state.auth.name,
   avatar: state.auth.avatar,
   isAuthenticated: state.auth.isAuthenticated,
-  isFetching: state.auth.isFetching
+  isLoading: state.auth.isLoading
 });
 
 const mapDispatchToProps = dispatch => ({

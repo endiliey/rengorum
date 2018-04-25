@@ -6,9 +6,13 @@ import './styles.css';
 
 class UserNav extends Component {
   render() {
-    const username = this.props.username || "Unknown";
-    const displayName = this.props.name || this.props.username;
-    const avatar = this.props.avatar || "http://api.adorable.io/avatar/200/TestUser";
+    const {
+      username,
+      avatar,
+      logout,
+      isLoading,
+      name
+    } = this.props;
     return (
         <div className="userMenu">
           <Button className="dropProfile" type="button">
@@ -16,14 +20,14 @@ class UserNav extends Component {
               className="userAvatar"
               avatar={avatar}
             />
-            <p className="displayName">{displayName}</p>
+            <p className="displayName">{name || username}</p>
           </Button>
           <div className="userMenu-content">
             <Link to={`/user/${username}`}>My profile</Link>
             <Button
               className="btn-logout"
-              onClick={this.props.logout}
-              loading={this.props.isFetching}
+              onClick={logout}
+              loading={isLoading}
             >
               Logout
             </Button>

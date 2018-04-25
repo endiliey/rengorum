@@ -4,21 +4,32 @@ import UserNav from './usernav';
 
 class UserMenu extends Component {
   render() {
-    if (this.props.isAuthenticated) {
+    const {
+      isAuthenticated,
+      username,
+      name,
+      avatar,
+      logout,
+      isLoading,
+      showRegister,
+      showLogin
+    } = this.props;
+    
+    if (isAuthenticated) {
       return (
         <UserNav
-          username={this.props.username}
-          name={this.props.name}
-          avatar={this.props.avatar}
-          logout={this.props.logout}
-          isFetching={this.props.isFetching}
+          username={username}
+          name={name}
+          avatar={avatar}
+          logout={logout}
+          isLoading={isLoading}
         />
       );
     } else {
       return (
         <GuestNav
-          showRegister={this.props.showRegister}
-          showLogin={this.props.showLogin}
+          showRegister={showRegister}
+          showLogin={showLogin}
         />
       );
     }

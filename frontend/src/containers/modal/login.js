@@ -19,7 +19,7 @@ class LoginModal extends Component {
   render() {
     const {
       isAuthenticated,
-      isFetching,
+      isLoading,
       error,
       handleClose,
       handleLogin
@@ -32,7 +32,7 @@ class LoginModal extends Component {
       >
         <Login
           handleLogin={handleLogin}
-          loading={isFetching}
+          loading={isLoading}
           error={error}
         />
       </Modal>
@@ -41,7 +41,7 @@ class LoginModal extends Component {
 }
 
 const mapStateToProps = state => ({
-  isFetching: state.auth.isFetching,
+  isLoading: state.auth.isLoading,
   error: state.auth.error,
   isAuthenticated: state.auth.isAuthenticated
 });

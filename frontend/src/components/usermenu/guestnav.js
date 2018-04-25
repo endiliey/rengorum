@@ -4,12 +4,16 @@ import './styles.css'
 
 class GuestNav extends Component {
   render() {
+    const {
+      showLogin,
+      showRegister
+    } = this.props;
     return (
       <div className="guestMenu">
         <Button
           className="btn-sign-in"
           type="button"
-          onClick={this.props.showLogin}
+          onClick={showLogin}
         >
           Login
         </Button>
@@ -17,7 +21,7 @@ class GuestNav extends Component {
         <Button
           className="btn-register"
           type="button"
-          onClick={this.props.showRegister}
+          onClick={showRegister}
         >
           Register
         </Button>

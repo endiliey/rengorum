@@ -5,7 +5,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  isFetching: false,
+  isLoading: false,
   profile: null,
   error: null
 };
@@ -15,19 +15,17 @@ const userProfile = (state = initialState, action) => {
     case FETCH_USER_PROFILE_REQUEST:
       return {
         ...state,
-        isFetching: true
+        isLoading: true
       };
     case FETCH_USER_PROFILE_SUCCESS:
       return {
-        ...state,
-        isFetching: false,
+        isLoading: false,
         profile: action.profile,
         error: null
       };
     case FETCH_USER_PROFILE_FAILURE:
       return {
-        ...state,
-        isFetching: false,
+        isLoading: false,
         profile: null,
         error: action.error
       };

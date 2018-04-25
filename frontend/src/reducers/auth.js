@@ -6,7 +6,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  isFetching: false,
+  isLoading: false,
   isAuthenticated: false,
   username: null,
   name: null,
@@ -20,13 +20,12 @@ const auth = (state = initialState, action) => {
     case LOGIN_REQUEST:
       return {
         ...state,
-        isFetching: true,
+        isLoading: true,
         isAuthenticated: false,
       };
     case LOGIN_SUCCESS:
       return {
-        ...state,
-        isFetching: false,
+        isLoading: false,
         isAuthenticated: true,
         token: action.token,
         username: action.username,
@@ -36,8 +35,7 @@ const auth = (state = initialState, action) => {
       };
     case LOGIN_FAILURE:
       return {
-        ...state,
-        isFetching: false,
+        isLoading: false,
         isAuthenticated: false,
         token: null,
         username: null,

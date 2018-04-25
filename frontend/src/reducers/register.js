@@ -5,7 +5,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  isFetching: false,
+  isLoading: false,
   error: null
 };
 
@@ -14,18 +14,16 @@ const register = (state = initialState, action) => {
     case REGISTER_REQUEST:
       return {
         ...state,
-        isFetching: true
+        isLoading: true
       };
     case REGISTER_SUCCESS:
       return {
-        ...state,
-        isFetching: false,
+        isLoading: false,
         error: null
       };
     case REGISTER_FAILURE:
       return {
-        ...state,
-        isFetching: false,
+        isLoading: false,
         error: action.error
       };
     default:

@@ -74,7 +74,7 @@ class UserProfile extends Component {
   }
 
   render() {
-    if (this.props.isFetching) {
+    if (this.props.isLoading) {
       return this.renderLoading();
     } else if (this.props.error) {
       return this.renderError();
@@ -86,7 +86,7 @@ class UserProfile extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  isFetching: state.userProfile.isFetching,
+  isLoading: state.userProfile.isLoading,
   profile: state.userProfile.profile,
   error: state.userProfile.error
 });

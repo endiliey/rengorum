@@ -12,7 +12,6 @@ const modal = (state = initialState, action) => {
   switch (action.type) {
     case SHOW_MODAL:
       return {
-        ...state,
         modalType: action.modalType,
         modalProps: action.modalProps
       };

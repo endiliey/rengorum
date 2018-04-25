@@ -19,7 +19,7 @@ class RegisterModal extends Component {
   render() {
     const {
       isAuthenticated,
-      isFetching,
+      isLoading,
       error,
       handleRegister,
       handleClose
@@ -32,7 +32,7 @@ class RegisterModal extends Component {
       >
         <Register
           handleRegister={handleRegister}
-          loading={isFetching}
+          loading={isLoading}
           error={error}
         />
       </Modal>
@@ -43,7 +43,7 @@ class RegisterModal extends Component {
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated,
   error: state.register.error,
-  isFetching: state.register.isFetching
+  isLoading: state.register.isLoading
 });
 
 const mapDispatchToProps = (dispatch) => ({

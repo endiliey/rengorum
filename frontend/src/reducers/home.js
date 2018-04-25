@@ -5,7 +5,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  isFetching: false,
+  isLoading: false,
   forums: null,
   error: null
 };
@@ -15,19 +15,17 @@ const home = (state = initialState, action) => {
     case FETCH_HOME_REQUEST:
       return {
         ...state,
-        isFetching: true
+        isLoading: true
       };
     case FETCH_HOME_SUCCESS:
       return {
-        ...state,
-        isFetching: false,
+        isLoading: false,
         forums: action.forums,
         error: null
       };
     case FETCH_HOME_FAILURE:
       return {
-        ...state,
-        isFetching: false,
+        isLoading: false,
         forums: null,
         error: action.error
       };
