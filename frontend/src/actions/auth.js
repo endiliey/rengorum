@@ -16,8 +16,9 @@ export const loginSuccess = (data) => {
     type: LOGIN_SUCCESS,
     token: data.token,
     username: data.username,
+    name: data.name,
     avatar: data.avatar,
-    name: data.name
+    isStaff: data.is_staff
   };
 };
 

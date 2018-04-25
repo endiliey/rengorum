@@ -24,6 +24,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
             'bio',
             'avatar',
             'status',
+            'is_staff',
             'date_joined',
             'threads',
             'posts'
@@ -43,6 +44,7 @@ class UserListSerializer(serializers.ModelSerializer):
             'bio',
             'avatar',
             'status',
+            'is_staff',
             'date_joined'
         ]
 
@@ -185,6 +187,13 @@ class UserTokenSerializer(serializers.Serializer):
         return attrs
 
 class UserLoginSerializer(serializers.ModelSerializer):
+    username = serializers.SlugField(
+        max_length=32,
+        help_text=_(
+            'Required. 32 characters or fewer. Letters, numbers, underscores or hyphens only.'
+        ),
+        required=True
+    )
     token = serializers.CharField(allow_blank=True, read_only=True)
     name = serializers.CharField(source='profile.name', read_only=True)
     class Meta:

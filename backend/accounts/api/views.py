@@ -66,7 +66,8 @@ class UserLoginAPIView(views.APIView):
                 'token': token.key,
                 'username': user.username,
                 'name': user.profile.name,
-                'avatar': user.profile.avatar
+                'avatar': user.profile.avatar,
+                'is_staff': user.is_staff
             }, status=HTTP_200_OK)
 
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)

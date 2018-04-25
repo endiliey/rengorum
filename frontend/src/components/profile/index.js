@@ -13,7 +13,8 @@ class Profile extends Component {
       avatar,
       bio,
       status,
-      date_joined
+      isStaff,
+      dateJoined
     } = this.props;
 
     return (
@@ -24,15 +25,18 @@ class Profile extends Component {
         <div className="profileInfo">
           <div className="name">{ name }</div>
           <div className="username">
-            <strong>({ username })</strong>
+            <strong>@{username}</strong>
+            <a className="staffStatus">
+              {isStaff ? ' (Staff) ' : ''}
+            </a>
           </div>
           <div className="status">
             <strong>Status: </strong>
             { status }
           </div>
-          <div className="date_joined">
+          <div className="dateJoined">
             <strong>Date Joined: </strong>
-            { this.formatDateTime(date_joined) }
+            { this.formatDateTime(dateJoined) }
           </div>
           <div className="bio">
             <strong>Bio: </strong>

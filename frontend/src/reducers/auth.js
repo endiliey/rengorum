@@ -12,6 +12,7 @@ const initialState = {
   name: null,
   avatar: null,
   token: null,
+  isStaff: false,
   error: null
 };
 
@@ -31,6 +32,7 @@ const auth = (state = initialState, action) => {
         username: action.username,
         avatar: action.avatar,
         name: action.name,
+        isStaff: action.isStaff,
         error: null
       };
     case LOGIN_FAILURE:
@@ -41,6 +43,7 @@ const auth = (state = initialState, action) => {
         username: null,
         avatar: null,
         name: null,
+        isStaff: false,
         error: action.error
       };
     case LOGOUT:

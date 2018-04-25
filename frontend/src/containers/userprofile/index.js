@@ -58,6 +58,7 @@ class UserProfile extends Component {
       status,
       bio,
       avatar,
+      is_staff,
       date_joined
     } = this.props.profile;
 
@@ -68,7 +69,8 @@ class UserProfile extends Component {
         avatar={avatar}
         status={status}
         bio={bio}
-        date_joined={date_joined}
+        dateJoined={date_joined}
+        isStaff={is_staff}
       />
     );
   }
