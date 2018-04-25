@@ -1,11 +1,10 @@
 import axios from 'axios';
 import store from '../store';
 import {
-  API_URL,
-  LOGIN_URL,
-  LOGOUT_URL,
-  REGISTER_URL,
-  USER_PROFILE_URL
+  USER_LOGIN_URL,
+  USER_LOGOUT_URL,
+  USER_REGISTER_URL,
+  USER_URL
 } from './constants';
 import {
   loginRequest,
@@ -36,7 +35,7 @@ export const login = (username, password) => {
   return (dispatch) => {
     dispatch(loginRequest());
 
-    axios.post(API_URL + LOGIN_URL, {
+    axios.post(USER_LOGIN_URL, {
       username,
       password
     })
@@ -61,7 +60,7 @@ export const login = (username, password) => {
 
 export const logout = () => dispatch => {
     // api call to delete token server-side
-    axios.post(API_URL + LOGOUT_URL, null, getConfig());
+    axios.post(USER_LOGOUT_URL, null, getConfig());
 
     dispatch(logoutAction());
 };
@@ -70,7 +69,7 @@ export const register = (username, name, email, password) => {
   return (dispatch) => {
     dispatch(registerRequest());
 
-    axios.post(API_URL + REGISTER_URL, {
+    axios.post(USER_REGISTER_URL, {
       username,
       name,
       email,
@@ -103,7 +102,7 @@ export const register = (username, name, email, password) => {
 export const fetchUserProfile = username => dispatch => {
   dispatch(fetchUserProfileRequest());
 
-  axios.get(API_URL + USER_PROFILE_URL + username)
+  axios.get(USER_URL + username)
   .then(function (response) {
     dispatch(fetchUserProfileSuccess(response.data));
   })
