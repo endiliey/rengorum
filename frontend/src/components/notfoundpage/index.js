@@ -6,7 +6,7 @@ class NotFoundPage extends Component {
     return (
       <div className="not-found-page">
         <h1>404 - Page Not Found</h1>
-        <img alt="" src="https://img.kpopmap.com/2017/12/9i9i9i9i9i9i.jpg" />
+        <img alt="" src="https://i.imgur.com/yG7L3Lb.gif" />
         <p>Sorry, but the page you were trying to view does not exist.</p>
       </div>
     );

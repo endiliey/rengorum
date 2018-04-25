@@ -3,9 +3,9 @@
   height: 60px;
   padding: 5px;
   margin-bottom: 15px;
-  color: white;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 2px solid gray;
 }

@@ -1,8 +1,6 @@
 .profileContainer {
   display: flex;
   align-items: center;
-  border-radius: 15px;
-  border: 3px solid gray;
   justify-content: center;
   padding: 10px;
 }

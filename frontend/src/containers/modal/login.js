@@ -10,7 +10,7 @@ import {
 } from '../../api';
 
 class LoginModal extends Component {
-  componentWillReceiveProps() {
+  componentWillMount() {
     if (this.props.isAuthenticated) {
       this.props.handleClose();
     }

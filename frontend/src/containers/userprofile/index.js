@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import NotFoundPage from '../../components/notfoundpage';
 import {
   fetchUserProfile
 } from '../../api';
@@ -23,35 +22,34 @@ class UserProfile extends Component {
     }
   }
 
-  renderLoading() {
-    return (
-      <div className="userProfile-loading">
-        <Loader />
-        <br /><br />
-        Loading user profile ...
-        <br /><br />
-        <img
-          alt=""
-          src="https://78.media.tumblr.com/79a05ebf968c9e3c8aabb431e0e4902f/tumblr_ozkehweZjO1tsqtheo2_r1_500.gif"
-        />
-      </div>
-    );
-  }
+  render() {
+    const {
+      isLoading,
+      error,
+      profile
+    } = this.props;
 
-  renderError() {
-    if (this.props.error.includes("Not found")) {
+    if (isLoading) {
       return (
-        <NotFoundPage />
+        <div className="userProfile-loading">
+          <Loader />
+          <br /><br />
+          Loading user profile ...
+          <br /><br />
+          <img
+            alt=""
+            src="https://i.imgur.com/SgdXWCm.gif"
+          />
+        </div>
       );
+    } else if (error || !profile) {
+        return (
+          <div className="userProfile-error">
+            {error || "Error"}
+          </div>
+        );
     }
-    return (
-      <div className="userProfile-error">
-        {this.props.error}
-      </div>
-    );
-  }
 
-  renderProfile() {
     const {
       name,
       username,
@@ -60,7 +58,7 @@ class UserProfile extends Component {
       avatar,
       is_staff,
       date_joined
-    } = this.props.profile;
+    } = profile;
 
     return (
       <Profile
@@ -73,17 +71,6 @@ class UserProfile extends Component {
         isStaff={is_staff}
       />
     );
-  }
-
-  render() {
-    if (this.props.isLoading) {
-      return this.renderLoading();
-    } else if (this.props.error) {
-      return this.renderError();
-    } else if (!this.props.profile) {
-      return <NotFoundPage />;
-    }
-    return this.renderProfile();
   }
 }
 

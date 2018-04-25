@@ -4,7 +4,6 @@
   font-family: sans-serif;
   height: 100%;
   text-align: center;
-  width: 100%;
   vertical-align: middle;
 }
 
@@ -21,6 +20,6 @@
 }
 
 .not-found-page img {
-  height: 50%;
-  width: 50%;
+  height: 40%;
+  width: 40%;
 }
