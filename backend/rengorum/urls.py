@@ -21,8 +21,8 @@ urlpatterns = [
     path('', ReactAppView.as_view()),
     path('admin/', admin.site.urls),
     path('api/', include('rest_framework.urls')),
-    path('api/users/', include('accounts.api.urls')),
-    path('api/forums/', include('forums.api.urls')),
-    path('api/threads/', include('threads.api.urls')),
+    path('api/user/', include('accounts.api.urls')),
+    path('api/forum/', include('forums.api.urls')),
+    path('api/thread/', include('threads.api.urls')),
     #path('api/posts/', include('posts.api.urls')),
 ]
