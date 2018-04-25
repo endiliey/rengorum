@@ -2,31 +2,38 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Login from '../../components/login';
 import Modal from '../../components/modal';
-import { hideModal, login } from '../../actions';
+import {
+  hideModal
+} from '../../actions';
+import {
+  login
+} from '../../api';
 
 class LoginModal extends Component {
-  handleClose() {
-    this.props.dispatch(hideModal());
-  }
-
-  handleLogin(username, password) {
-    this.props.dispatch(login(username, password));
+  componentWillReceiveProps() {
+    if (this.props.isAuthenticated) {
+      this.props.handleClose();
+    }
   }
 
   render() {
-    if (this.props.isAuthenticated) {
-      this.handleClose();
-      return null;
-    }
-    return (
+    const {
+      isAuthenticated,
+      isFetching,
+      error,
+      handleClose,
+      handleLogin
+    } = this.props;
+
+    return isAuthenticated ? null : (
       <Modal
         title="Login"
-        onClose={() => this.handleClose()}
+        onClose={handleClose}
       >
         <Login
-          handleLogin={(username, password) => this.handleLogin(username, password)}
-          loading={this.props.isFetching}
-          error={this.props.error}
+          handleLogin={handleLogin}
+          loading={isFetching}
+          error={error}
         />
       </Modal>
     );
@@ -39,4 +46,16 @@ const mapStateToProps = state => ({
   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps)(LoginModal);
+const mapDispatchToProps = dispatch => ({
+  handleLogin: (username, password) => {
+    dispatch(login(username, password));
+  },
+  handleClose: () => {
+    dispatch(hideModal());
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginModal);

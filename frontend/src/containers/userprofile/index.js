@@ -3,15 +3,13 @@ import { connect } from 'react-redux';
 import NotFoundPage from '../../components/notfoundpage';
 import {
   fetchUserProfile
-} from '../../actions';
+} from '../../api';
 import Loader from '../../components/loader';
 import Profile from '../../components/profile';
 import './styles.css';
 
 class UserProfile extends Component {
   componentDidMount() {
-    console.log("mount leh");
-    console.log(this.props.params);
     const { username } = this.props.match.params; // from react-router
     this.props.fetchUserProfile(username);
   }

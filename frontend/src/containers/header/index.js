@@ -3,34 +3,38 @@ import { connect } from 'react-redux';
 import Logo from '../../components/logo';
 import UserMenu from '../../components/usermenu';
 import './styles.css';
-import * as actions from '../../actions';
+import {
+  showModal
+} from '../../actions';
+import {
+  logout
+} from '../../api';
 
 class Header extends Component {
-  handleLogout() {
-    this.props.dispatch(actions.logout());
-  }
-
-  showRegister() {
-    this.props.dispatch(actions.showModal('REGISTER', {}));
-  }
-
-  showLogin() {
-    this.props.dispatch(actions.showModal('LOGIN', {}));
-  }
-
   render() {
+    const {
+      isAuthenticated,
+      username,
+      name,
+      avatar,
+      handleLogout,
+      isFetching,
+      showRegister,
+      showLogin
+    } = this.props;
+    
     return (
       <header className="header">
         <Logo />
         <UserMenu
-          isAuthenticated={this.props.isAuthenticated}
-          username={this.props.username}
-          name={this.props.name}
-          avatar={this.props.avatar}
-          logout={() => this.handleLogout()}
-          isFetching={this.props.isFetching}
-          showRegister={() => this.showRegister()}
-          showLogin={() => this.showLogin()}
+          isAuthenticated={isAuthenticated}
+          username={username}
+          name={name}
+          avatar={avatar}
+          logout={handleLogout}
+          isFetching={isFetching}
+          showRegister={showRegister}
+          showLogin={showLogin}
         />
       </header>
     );
@@ -45,5 +49,20 @@ const mapStateToProps = state => ({
   isFetching: state.auth.isFetching
 });
 
-const HeaderContainer = connect(mapStateToProps)(Header);
+const mapDispatchToProps = dispatch => ({
+  handleLogout: () => {
+    dispatch(logout());
+  },
+  showRegister: () => {
+    dispatch(showModal('REGISTER', {}));
+  },
+  showLogin: () => {
+    dispatch(showModal('LOGIN', {}));
+  }
+});
+
+const HeaderContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header);
 export default HeaderContainer;

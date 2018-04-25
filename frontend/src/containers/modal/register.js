@@ -2,32 +2,38 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Register from '../../components/register';
 import Modal from '../../components/modal';
-import { hideModal, register } from '../../actions';
-//import { hideModal, register } from '../../actions'; TODO
+import {
+  hideModal
+} from '../../actions';
+import {
+  register
+} from '../../api';
 
 class RegisterModal extends Component {
-  handleClose() {
-    this.props.dispatch(hideModal());
+  componentWillReceiveProps() {
+    if (this.props.isAuthenticated) {
+      this.props.handleClose();
+    }
   }
 
   render() {
-    const handleRegister = (username, name, email, password) => {
-      this.props.dispatch(register(username, name, email, password));
-    }
+    const {
+      isAuthenticated,
+      isFetching,
+      error,
+      handleRegister,
+      handleClose
+    } = this.props;
 
-    if (this.props.isAuthenticated) {
-      this.handleClose();
-      return null;
-    }
-    return (
+    return isAuthenticated ? null : (
       <Modal
         title="Register"
-        onClose={() => this.handleClose()}
+        onClose={handleClose}
       >
         <Register
           handleRegister={handleRegister}
-          loading={this.props.isFetching}
-          error={this.props.error}
+          loading={isFetching}
+          error={error}
         />
       </Modal>
     );
@@ -40,4 +46,16 @@ const mapStateToProps = state => ({
   isFetching: state.register.isFetching
 });
 
-export default connect(mapStateToProps)(RegisterModal);
+const mapDispatchToProps = (dispatch) => ({
+  handleRegister: (username, name, email, password) => {
+    dispatch(register(username, name, email, password));
+  },
+  handleClose: () => {
+    dispatch(hideModal());
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RegisterModal);
