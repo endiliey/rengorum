@@ -27,7 +27,6 @@ export const getConfig = () => {
     const config = {
       headers: {'Authorization': 'Token ' + token}
     };
-    console.log(config);
     return config;
   }
   return null;
