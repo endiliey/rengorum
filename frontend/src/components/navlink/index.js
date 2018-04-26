@@ -2,7 +2,6 @@ import React from 'react';
 import Logo from '../logo';
 import { Link } from 'react-router-dom';
 import { Icon } from 'semantic-ui-react';
-import 'semantic-ui-css/semantic.min.css';
 import './styles.css';
 
 const Navlink = () => {
