@@ -16,7 +16,10 @@ import {
   registerFailure,
   fetchUserProfileRequest,
   fetchUserProfileSuccess,
-  fetchUserProfileFailure
+  fetchUserProfileFailure,
+  fetchUsersRequest,
+  fetchUsersSuccess,
+  fetchUsersFailure
 } from '../actions';
 
 export const getConfig = () => {
@@ -114,5 +117,23 @@ export const fetchUserProfile = username => dispatch => {
       errorMessage = "User: " + error.response.data.detail;
     }
     dispatch(fetchUserProfileFailure(errorMessage));
+  });
+};
+
+export const fetchUsers = () => dispatch => {
+  dispatch(fetchUsersRequest());
+
+  axios.get(USER_URL)
+  .then(function (response) {
+    dispatch(fetchUsersSuccess(response.data));
+  })
+  .catch(function (error) {
+    let errorMessage = "Unknown Error";
+    if (!error.response) {
+      errorMessage = "Error: Network Error";
+    } else if (error.response.data.detail){
+      errorMessage = "Users: " + error.response.data.detail;
+    }
+    dispatch(fetchUsersFailure(errorMessage));
   });
 };

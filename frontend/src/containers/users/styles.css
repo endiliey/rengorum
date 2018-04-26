@@ -1,0 +1,28 @@
+.usersContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
+.users-loading {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.users-error {
+  margin-top: 20px;
+  color: rgba(231, 76, 60,1.0);
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.usersContainer .userCard {
+  margin:25px 50px;
+  width: 128px;
+  font-size: 12px;
+}

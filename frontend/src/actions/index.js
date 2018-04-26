@@ -4,3 +4,4 @@ export * from './modal';
 export * from './register';
 export * from './userprofile';
 export * from './home';
+export * from './users';

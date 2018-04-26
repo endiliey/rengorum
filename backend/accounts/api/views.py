@@ -48,7 +48,7 @@ class UserUpdateAPIView(generics.UpdateAPIView):
 class UserListAPIView(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserListSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [AllowAny]
 
 class UserLoginAPIView(views.APIView):
     permission_classes = [AllowAny]

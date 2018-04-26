@@ -80,7 +80,7 @@ python manage.py test
 ```
 
 Then run the server, endpoint should be available on http://localhost:8000/
-For example, browseable user login API available on http://localhost:8000/api/users/login/
+For example, browseable user login API available on http://localhost:8000/api/user/login/
 ```
 cd backend
 python manage.py runserver
