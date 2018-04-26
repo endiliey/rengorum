@@ -1,0 +1,18 @@
+.navlinkContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.navlinkContainer div{
+  font-size: 18px;
+  font-weight: 300;
+  margin: 0 10px;
+}
+
+.navlinkIcon {
+  width: 20px;
+  height: 20px;
+  color: white;
+}

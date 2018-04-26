@@ -36,10 +36,6 @@ class UserProfile extends Component {
           <br /><br />
           Loading user profile ...
           <br /><br />
-          <img
-            alt=""
-            src="https://i.imgur.com/SgdXWCm.gif"
-          />
         </div>
       );
     } else if (error || !profile) {

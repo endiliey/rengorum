@@ -1,7 +1,8 @@
 .header {
   background-color: #222;
   height: 60px;
-  padding: 5px;
+  padding-left: 25px;
+  padding-right: 25px;
   margin-bottom: 15px;
   display: flex;
   flex-flow: row nowrap;

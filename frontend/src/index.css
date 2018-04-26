@@ -7,8 +7,6 @@ body {
 .container {
   text-align: center;
   min-width: 500px;
-  max-width: 1000px;
-  padding: 0 100px;
 }
 
 a:-webkit-any-link{

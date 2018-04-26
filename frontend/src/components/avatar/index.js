@@ -1,14 +1,13 @@
 import React from 'react';
+import { Image } from 'semantic-ui-react';
 import './styles.css';
 
 const Avatar = (props) => {
-  const default_avatar = 'https://www.wowkeren.com/images/photo/kang_han_na.jpg';
-
+  const defaultAvatar = 'https://i.imgur.com/7o5cwt8.png';
   return (
-    <img
-      alt=''
+    <Image
       className={props.className || 'avatar'}
-      src={props.avatar || default_avatar}
+      src={props.avatar || defaultAvatar}
     />
   );
 }

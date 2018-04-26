@@ -1,3 +1,8 @@
+.linkTitle {
+  font-size: 20px;
+  font-weight: 700;
+}
+
 .userMenu {
   align-items: right;
   position: relative;
@@ -6,14 +11,14 @@
 }
 
 .userMenu-content {
-    display: none;
-    position: absolute;
-    border: 1px solid #555555;
-    border-radius: 15px;
-    background-color: black;
-    min-width: 155px;
-    z-index: 1;
-    outline: none;
+  display: none;
+  position: absolute;
+  border: 1px solid #555555;
+  border-radius: 15px;
+  background-color: black;
+  min-width: 155px;
+  z-index: 1;
+  outline: none;
 }
 
 .userMenu-content a {
@@ -64,7 +69,6 @@ p.displayName {
 }
 
 .guestMenu {
-  height: 50px;
   padding: 20px;
   color: black;
   display: flex;
@@ -111,7 +115,7 @@ p.displayName {
 .btn-sign-in {
   margin-top: 5px;
   margin-left: 15px;
-  margin-right: 5px;
+  margin-right: 15px;
   padding-left: 15px;
   padding-right: 15px;
   border-radius: 12px;
@@ -136,7 +140,7 @@ p.displayName {
 
 .btn-register {
   margin-top: 5px;
-  margin-left: 5px;
+  margin-left: 10px;
   margin-right: 5px;
   padding-left: 15px;
   padding-right: 15px;

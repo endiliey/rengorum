@@ -2,6 +2,9 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  justify-content: flex-start;
+  margin-right: 10px !important;
+  margin-left: 0px !important;
 }
 
 .logo {
@@ -10,8 +13,10 @@
 }
 
 .logoTitle {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: white;
+  margin-left: -10px !important;
 }
 
 @keyframes logo-spin {

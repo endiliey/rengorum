@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Logo from '../../components/logo';
+import Navlink from '../../components/navlink';
 import UserMenu from '../../components/usermenu';
 import './styles.css';
 import {
@@ -25,7 +25,7 @@ class Header extends Component {
 
     return (
       <header className="header">
-        <Logo />
+        <Navlink />
         <UserMenu
           isAuthenticated={isAuthenticated}
           username={username}
