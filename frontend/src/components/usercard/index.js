@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 class UserCard extends Component {
   formatDateTime(datetime) {
@@ -22,7 +23,7 @@ class UserCard extends Component {
             {name}
           </Card.Header>
           <Card.Meta>
-            @{username}
+            <Link to={`/user/${username}`}>@{username}</Link>
             <a style={{color: 'red', fontSize: '12px'}}>
               {isStaff ? ' (Staff) ' : ''}
             </a>
