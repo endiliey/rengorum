@@ -22,6 +22,7 @@ ReactDOM.render(
           <div>
             <HeaderContainer />
             <Switch>
+              <Route path="/users" component={App} />
               <Route path="/user/:username" component={UserProfileContainer} />
               <Route exact path="/" component={App} />
               <Route component={NotFoundPage} />

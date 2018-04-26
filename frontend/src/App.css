@@ -5,3 +5,11 @@
 .App-intro {
   font-size: large;
 }
+
+.AppItem {
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 128px;
+  height: 128px;
+}

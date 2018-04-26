@@ -24,7 +24,7 @@ class Header extends Component {
     } = this.props;
 
     return (
-      <header className="header">
+      <header className="rengorumHeader">
         <Navlink />
         <UserMenu
           isAuthenticated={isAuthenticated}
