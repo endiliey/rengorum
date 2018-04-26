@@ -14,6 +14,14 @@ const Navlink = () => {
         <Link to="/">Home</Link>
       </div>
       <div>
+        <Icon name="users" className="navlinkIcon" />
+        <Link to="/users">Users</Link>
+      </div>
+      <div>
+        <Icon name="spy" className="navlinkIcon" />
+        <Link to="/user/endiliey">Creator</Link>
+      </div>
+      <div>
         <Icon name="github" className="navlinkIcon" />
         <a href="https://github.com/endiliey/rengorum">Github</a>
       </div>
