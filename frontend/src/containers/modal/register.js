@@ -59,6 +59,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   showLogin: () => {
     dispatch(showModal('LOGIN', {}));
+    dispatch(registerReset());
   }
 });
 
