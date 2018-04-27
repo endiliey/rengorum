@@ -13,7 +13,7 @@ Rengorum is currently still under development so you might expect many features 
 > * [Redux Persist v5.9](https://github.com/rt2zz/redux-persist)
 > * [etc](https://github.com/endiliey/rengorum/blob/master/frontend/package.json)
 
-![Screenshot 1](preview/frontend_1.PNG)
+![Screenshot 1](preview/frontend_2.PNG)
 
 ## Backend
 > The backend is a scalable system that provides data through its RESTful API (browseable API available), written in Python and built with following technologies:
