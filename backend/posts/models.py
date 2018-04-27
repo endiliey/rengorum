@@ -6,7 +6,7 @@ from threads.models import Thread
 
 class Post(models.Model):
     """ Model to represent the post in a thread """
-    content = models.TextField(max_length=4000)
+    content = models.TextField()
     thread = models.ForeignKey(
         Thread,
         on_delete=models.CASCADE,
@@ -21,7 +21,7 @@ class Post(models.Model):
     )
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['created_at']
 
     def __str__(self):
         truncated_content = Truncator(self.content)

@@ -12,7 +12,7 @@ class Thread(models.Model):
     content = models.TextField(max_length=4000)
     creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='threads')
     created_at = models.DateTimeField(auto_now_add=True)
-    last_activity = models.DateTimeField(default=datetime.now)
+    last_activity = models.DateTimeField(default=datetime.now, null=True)
 
     class Meta:
         ordering = [

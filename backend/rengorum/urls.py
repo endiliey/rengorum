@@ -24,5 +24,5 @@ urlpatterns = [
     path('api/user/', include('accounts.api.urls')),
     path('api/forum/', include('forums.api.urls')),
     path('api/thread/', include('threads.api.urls')),
-    #path('api/posts/', include('posts.api.urls')),
+    path('api/post/', include('posts.api.urls')),
 ]

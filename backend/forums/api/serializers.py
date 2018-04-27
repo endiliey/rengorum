@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
+from django.utils.timezone import now
 
 from forums.models import Forum
 from threads.models import Thread
@@ -32,17 +33,15 @@ class ForumListSerializer(serializers.ModelSerializer):
         try:
             post = Post.objects.filter(thread__forum=obj).order_by('-created_at').first()
             last_post = {
-                'title': post.thread.name,
-                'username': post.creator.user.username,
-                'avatar': post.creator.user.avatar,
-                'created_at': post.created_at
+                'thread_id': post.thread.id,
+                'thread_name': post.thread.name,
+                'username': post.creator.username,
+                'avatar': post.creator.profile.avatar,
+                'seconds_elapsed': (now() - post.created_at).seconds
             }
             return last_post
         except:
             return None
-
-
-
 
 class ForumCreateUpdateDeleteSerializer(serializers.ModelSerializer):
     class Meta:

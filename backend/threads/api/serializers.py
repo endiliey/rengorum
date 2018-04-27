@@ -119,6 +119,12 @@ class ThreadDetailSerializer(serializers.ModelSerializer):
         view_name='user-detail',
         lookup_field='username'
     )
+    posts = serializers.HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name='post-detail',
+        lookup_field='pk'
+    )
     class Meta:
         model = Thread
         fields = (
@@ -129,6 +135,7 @@ class ThreadDetailSerializer(serializers.ModelSerializer):
             'content',
             'creator',
             'created_at',
-            'last_activity'
+            'last_activity',
+            'posts'
         )
         read_only_fields = ('id',)
