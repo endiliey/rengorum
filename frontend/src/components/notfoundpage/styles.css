@@ -5,21 +5,14 @@
   height: 100%;
   text-align: center;
   vertical-align: middle;
+  width: 33%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
 }
 
-.not-found-page h1 {
-  color: #555;
-  font-size: 2em;
-  font-weight: 400;
-}
-
-.not-found-page p {
-  margin: 0 auto;
-  width: 280px;
-  padding: 20px;
-}
-
-.not-found-page img {
-  height: 40%;
-  width: 40%;
+.not-found-page-img {
+  height: 40% !important;
+  width: 33% !important;
+  margin: 20px auto;
 }
