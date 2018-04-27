@@ -9,6 +9,7 @@ from posts.models import Post
 class ForumListSerializer(serializers.ModelSerializer):
     posts_count = serializers.SerializerMethodField()
     threads_count = serializers.SerializerMethodField()
+    last_post = serializers.SerializerMethodField()
     class Meta:
         model = Forum
         fields = (
@@ -16,7 +17,8 @@ class ForumListSerializer(serializers.ModelSerializer):
             'name',
             'description',
             'posts_count',
-            'threads_count'
+            'threads_count',
+            'last_post'
         )
         read_only_fields = ('slug',)
 
@@ -25,6 +27,22 @@ class ForumListSerializer(serializers.ModelSerializer):
 
     def get_threads_count(self, obj):
         return Thread.objects.filter(forum=obj).count()
+
+    def get_last_post(self, obj):
+        try:
+            post = Post.objects.filter(thread__forum=obj).order_by('-created_at').first()
+            last_post = {
+                'title': post.thread.name,
+                'username': post.creator.user.username,
+                'avatar': post.creator.user.avatar,
+                'created_at': post.created_at
+            }
+            return last_post
+        except:
+            return None
+
+
+
 
 class ForumCreateUpdateDeleteSerializer(serializers.ModelSerializer):
     class Meta:

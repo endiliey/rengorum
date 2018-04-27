@@ -21,7 +21,7 @@ class Post(models.Model):
     )
 
     class Meta:
-        ordering = ['created_at']
+        ordering = ['-created_at']
 
     def __str__(self):
         truncated_content = Truncator(self.content)
