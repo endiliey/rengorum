@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {
   fetchUsers
 } from '../../api';
+import { Message } from 'semantic-ui-react';
 import Loader from '../../components/loader';
 import UserCard from '../../components/usercard';
 import './styles.css';
@@ -23,8 +24,13 @@ class Users extends Component {
       return (
         <div className="users-loading">
           <Loader />
-          <br /><br />
-          Loading users ...
+          <br />
+          <Message size="tiny">
+            <Message.Content>
+              <Message.Header>Just one second</Message.Header>
+              We are fetching the users for you.
+            </Message.Content>
+          </Message>
           <br /><br />
         </div>
       );
@@ -34,7 +40,7 @@ class Users extends Component {
             {error || "Error"}
           </div>
         );
-    } else if (users.length == 0) {
+    } else if (users.length === 0) {
         return (
           <div className="users-error">
             No user

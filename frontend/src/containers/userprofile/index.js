@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {
   fetchUserProfile
 } from '../../api';
+import { Message } from 'semantic-ui-react';
 import Loader from '../../components/loader';
 import Profile from '../../components/profile';
 import './styles.css';
@@ -33,8 +34,13 @@ class UserProfile extends Component {
       return (
         <div className="userProfile-loading">
           <Loader />
-          <br /><br />
-          Loading user profile ...
+          <br />
+          <Message size="tiny">
+            <Message.Content>
+              <Message.Header>Just one second</Message.Header>
+              We are fetching the user profile for you.
+            </Message.Content>
+          </Message>
           <br /><br />
         </div>
       );

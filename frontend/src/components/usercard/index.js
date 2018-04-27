@@ -20,9 +20,9 @@ class UserCard extends Component {
           </Card.Header>
           <Card.Meta>
             <Link to={`/user/${username}`}>@{username}</Link>
-            <a style={{color: 'red', fontSize: '12px'}}>
+            <b style={{color: 'red', fontSize: '12px'}}>
               {isStaff ? ' (Staff) ' : ''}
-            </a>
+            </b>
           </Card.Meta>
         </Card.Content>
       </Card>

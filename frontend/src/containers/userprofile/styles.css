@@ -6,8 +6,11 @@
 }
 
 .userProfile-loading {
-  margin-top: 100px;
   text-align: center;
+  width: 33%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
 }
 
 .userProfile-error {
