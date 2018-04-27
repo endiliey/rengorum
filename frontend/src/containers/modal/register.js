@@ -27,12 +27,11 @@ class RegisterModal extends Component {
 
     return isAuthenticated ? null : (
       <Modal
-        title="Register"
         onClose={handleClose}
       >
         <Register
           handleRegister={handleRegister}
-          loading={isLoading}
+          isLoading={isLoading}
           error={error}
         />
       </Modal>
