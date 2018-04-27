@@ -2,6 +2,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  LOGIN_RESET,
   LOGOUT
 } from './types';
 
@@ -32,5 +33,11 @@ export const loginFailure = (error) => {
 export const logoutAction = () => {
   return {
     type: LOGOUT
+  };
+};
+
+export const loginReset = () => {
+  return {
+    type: LOGIN_RESET
   };
 };

@@ -1,7 +1,8 @@
 import {
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
-  REGISTER_FAILURE
+  REGISTER_FAILURE,
+  REGISTER_RESET
 } from './types';
 
 export const registerRequest = () => {
@@ -20,5 +21,11 @@ export const registerFailure = (error) => {
   return {
     type: REGISTER_FAILURE,
     error
+  };
+};
+
+export const registerReset = () => {
+  return {
+    type: REGISTER_RESET
   };
 };

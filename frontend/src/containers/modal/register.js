@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import Register from '../../components/register';
 import Modal from '../../components/modal';
 import {
-  hideModal
+  hideModal,
+  registerReset
 } from '../../actions';
 import {
   register
@@ -51,6 +52,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handleClose: () => {
     dispatch(hideModal());
+    dispatch(registerReset());
   }
 });
 

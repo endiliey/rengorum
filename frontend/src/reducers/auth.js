@@ -2,6 +2,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  LOGIN_RESET,
   LOGOUT
 } from '../actions/types';
 
@@ -47,6 +48,8 @@ const auth = (state = initialState, action) => {
         error: action.error
       };
     case LOGOUT:
+      return initialState;
+    case LOGIN_RESET:
       return initialState;
     default:
       return state;

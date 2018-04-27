@@ -1,7 +1,8 @@
 import {
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
-  REGISTER_FAILURE
+  REGISTER_FAILURE,
+  REGISTER_RESET
 } from '../actions/types';
 
 const initialState = {
@@ -26,6 +27,8 @@ const register = (state = initialState, action) => {
         isLoading: false,
         error: action.error
       };
+    case REGISTER_RESET:
+      return initialState;
     default:
       return state;
   }

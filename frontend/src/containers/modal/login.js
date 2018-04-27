@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import Login from '../../components/login';
 import Modal from '../../components/modal';
 import {
-  hideModal
+  hideModal,
+  loginReset
 } from '../../actions';
 import {
   login
@@ -27,7 +28,6 @@ class LoginModal extends Component {
 
     return isAuthenticated ? null : (
       <Modal
-        title="Login"
         onClose={handleClose}
       >
         <Login
@@ -52,6 +52,7 @@ const mapDispatchToProps = dispatch => ({
   },
   handleClose: () => {
     dispatch(hideModal());
+    dispatch(loginReset());
   }
 });
 
