@@ -96,13 +96,22 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 class UserCreateSerializer(serializers.ModelSerializer):
     # A field from the user's profile:
     username = serializers.SlugField(
+        min_length=4,
         max_length=32,
         help_text=_(
-            'Required. 32 characters or fewer. Letters, numbers, underscores or hyphens only.'
+            'Required. 4-32 characters. Letters, numbers, underscores or hyphens only.'
         ),
         validators=[
             UniqueValidator(queryset=User.objects.all())
         ],
+        required=True
+    )
+    password = serializers.CharField(
+        min_length=4,
+        max_length=32,
+        help_text=_(
+            'Required. 4-32 characters.'
+        ),
         required=True
     )
     email = serializers.EmailField(
