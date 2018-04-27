@@ -76,7 +76,10 @@ export default class Login extends Component {
           header='Login'
         />
         {message}
-        <Form className='attached fluid segment'>
+        <Form
+          className='attached fluid segment'
+          onSubmit={ this.handleSubmit }
+        >
           <Form.Input required
             label='Username'
             placeholder='Username'
@@ -96,7 +99,7 @@ export default class Login extends Component {
             color='blue'
             loading={isLoading}
             disabled={isLoading}
-            onClick={ this.handleSubmit }>Submit
+            onClick={ this.handleSubmit }>Login
           </Button>
         </Form>
         <Message attached='bottom' warning>

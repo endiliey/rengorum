@@ -89,7 +89,10 @@ export default class Register extends Component {
           content='Fill out the form below to sign-up for a new account'
         />
         {message}
-        <Form className='attached fluid segment'>
+        <Form
+          className='attached fluid segment'
+          onSubmit={ this.handleSubmit }
+        >
           <Form.Input required
             label='Username'
             placeholder='Username'

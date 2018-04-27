@@ -22,11 +22,11 @@
 }
 
 .userMenu-content a {
-    color: white;
-    border-radius: 15px;
-    padding: 12px 5px;
-    text-decoration: none;
-    display: block;
+  color: white;
+  border-radius: 15px;
+  padding: 12px 5px;
+  text-decoration: none;
+  display: block;
 }
 
 .userMenu-content a:hover {
@@ -35,12 +35,12 @@
 }
 
 .userMenu:hover .userMenu-content {
-    display: block;
+  display: block;
 }
 
 .userMenu:hover .dropProfile {
-    background-color: #555555;
-    color: white;
+  background-color: #555555;
+  color: white;
 }
 
 .dropProfile {
@@ -122,7 +122,6 @@ p.displayName {
   background-color: black;
   height: 40px;
   color: white;
-  font-size: 0.9em;
   border: 2px solid #555555;
   outline: none;
   cursor: pointer;
@@ -148,7 +147,6 @@ p.displayName {
   background-color: black;
   height: 40px;
   color: white;
-  font-size: 0.9em;
   border: 2px solid #555555;
   outline: none;
   cursor: pointer;
