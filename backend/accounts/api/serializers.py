@@ -16,6 +16,12 @@ class UserDetailSerializer(serializers.ModelSerializer):
         view_name='thread-detail',
         lookup_field='pk'
     )
+    posts = serializers.HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name='post-detail',
+        lookup_field='pk'
+    )
     class Meta:
         model = User
         fields = [
