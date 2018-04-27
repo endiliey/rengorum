@@ -11,7 +11,7 @@ import {
 import {
   fetchHomeRequest,
   fetchHomeSuccess,
-  fetchHomeFailure
+  fetchHomeFailure,
   fetchForumRequest,
   fetchForumSuccess,
   fetchForumFailure
