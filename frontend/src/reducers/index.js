@@ -5,6 +5,7 @@ import register from './register';
 import userProfile from './userprofile';
 import home from './home';
 import users from './users';
+import forum from './forum';
 
 const rootReducer = combineReducers({
   auth,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   register,
   userProfile,
   home,
-  users
+  users,
+  forum
 });
 
 export default rootReducer;

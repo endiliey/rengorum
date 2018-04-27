@@ -12,9 +12,9 @@ import {
   fetchHomeRequest,
   fetchHomeSuccess,
   fetchHomeFailure
-  //fetchForumRequest,
-  //fetchForumSuccess,
-  //fetchForumFailure
+  fetchForumRequest,
+  fetchForumSuccess,
+  fetchForumFailure
 } from '../actions';
 
 export const fetchForums = () => dispatch => {
@@ -36,11 +36,11 @@ export const fetchForums = () => dispatch => {
 };
 
 export const fetchForum = (forum) => dispatch => {
-  //dispatch(fetchForumRequest());
+  dispatch(fetchForumRequest());
 
   axios.get(FORUM_URL + forum, null, getConfig())
   .then(function (response) {
-    //dispatch(fetchForumSuccess(response.data));
+    dispatch(fetchForumSuccess(response.data));
   })
   .catch(function (error) {
     let errorMessage = "Unknown Error";
@@ -49,6 +49,6 @@ export const fetchForum = (forum) => dispatch => {
     } else if (error.response.data.detail){
       errorMessage = "Forum: " + error.response.data.detail;
     }
-    //dispatch(fetchForumFailure(errorMessage));
+    dispatch(fetchForumFailure(errorMessage));
   });
 };
