@@ -18,6 +18,9 @@
 
 .users-error {
   margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 33%;
   color: rgba(231, 76, 60,1.0);
   font-size: 12px;
   font-weight: bold;

@@ -37,13 +37,21 @@ class Users extends Component {
     } else if (error || !users) {
         return (
           <div className="users-error">
-            {error || "Error"}
+            <Message negative={true}>
+              <Message.Content>
+                {error || "Error"}
+              </Message.Content>
+            </Message>
           </div>
         );
     } else if (users.length === 0) {
         return (
           <div className="users-error">
-            No user
+            <Message negative={true}>
+              <Message.Content>
+                No user
+              </Message.Content>
+            </Message>
           </div>
         );
     }

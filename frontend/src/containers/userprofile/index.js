@@ -47,7 +47,11 @@ class UserProfile extends Component {
     } else if (error || !profile) {
         return (
           <div className="userProfile-error">
-            {error || "Error"}
+            <Message negative={true}>
+              <Message.Content>
+                {error || "Error"}
+              </Message.Content>
+            </Message>
           </div>
         );
     }
