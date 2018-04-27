@@ -4,7 +4,8 @@ import Register from '../../components/register';
 import Modal from '../../components/modal';
 import {
   hideModal,
-  registerReset
+  registerReset,
+  showModal
 } from '../../actions';
 import {
   register
@@ -23,6 +24,7 @@ class RegisterModal extends Component {
       isLoading,
       error,
       handleRegister,
+      showLogin,
       handleClose
     } = this.props;
 
@@ -32,6 +34,7 @@ class RegisterModal extends Component {
       >
         <Register
           handleRegister={handleRegister}
+          showLogin={showLogin}
           isLoading={isLoading}
           error={error}
         />
@@ -53,6 +56,9 @@ const mapDispatchToProps = (dispatch) => ({
   handleClose: () => {
     dispatch(hideModal());
     dispatch(registerReset());
+  },
+  showLogin: () => {
+    dispatch(showModal('LOGIN', {}));
   }
 });
 

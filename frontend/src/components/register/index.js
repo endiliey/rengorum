@@ -135,7 +135,13 @@ export default class Register extends Component {
         </Form>
         <Message attached='bottom' warning>
           <Icon name='help' />
-          Already signed up?&nbsp;<a style={{ color: 'blue'}}>Login here</a>&nbsp;instead.
+          Already signed up?&nbsp;
+          <a className='register-login'
+            onClick={this.props.showLogin}
+          >
+            Login here
+          </a>
+            &nbsp;instead.
         </Message>
       </div>
     );
