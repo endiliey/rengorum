@@ -52,7 +52,8 @@ export default class Register extends Component {
   render() {
     let {
       isLoading,
-      error
+      error,
+      showLogin
     } = this.props;
 
     let message = null;
@@ -88,7 +89,7 @@ export default class Register extends Component {
           content='Fill out the form below to sign-up for a new account'
         />
         {message}
-        <Form error className='attached fluid segment'>
+        <Form className='attached fluid segment'>
           <Form.Input required
             label='Username'
             placeholder='Username'
@@ -128,8 +129,8 @@ export default class Register extends Component {
           />
           <Button
             color='blue'
-            loading={this.props.isLoading}
-            disabled={this.props.isLoading}
+            loading={isLoading}
+            disabled={isLoading}
             onClick={ this.handleSubmit }>Submit
           </Button>
         </Form>
@@ -137,7 +138,7 @@ export default class Register extends Component {
           <Icon name='help' />
           Already signed up?&nbsp;
           <a className='register-login'
-            onClick={this.props.showLogin}
+            onClick={showLogin}
           >
             Login here
           </a>

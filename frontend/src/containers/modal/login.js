@@ -4,7 +4,8 @@ import Login from '../../components/login';
 import Modal from '../../components/modal';
 import {
   hideModal,
-  loginReset
+  loginReset,
+  showModal
 } from '../../actions';
 import {
   login
@@ -23,6 +24,7 @@ class LoginModal extends Component {
       isLoading,
       error,
       handleClose,
+      showRegister,
       handleLogin
     } = this.props;
 
@@ -32,6 +34,7 @@ class LoginModal extends Component {
       >
         <Login
           handleLogin={handleLogin}
+          showRegister={showRegister}
           loading={isLoading}
           error={error}
         />
@@ -53,6 +56,9 @@ const mapDispatchToProps = dispatch => ({
   handleClose: () => {
     dispatch(hideModal());
     dispatch(loginReset());
+  },
+  showRegister: () => {
+    dispatch(showModal('REGISTER', {}));
   }
 });
 

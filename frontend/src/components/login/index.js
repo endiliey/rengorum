@@ -1,60 +1,114 @@
 import React, { Component } from 'react';
-import Button from '../button';
+import { Form, Icon, Message, Button } from 'semantic-ui-react';
 import './styles.css';
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: 'endiliey',
+      username: '',
       password: '',
     };
-    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+  handleChange = (e, { name, value }) => {
+    this.setState({ [name]: value })
   }
 
-  handleClick() {
-    this.props.handleLogin(this.state.username, this.state.password);
+  isFormValid = () => {
+    const {
+      username,
+      password
+    } = this.state;
+
+    let isFormValid = true;
+    if (!username || !password) {
+      isFormValid = false;
+    }
+    return isFormValid;
+  }
+
+  handleSubmit = (e) => {
+    if (this.isFormValid()) {
+      this.props.handleLogin(
+        this.state.username,
+        this.state.password
+      );
+    }
   }
 
   render() {
+    let {
+      isLoading,
+      error,
+      showRegister
+    } = this.props;
+
+    let message = null;
+    if (error) {
+      message = (
+        <div className="login-message">
+          <Message attached error icon>
+            <Message.Content>
+              <Icon name='thumbs down' size='big' />
+              {error || "Login Error"}
+            </Message.Content>
+          </Message>
+        </div>
+      );
+    } else if (isLoading) {
+      message = (
+        <div className="login-message">
+          <Message attached icon>
+            <Message.Content>
+              <Icon name='circle notched' loading size='big' />
+              Loading
+            </Message.Content>
+          </Message>
+        </div>
+      );
+    }
+
     return (
-      <div className="login-container">
-        <form noValidate>
-          <div className="error" id="Error">
-            {this.props.error}
-          </div>
-          <div className="form-group">
-            <label id="usernameLabel">Username</label>
-            <input className="form-control"
-              type="email"
-              name="username"
-              ref="username"
-              value={ this.state.username }
-              onChange={ this.handleChange }
-              required />
-          </div>
-          <div className="form-group">
-            <label id="passwordLabel">Password</label>
-            <input className="form-control"
-              type="password"
-              name="password"
-              ref="password"
-              value={ this.state.password }
-              onChange={ this.handleChange }
-              pattern=".{5,}"
-              required />
-          </div>
+      <div>
+        <Message
+          attached
+          header='Login'
+        />
+        {message}
+        <Form className='attached fluid segment'>
+          <Form.Input required
+            label='Username'
+            placeholder='Username'
+            type='text'
+            name='username'
+            value={ this.state.username }
+            onChange={ this.handleChange }
+          />
+          <Form.Input required
+            label='Password'
+            type='password'
+            name='password'
+            value={ this.state.password }
+            onChange={ this.handleChange }
+          />
           <Button
-            loading={this.props.loading}
-            onClick={() => this.handleClick()}>Login
+            color='blue'
+            loading={isLoading}
+            disabled={isLoading}
+            onClick={ this.handleSubmit }>Submit
           </Button>
-        </form>
+        </Form>
+        <Message attached='bottom' warning>
+          <Icon name='help' />
+          New to this site?&nbsp;
+          <a className='login-register'
+            onClick={showRegister}
+          >
+            Register here
+          </a>
+            &nbsp;instead.
+        </Message>
       </div>
     );
   }
