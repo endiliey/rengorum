@@ -34,6 +34,12 @@ class Users extends Component {
             {error || "Error"}
           </div>
         );
+    } else if (users.length == 0) {
+        return (
+          <div className="users-error">
+            No user
+          </div>
+        );
     }
 
     const userCardList = users.map((user) => {

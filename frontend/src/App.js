@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import RichEditor from './components/richeditor';
 import UserCard from './components/usercard';
 
 class App extends Component {

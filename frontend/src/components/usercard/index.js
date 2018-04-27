@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import { Card, Icon, Image } from 'semantic-ui-react';
+import { Card, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 class UserCard extends Component {
-  formatDateTime(datetime) {
-    return datetime.split(".")[0].replace("T", " ");
-  }
-
   render() {
     const {
       name,
