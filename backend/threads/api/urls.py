@@ -14,6 +14,6 @@ urlpatterns = [
     path('', ThreadListAPIView.as_view(), name='user-list'),
     path('create/', ThreadCreateAPIView.as_view(), name='thread-create'),
     path('<int:pk>/', ThreadDetailAPIView.as_view(), name='thread-detail'),
-    path('<int:pk>/edit', ThreadUpdateAPIView.as_view(), name='thread-update'),
-    path('<int:pk>/delete', ThreadDeleteAPIView.as_view(), name='thread-delete'),
+    path('<int:pk>/edit/', ThreadUpdateAPIView.as_view(), name='thread-update'),
+    path('<int:pk>/delete/', ThreadDeleteAPIView.as_view(), name='thread-delete'),
 ]

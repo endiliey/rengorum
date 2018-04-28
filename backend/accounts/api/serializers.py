@@ -60,8 +60,16 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     name = serializers.CharField(source='profile.name', allow_blank=True)
     avatar = serializers.URLField(source='profile.avatar', allow_blank=True)
     status = serializers.CharField(source='profile.status', allow_blank=True)
-    password = serializers.CharField(allow_blank=True, default='', write_only=True)
+    password = serializers.CharField(
+        allow_blank=True,
+        default='',
+        write_only=True,
+        min_length=4,
+        max_length=32
+    )
     email = serializers.EmailField(
+        allow_blank=True,
+        default='',
         validators=[UniqueValidator(
             queryset=User.objects.all(),
             message='has already been taken by other user'
