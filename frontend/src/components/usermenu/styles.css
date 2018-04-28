@@ -8,6 +8,17 @@
   position: relative;
   display: inline-block;
   margin: 0 25px;
+  color: white !important;
+  height: inherit;
+}
+
+.userMenu-avatar{
+  margin-right: -15px;
+}
+
+.userMenu-menu{
+  background-color: #222 !important;
+  height: inherit;
 }
 
 .userMenu-content {
@@ -21,12 +32,9 @@
   outline: none;
 }
 
-.userMenu-content a {
-  color: white;
-  border-radius: 15px;
-  padding: 12px 5px;
-  text-decoration: none;
-  display: block;
+.userMenu a {
+  color: black !important;
+  display: inline-block;
 }
 
 .userMenu-content a:hover {

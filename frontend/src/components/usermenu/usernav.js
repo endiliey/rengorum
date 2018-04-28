@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import Avatar from '../avatar';
-import Button from '../button';
+import { Menu, Dropdown } from 'semantic-ui-react';
 import './styles.css';
 
 class UserNav extends Component {
@@ -10,31 +10,30 @@ class UserNav extends Component {
       username,
       avatar,
       logout,
-      isLoading,
+      history,
       name
     } = this.props;
+
+    const myProfile = () => {
+      history.push(`/user/${username}`);
+    };
+
     return (
-        <div className="userMenu">
-          <Button className="dropProfile" type="button">
-            <Avatar
-              className="userAvatar"
-              avatar={avatar}
-            />
-            <p className="displayName">{name || username}</p>
-          </Button>
-          <div className="userMenu-content">
-            <Link to={`/user/${username}`}>My profile</Link>
-            <Button
-              className="btn-logout"
-              onClick={logout}
-              loading={isLoading}
-            >
-              Logout
-            </Button>
-          </div>
-        </div>
+      <div className='userMenu'>
+        <Menu fluid inverted borderless size='large' className='userMenu-menu'>
+          <Menu.Item disabled className='userMenu-avatar'>
+            <Avatar avatar={avatar} />
+          </Menu.Item>
+            <Dropdown item simple text={name || username} direction='left'>
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={myProfile} icon='user' text='My profile' />
+                <Dropdown.Item onClick={logout} icon='sign out' text='Logout' />
+              </Dropdown.Menu>
+            </Dropdown>
+        </Menu>
+      </div>
     );
   }
 }
 
-export default UserNav;
+export default withRouter(UserNav);
