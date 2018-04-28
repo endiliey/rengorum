@@ -20,7 +20,8 @@ class Header extends Component {
       handleLogout,
       isLoading,
       showRegister,
-      showLogin
+      showLogin,
+      showEditProfile
     } = this.props;
 
     return (
@@ -35,6 +36,7 @@ class Header extends Component {
           isLoading={isLoading}
           showRegister={showRegister}
           showLogin={showLogin}
+          showEditProfile={showEditProfile}
         />
       </header>
     );
@@ -58,7 +60,10 @@ const mapDispatchToProps = dispatch => ({
   },
   showLogin: () => {
     dispatch(showModal('LOGIN', {}));
-  }
+  },
+  showEditProfile: () => {
+    dispatch(showModal('EDIT_PROFILE', {}));
+  },
 });
 
 const HeaderContainer = connect(

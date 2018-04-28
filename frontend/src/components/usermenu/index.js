@@ -12,9 +12,10 @@ class UserMenu extends Component {
       logout,
       isLoading,
       showRegister,
-      showLogin
+      showLogin,
+      showEditProfile
     } = this.props;
-    
+
     if (isAuthenticated) {
       return (
         <UserNav
@@ -22,6 +23,7 @@ class UserMenu extends Component {
           name={name}
           avatar={avatar}
           logout={logout}
+          showEditProfile={showEditProfile}
           isLoading={isLoading}
         />
       );

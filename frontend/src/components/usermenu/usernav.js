@@ -10,6 +10,7 @@ class UserNav extends Component {
       username,
       avatar,
       logout,
+      showEditProfile,
       history,
       name
     } = this.props;
@@ -27,6 +28,7 @@ class UserNav extends Component {
             <Dropdown item simple text={name || username} direction='left'>
               <Dropdown.Menu>
                 <Dropdown.Item onClick={myProfile} icon='user' text='My profile' />
+                <Dropdown.Item onClick={showEditProfile} icon='setting' text='Edit profile' />
                 <Dropdown.Item onClick={logout} icon='sign out' text='Logout' />
               </Dropdown.Menu>
             </Dropdown>

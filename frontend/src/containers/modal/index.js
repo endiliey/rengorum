@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import RegisterModal from './register';
 import LoginModal from './login';
+import EditProfileModal from './editprofile';
 
 const ModalContainer = (props) => {
   switch (props.modalType) {
@@ -12,6 +13,10 @@ const ModalContainer = (props) => {
     case 'LOGIN':
       return (
         <LoginModal />
+      );
+    case 'EDIT_PROFILE':
+      return (
+        <EditProfileModal />
       );
     default:
       return null;

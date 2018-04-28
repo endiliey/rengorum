@@ -4,6 +4,7 @@ import {
   USER_LOGIN_URL,
   USER_LOGOUT_URL,
   USER_REGISTER_URL,
+  USER_EDIT_URL,
   USER_URL
 } from './constants';
 import {
@@ -20,6 +21,10 @@ import {
   fetchUsersRequest,
   fetchUsersSuccess,
   fetchUsersFailure,
+  editProfileRequest,
+  editProfileSuccess,
+  editProfileFailure,
+  changeAvatar,
   hideModal
 } from '../actions';
 
@@ -116,6 +121,43 @@ export const fetchUserProfile = username => dispatch => {
     }
     dispatch(fetchUserProfileFailure(errorMessage));
   });
+};
+
+export const editProfile = newProfile => dispatch => {
+  dispatch(editProfileRequest());
+
+  const username = store.getState().auth.username;
+  if (!username) {
+    dispatch(editProfileFailure('Not authenticated'));
+  } else {
+    axios.put(USER_URL + username + USER_EDIT_URL, newProfile, getConfig())
+    .then(function (response) {
+      dispatch(editProfileSuccess(newProfile));
+    })
+    .catch(function (error) {
+      let errorMessage = "Unknown Error";
+      if (!error.response) {
+        errorMessage = "Error: Network Error";
+      } else if (error.response.data.non_field_errors){
+        errorMessage = error.response.data.non_field_errors;
+      } else if (error.response.data.name) {
+        errorMessage = "Name: " + error.response.data.username;
+      } else if (error.response.data.email) {
+        errorMessage = "Email: " + error.response.data.email;
+      } else if (error.response.data.password) {
+        errorMessage = "Password: " + error.response.data.password;
+      } else if (error.response.data.bio) {
+        errorMessage = "Bio: " + error.response.data.bio;
+      } else if (error.response.data.avatar) {
+        errorMessage = "Avatar: " + error.response.data.avatar;
+      } else if (error.response.data.email) {
+        errorMessage = "Status: "+ error.response.data.status;
+      } else if (error.response.data.detail){
+        errorMessage = error.response.data.detail;
+      }
+      dispatch(editProfileFailure(errorMessage));
+    });
+  }
 };
 
 export const fetchUsers = () => dispatch => {
