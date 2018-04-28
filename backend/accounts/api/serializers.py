@@ -61,6 +61,12 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     avatar = serializers.URLField(source='profile.avatar', allow_blank=True)
     status = serializers.CharField(source='profile.status', allow_blank=True)
     password = serializers.CharField(allow_blank=True, default='', write_only=True)
+    email = serializers.EmailField(
+        validators=[UniqueValidator(
+            queryset=User.objects.all(),
+            message='has already been taken by other user'
+        )]
+    )
 
     class Meta:
         model = User
@@ -107,9 +113,10 @@ class UserCreateSerializer(serializers.ModelSerializer):
         help_text=_(
             'Required. 4-32 characters. Letters, numbers, underscores or hyphens only.'
         ),
-        validators=[
-            UniqueValidator(queryset=User.objects.all())
-        ],
+        validators=[UniqueValidator(
+            queryset=User.objects.all(),
+            message='has already been taken by other user'
+        )],
         required=True
     )
     password = serializers.CharField(
@@ -122,7 +129,10 @@ class UserCreateSerializer(serializers.ModelSerializer):
     )
     email = serializers.EmailField(
         required=True,
-        validators=[UniqueValidator(queryset=User.objects.all())]
+        validators=[UniqueValidator(
+            queryset=User.objects.all(),
+            message='has already been taken by other user'
+        )]
     )
     bio = serializers.CharField(source='profile.bio', allow_blank=True, default='')
     name = serializers.CharField(
