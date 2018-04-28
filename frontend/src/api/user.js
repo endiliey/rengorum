@@ -19,7 +19,8 @@ import {
   fetchUserProfileFailure,
   fetchUsersRequest,
   fetchUsersSuccess,
-  fetchUsersFailure
+  fetchUsersFailure,
+  hideModal
 } from '../actions';
 
 export const getConfig = () => {
@@ -43,6 +44,7 @@ export const login = (username, password) => (dispatch) => {
   })
   .then(function (response) {
     dispatch(loginSuccess(response.data));
+    dispatch(hideModal());
   })
   .catch(function (error) {
     var errorMessage = "Unknown Error";

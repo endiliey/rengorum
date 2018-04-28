@@ -78,7 +78,6 @@ export default class Login extends Component {
         {message}
         <Form
           className='attached fluid segment'
-          onSubmit={ this.handleSubmit }
         >
           <Form.Input required
             label='Username'
