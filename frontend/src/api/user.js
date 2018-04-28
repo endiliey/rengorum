@@ -34,32 +34,30 @@ export const getConfig = () => {
   return null;
 }
 
-export const login = (username, password) => {
-  return (dispatch) => {
-    dispatch(loginRequest());
+export const login = (username, password) => (dispatch) => {
+  dispatch(loginRequest());
 
-    axios.post(USER_LOGIN_URL, {
-      username,
-      password
-    })
-    .then(function (response) {
-      dispatch(loginSuccess(response.data));
-    })
-    .catch(function (error) {
-      var errorMessage = "Unknown Error";
-      if (!error.response) {
-        errorMessage = "Error: Network Error";
-      } else if (error.response.data.non_field_errors){
-        errorMessage = error.response.data.non_field_errors;
-      } else if (error.response.data.username) {
-        errorMessage = "Username: " + error.response.data.username;
-      } else if (error.response.data.password) {
-        errorMessage = "Password: "+ error.response.data.password;
-      }
-      dispatch(loginFailure(errorMessage));
-    });
-  };
-}
+  axios.post(USER_LOGIN_URL, {
+    username,
+    password
+  })
+  .then(function (response) {
+    dispatch(loginSuccess(response.data));
+  })
+  .catch(function (error) {
+    var errorMessage = "Unknown Error";
+    if (!error.response) {
+      errorMessage = "Error: Network Error";
+    } else if (error.response.data.non_field_errors){
+      errorMessage = error.response.data.non_field_errors;
+    } else if (error.response.data.username) {
+      errorMessage = "Username: " + error.response.data.username;
+    } else if (error.response.data.password) {
+      errorMessage = "Password: "+ error.response.data.password;
+    }
+    dispatch(loginFailure(errorMessage));
+  });
+};
 
 export const logout = () => dispatch => {
     // api call to delete token server-side
@@ -68,39 +66,37 @@ export const logout = () => dispatch => {
     dispatch(logoutAction());
 };
 
-export const register = (username, name, email, password) => {
-  return (dispatch) => {
-    dispatch(registerRequest());
+export const register = (username, name, email, password) => (dispatch) => {
+  dispatch(registerRequest());
 
-    axios.post(USER_REGISTER_URL, {
-      username,
-      name,
-      email,
-      password
-    })
-    .then(function (response) {
-      dispatch(registerSuccess());
-      dispatch(login(username, password));
-    })
-    .catch(function (error) {
-      let errorMessage = "Unknown Error";
-      if (!error.response) {
-        errorMessage = "Error: Network Error";
-      } else if (error.response.data.non_field_errors){
-        errorMessage = error.response.data.non_field_errors;
-      } else if (error.response.data.username) {
-        errorMessage = "Username: " + error.response.data.username;
-      } else if (error.response.data.name) {
-        errorMessage = "Name: " + error.response.data.name;
-      } else if (error.response.data.email) {
-        errorMessage = "Email: "+ error.response.data.email;
-      } else if (error.response.data.password) {
-        errorMessage = "Password: "+ error.response.data.password;
-      }
-      dispatch(registerFailure(errorMessage));
-    });
-  };
-}
+  axios.post(USER_REGISTER_URL, {
+    username,
+    name,
+    email,
+    password
+  })
+  .then(function (response) {
+    dispatch(registerSuccess());
+    dispatch(login(username, password));
+  })
+  .catch(function (error) {
+    let errorMessage = "Unknown Error";
+    if (!error.response) {
+      errorMessage = "Error: Network Error";
+    } else if (error.response.data.non_field_errors){
+      errorMessage = error.response.data.non_field_errors;
+    } else if (error.response.data.username) {
+      errorMessage = "Username: " + error.response.data.username;
+    } else if (error.response.data.name) {
+      errorMessage = "Name: " + error.response.data.name;
+    } else if (error.response.data.email) {
+      errorMessage = "Email: "+ error.response.data.email;
+    } else if (error.response.data.password) {
+      errorMessage = "Password: "+ error.response.data.password;
+    }
+    dispatch(registerFailure(errorMessage));
+  });
+};
 
 export const fetchUserProfile = username => dispatch => {
   dispatch(fetchUserProfileRequest());

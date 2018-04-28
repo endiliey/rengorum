@@ -65,7 +65,7 @@ class Users extends Component {
       } = user;
 
       return (
-        <div className="userCard">
+        <div key={username} className="userCard">
           <UserCard
             username={username}
             name={name}

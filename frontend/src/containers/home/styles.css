@@ -1,0 +1,34 @@
+.homeContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
+.home-loading {
+  text-align: center;
+  width: 33%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+}
+
+.home-error {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 33%;
+  color: rgba(231, 76, 60,1.0);
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.homeContainer .forumCard {
+  margin:25px 50px;
+  width: 128px;
+  font-size: 12px;
+}

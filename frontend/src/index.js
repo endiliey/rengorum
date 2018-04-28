@@ -12,6 +12,7 @@ import HeaderContainer from './containers/header';
 import ModalContainer from './containers/modal';
 import UserProfileContainer from './containers/userprofile';
 import UsersContainer from './containers/users';
+import HomeContainer from './containers/home';
 import NotFoundPage from './components/notfoundpage';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -23,9 +24,10 @@ ReactDOM.render(
           <div>
             <HeaderContainer />
             <Switch>
+              <Route path="/app" component={App} />
               <Route path="/users" component={UsersContainer} />
               <Route path="/user/:username" component={UserProfileContainer} />
-              <Route exact path="/" component={App} />
+              <Route exact path="/" component={HomeContainer} />
               <Route component={NotFoundPage} />
             </Switch>
           </div>
