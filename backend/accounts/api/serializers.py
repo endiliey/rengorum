@@ -60,12 +60,19 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     name = serializers.CharField(source='profile.name', allow_blank=True)
     avatar = serializers.URLField(source='profile.avatar', allow_blank=True)
     status = serializers.CharField(source='profile.status', allow_blank=True)
-    password = serializers.CharField(
+    current_password = serializers.CharField(
+        write_only=True,
+        allow_blank=True,
+        label=_("Current Password"),
+        help_text=_('Required'),
+    )
+    new_password = serializers.CharField(
         allow_blank=True,
         default='',
         write_only=True,
         min_length=4,
-        max_length=32
+        max_length=32,
+        label=_("New Password"),
     )
     email = serializers.EmailField(
         allow_blank=True,
@@ -82,35 +89,57 @@ class UserUpdateSerializer(serializers.ModelSerializer):
             'username',
             'name',
             'email',
-            'password',
+            'current_password',
+            'new_password',
             'bio',
             'avatar',
             'status'
         )
         read_only_fields = ('username',)
-        extra_kwargs = {"password": {"write_only": True}}
         lookup_field = 'username'
 
     def update(self, instance, validated_data):
-        profile_data = validated_data.pop('profile', None)
-        # handle password
-        password = validated_data['password'] or None
-        if password:
-            instance.set_password(password)
-        validated_data.pop('password', None)
+        # make sure requesting user provide his current password
+        # e.g if admin 'endiliey' is updating a user 'donaldtrump',
+        # currentPassword must be 'endiliey' password instead of 'donaldtrump' password
+        try:
+            username = self.context.get('request').user.username
+        except:
+            msg = _('Must be authenticated')
+            raise serializers.ValidationError(msg, code='authorization')
 
+        password = validated_data.get('current_password')
+        validated_data.pop('current_password', None)
+
+        if not password:
+            msg = _('Must provide current password')
+            raise serializers.ValidationError(msg, code='authorization')
+
+        user = authenticate(request=self.context.get('request'),
+                            username=username, password=password)
+        if not user:
+            msg = _('Sorry, the password you entered is incorrect.')
+            raise serializers.ValidationError(msg, code='authorization')
+
+        # change password to a new one if it exists
+        new_password = validated_data.get('new_password') or None
+        if new_password:
+            instance.set_password(new_password)
+        validated_data.pop('new_password', None)
+
+        # Update user profile fields
+        profile_data = validated_data.pop('profile', None)
+        profile = instance.profile
+        for field, value in profile_data.items():
+            if value:
+                setattr(profile, field, value)
         # Update user fields
         for field, value in validated_data.items():
             if value:
                 setattr(instance, field, value)
 
-        # Update profile fields
-        profile = instance.profile
-        for field, value in profile_data.items():
-            if value:
-                setattr(profile, field, value)
-        instance.save()
         profile.save()
+        instance.save()
         return instance
 
 class UserCreateSerializer(serializers.ModelSerializer):
@@ -130,6 +159,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(
         min_length=4,
         max_length=32,
+        write_only=True,
         help_text=_(
             'Required. 4-32 characters.'
         ),
@@ -163,7 +193,6 @@ class UserCreateSerializer(serializers.ModelSerializer):
             'avatar',
             'status'
         )
-        extra_kwargs = {"password": {"write_only": True} }
 
     def create(self, validated_data):
         profile_data = validated_data.pop('profile', None)
