@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Dropzone from 'react-dropzone';
 import {
   Form,
   Icon,
@@ -7,9 +8,10 @@ import {
   Button,
   TextArea,
   Grid,
-  Divider
 } from 'semantic-ui-react';
-import Avatar from '../avatar';
+import {
+  imageUpload
+} from '../../api/image';
 import './styles.css';
 
 export default class EditProfile extends Component {
@@ -25,9 +27,11 @@ export default class EditProfile extends Component {
       newPassword: '',
       currentPassword: '',
       bio: '',
+      status: '',
       avatar: avatar,
-      avatarFile: undefined,
-      status: ''
+      avatarFile: null,
+      avatarError: null,
+      avatarUploading: false
     };
   }
 
@@ -35,33 +39,83 @@ export default class EditProfile extends Component {
     this.setState({ [name]: value })
   }
 
-  handleSubmit = (e) => {
-    if (this.state.currentPassword != '') {
-      let newProfile = {
-        name: this.state.name,
-        current_password: this.state.currentPassword,
-        new_password: this.state.newPassword,
-        bio: this.state.bio,
-        avatar: this.state.avatar,
-        status: this.state.status
-      };
-      this.props.handleEdit(newProfile);
-    }
+  onImageDrop = (files) => {
+    this.setState({
+      avatarFile: files[0],
+    });
+  }
+
+  editProfile = () => {
+    let newProfile = {
+      name: this.state.name,
+      current_password: this.state.currentPassword,
+      new_password: this.state.newPassword,
+      bio: this.state.bio,
+      avatar: this.state.avatar,
+      status: this.state.status
+    };
+    this.props.handleEdit(newProfile);
+
     // prevent spamming so user have to keep entering password for every edit submission
     this.setState({
       currentPassword: ''
     });
   }
 
+  handleSubmit = (e) => {
+    const {
+      currentPassword,
+      avatarFile
+    } = this.state;
+
+    if (currentPassword !== '') {
+      if (!avatarFile) { // no new avatar
+        this.editProfile();
+      } else {
+        this.setState({
+          avatarUploading: true
+        });
+
+        imageUpload(avatarFile)
+        .then(response => {
+          this.setState({
+            avatar: response.data.secure_url,
+            avatarUploading: false
+          });
+          this.editProfile();
+        }).catch(error => {
+          console.log(error);
+          this.setState({
+            avatarError: 'Image Upload Error',
+            avatarFile: null,
+            avatarUploading: false
+          });
+        });
+      }
+    }
+  }
+
   render() {
     let {
       isLoading,
       error,
-      avatar,
-      name,
-      handleEdit,
       success
     } = this.props;
+
+    let {
+      name,
+      newPassword,
+      currentPassword,
+      bio,
+      status,
+      avatar,
+      avatarFile,
+      avatarError,
+      avatarUploading
+    } = this.state;
+
+    isLoading = isLoading || avatarUploading;
+    error = error || avatarError;
 
     let message = null;
     if (error) {
@@ -99,6 +153,11 @@ export default class EditProfile extends Component {
       );
     }
 
+    let avatarURL = avatar;
+    if (avatarFile) {
+      avatarURL = avatarFile.preview;
+    }
+
     return (
       <div>
         <Message
@@ -110,21 +169,28 @@ export default class EditProfile extends Component {
         <Form className='attached segment'>
           <Grid celled columns={2}>
             <Grid.Column>
-                <Image
-                  src={this.state.avatar}
-                  size='small'
-                  centered
-                />
-                <Divider hidden/>
-                <Form.Input
-                  label='Bio'
-                  placeholder='Describe yourself'
-                  type='text'
-                  name='bio'
-                  control={TextArea}
-                  value={ this.state.bio}
-                  onChange={ this.handleChange }
-                />
+              <Form.Field>
+                <label>Profile picture</label>
+                <Dropzone
+                  onDrop={this.onImageDrop}
+                  multiple={false}
+                  accept="image/*"
+                >
+                  <Image
+                    src={avatarURL}
+                    className='editProfile-avatar'
+                  />
+                </Dropzone>
+              </Form.Field>
+              <Form.Input
+                label='Bio'
+                placeholder='Describe yourself'
+                type='text'
+                name='bio'
+                control={TextArea}
+                value={ bio }
+                onChange={ this.handleChange }
+              />
             </Grid.Column>
             <Grid.Column>
               <Form.Input
@@ -132,7 +198,7 @@ export default class EditProfile extends Component {
                 placeholder='Name'
                 type='text'
                 name='name'
-                value={ this.state.name}
+                value={ name }
                 onChange={ this.handleChange }
               />
               <Form.Input
@@ -140,14 +206,14 @@ export default class EditProfile extends Component {
                 label='Current Password'
                 type='password'
                 name='currentPassword'
-                value={ this.state.currentPassword }
+                value={ currentPassword }
                 onChange={ this.handleChange }
               />
               <Form.Input
                 label='New Password'
                 type='password'
                 name='newPassword'
-                value={ this.state.newPassword }
+                value={ newPassword }
                 onChange={ this.handleChange }
               />
               <Form.Input
@@ -155,7 +221,7 @@ export default class EditProfile extends Component {
                 placeholder='Who are you (e.g: Writer)'
                 type='text'
                 name='status'
-                value={ this.state.status}
+                value={ status }
                 onChange={ this.handleChange }
               />
             </Grid.Column>

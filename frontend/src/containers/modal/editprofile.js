@@ -4,7 +4,6 @@ import EditProfile from '../../components/editprofile';
 import Modal from '../../components/modal';
 import {
   hideModal,
-  showModal,
   editProfileReset
 } from '../../actions';
 import {
@@ -33,7 +32,7 @@ class EditProfileModal extends Component {
     return !isAuthenticated ? null : (
       <Modal
         onClose={handleClose}
-        dialogStyle={{ width: '40%'}}
+        dialogStyle={{ width: '40%', minWidth: '500px'}}
       >
         <EditProfile
           avatar={avatar}
