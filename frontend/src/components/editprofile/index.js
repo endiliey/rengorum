@@ -118,24 +118,24 @@ export default class EditProfile extends Component {
     error = error || avatarError;
 
     let message = null;
-    if (error) {
-      message = (
-        <div className="editProfile-message">
-          <Message attached error icon>
-            <Message.Content>
-              <Icon name='thumbs down' size='big' />
-              {error || "Unknown Error"}
-            </Message.Content>
-          </Message>
-        </div>
-      );
-    } else if (isLoading) {
+    if (isLoading) {
       message = (
         <div className="editProfile-message">
           <Message attached icon>
             <Message.Content>
               <Icon name='circle notched' loading size='big' />
               Loading
+            </Message.Content>
+          </Message>
+        </div>
+      );
+    } else if (error) {
+      message = (
+        <div className="editProfile-message">
+          <Message attached error icon>
+            <Message.Content>
+              <Icon name='thumbs down' size='big' />
+              {error || "Unknown Error"}
             </Message.Content>
           </Message>
         </div>
