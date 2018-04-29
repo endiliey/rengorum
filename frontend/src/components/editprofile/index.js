@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
-import { Form, Icon, Message, Button } from 'semantic-ui-react';
+import {
+  Form,
+  Icon,
+  Image,
+  Message,
+  Button,
+  TextArea,
+  Grid,
+  Divider
+} from 'semantic-ui-react';
+import Avatar from '../avatar';
 import './styles.css';
 
 export default class EditProfile extends Component {
@@ -11,10 +21,12 @@ export default class EditProfile extends Component {
     } = this.props;
 
     this.state = {
-      name: name ? name : '',
-      password: '',
+      name: name,
+      newPassword: '',
+      currentPassword: '',
       bio: '',
-      avatar: avatar ? avatar : '',
+      avatar: avatar,
+      avatarFile: undefined,
       status: ''
     };
   }
@@ -24,14 +36,21 @@ export default class EditProfile extends Component {
   }
 
   handleSubmit = (e) => {
-    let newProfile = {
-      name: this.state.name,
-      password: this.state.password,
-      bio: this.state.bio,
-      avatar: this.state.avatar,
-      status: this.state.status
-    };
-    this.props.handleEdit(newProfile);
+    if (this.state.currentPassword != '') {
+      let newProfile = {
+        name: this.state.name,
+        current_password: this.state.currentPassword,
+        new_password: this.state.newPassword,
+        bio: this.state.bio,
+        avatar: this.state.avatar,
+        status: this.state.status
+      };
+      this.props.handleEdit(newProfile);
+    }
+    // prevent spamming so user have to keep entering password for every edit submission
+    this.setState({
+      currentPassword: ''
+    });
   }
 
   render() {
@@ -88,48 +107,59 @@ export default class EditProfile extends Component {
           content='Fill out any part of the form below to edit your profile'
         />
         {message}
-        <Form
-          className='attached fluid segment'
-        >
-          <Form.Input
-            label='Name'
-            placeholder='Name'
-            type='text'
-            name='name'
-            value={ this.state.name}
-            onChange={ this.handleChange }
-          />
-          <Form.Input
-            label='Password'
-            type='password'
-            name='password'
-            value={ this.state.password }
-            onChange={ this.handleChange }
-          />
-          <Form.Input
-            label='Bio'
-            placeholder='Bio'
-            type='text'
-            name='bio'
-            value={ this.state.bio}
-            onChange={ this.handleChange }
-          />
-          <Form.Input
-            label='Avatar'
-            placeholder='Avatar'
-            type='url'
-            name='avatar'
-            value={ this.state.avatar}
-            onChange={ this.handleChange }
-          />
-          <Form.Input
-            label='Status'
-            placeholder='Status'
-            type='text'
-            name='status'
-            value={ this.state.status}
-            onChange={ this.handleChange }
-          />
+        <Form className='attached segment'>
+          <Grid celled columns={2}>
+            <Grid.Column>
+                <Image
+                  src={this.state.avatar}
+                  size='small'
+                  centered
+                />
+                <Divider hidden/>
+                <Form.Input
+                  label='Bio'
+                  placeholder='Describe yourself'
+                  type='text'
+                  name='bio'
+                  control={TextArea}
+                  value={ this.state.bio}
+                  onChange={ this.handleChange }
+                />
+            </Grid.Column>
+            <Grid.Column>
+              <Form.Input
+                label='Name'
+                placeholder='Name'
+                type='text'
+                name='name'
+                value={ this.state.name}
+                onChange={ this.handleChange }
+              />
+              <Form.Input
+                required
+                label='Current Password'
+                type='password'
+                name='currentPassword'
+                value={ this.state.currentPassword }
+                onChange={ this.handleChange }
+              />
+              <Form.Input
+                label='New Password'
+                type='password'
+                name='newPassword'
+                value={ this.state.newPassword }
+                onChange={ this.handleChange }
+              />
+              <Form.Input
+                label='Status'
+                placeholder='Who are you (e.g: Writer)'
+                type='text'
+                name='status'
+                value={ this.state.status}
+                onChange={ this.handleChange }
+              />
+            </Grid.Column>
+          </Grid>
           <Button
             color='blue'
             loading={isLoading}

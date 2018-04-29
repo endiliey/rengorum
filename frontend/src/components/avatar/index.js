@@ -8,6 +8,7 @@ const Avatar = (props) => {
     <Image
       className={props.className || 'avatar'}
       src={props.avatar || defaultAvatar}
+      centered={props.centered || true}
     />
   );
 }

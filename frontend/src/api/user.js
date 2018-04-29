@@ -150,8 +150,10 @@ export const editProfile = newProfile => dispatch => {
         errorMessage = "Name: " + error.response.data.username;
       } else if (error.response.data.email) {
         errorMessage = "Email: " + error.response.data.email;
-      } else if (error.response.data.password) {
-        errorMessage = "Password: " + error.response.data.password;
+      } else if (error.response.data.current_password) {
+        errorMessage = "Current Password: " + error.response.data.current_password;
+      } else if (error.response.data.new_password) {
+        errorMessage = "New Password: " + error.response.data.new_password;
       } else if (error.response.data.bio) {
         errorMessage = "Bio: " + error.response.data.bio;
       } else if (error.response.data.avatar) {
