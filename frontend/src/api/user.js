@@ -24,7 +24,6 @@ import {
   editProfileRequest,
   editProfileSuccess,
   editProfileFailure,
-  changeAvatar,
   hideModal
 } from '../actions';
 
