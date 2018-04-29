@@ -27,6 +27,8 @@ export const fetchThread = (thread) => dispatch => {
       errorMessage = "Error: Network Error";
     } else if (error.response.data.detail){
       errorMessage = "Thread: " + error.response.data.detail;
+    } else if (error.response.data) {
+      errorMessage = error.response.data;
     }
     dispatch(fetchThreadFailure(errorMessage));
   });

@@ -61,6 +61,8 @@ export const login = (username, password) => (dispatch) => {
       errorMessage = "Username: " + error.response.data.username;
     } else if (error.response.data.password) {
       errorMessage = "Password: "+ error.response.data.password;
+    } else if (error.response.data) {
+      errorMessage = error.response.data;
     }
     dispatch(loginFailure(errorMessage));
   });
@@ -100,6 +102,8 @@ export const register = (username, name, email, password) => (dispatch) => {
       errorMessage = "Email: "+ error.response.data.email;
     } else if (error.response.data.password) {
       errorMessage = "Password: "+ error.response.data.password;
+    } else if (error.response.data) {
+      errorMessage = error.response.data;
     }
     dispatch(registerFailure(errorMessage));
   });
@@ -118,6 +122,8 @@ export const fetchUserProfile = username => dispatch => {
       errorMessage = "Error: Network Error";
     } else if (error.response.data.detail){
       errorMessage = "User: " + error.response.data.detail;
+    } else if (error.response.data) {
+      errorMessage = error.response.data;
     }
     dispatch(fetchUserProfileFailure(errorMessage));
   });
@@ -154,6 +160,8 @@ export const editProfile = newProfile => dispatch => {
         errorMessage = "Status: "+ error.response.data.status;
       } else if (error.response.data.detail){
         errorMessage = error.response.data.detail;
+      } else if (error.response.data) {
+        errorMessage = error.response.data;
       }
       dispatch(editProfileFailure(errorMessage));
     });
@@ -173,6 +181,8 @@ export const fetchUsers = () => dispatch => {
       errorMessage = "Error: Network Error";
     } else if (error.response.data.detail){
       errorMessage = "Users: " + error.response.data.detail;
+    } else if (error.response.data) {
+      errorMessage = error.response.data;
     }
     dispatch(fetchUsersFailure(errorMessage));
   });

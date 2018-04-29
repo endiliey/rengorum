@@ -30,6 +30,8 @@ export const fetchForums = () => dispatch => {
       errorMessage = "Error: Network Error";
     } else if (error.response.data.detail){
       errorMessage = "Forums: " + error.response.data.detail;
+    } else if (error.response.data) {
+      errorMessage = error.response.data;
     }
     dispatch(fetchHomeFailure(errorMessage));
   });
@@ -48,6 +50,8 @@ export const fetchForum = (forum) => dispatch => {
       errorMessage = "Error: Network Error";
     } else if (error.response.data.detail){
       errorMessage = "Forum: " + error.response.data.detail;
+    } else if (error.response.data) {
+      errorMessage = error.response.data;
     }
     dispatch(fetchForumFailure(errorMessage));
   });
