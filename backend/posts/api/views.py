@@ -52,7 +52,7 @@ class PostDeleteAPIView(generics.DestroyAPIView):
 
             # update the deleted post's thread last_activity
             if latest_post is None:
-                thread.last_activity = None
+                thread.last_activity = thread.created_at
             else:
                 thread.last_activity = latest_post.created_at
             thread.save()

@@ -72,16 +72,15 @@ class PostCreateSerializer(serializers.ModelSerializer):
         else:
             raise serializers.ValidationError('Must be authenticated to create post')
 
-        # Update the thread last_activity to now
-        thread.last_activity = now()
-        thread.save()
-
         # Create the post
         post = Post(
             content=content,
             thread=thread,
             creator=user
         )
+        # Update the thread last_activity to now
+        thread.last_activity = now()
+        thread.save()
         post.save()
         return post
 
