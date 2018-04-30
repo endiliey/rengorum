@@ -1,10 +1,7 @@
 # Rengorum
 Single-page forum application that aims to be fast, performant and simple.
-
 ![Screenshot 1](preview/frontend_1.PNG)
 
-## Development Status: IN PROGRESS
-Rengorum is currently still under development so you might expect many features not yet implemented.
 
 ## Frontend
 > The frontend is a fast, interactive and simple Single-Page-Application (SPA), written in ES6 Javascript and built with following technologies:
@@ -29,6 +26,7 @@ Rengorum is currently still under development so you might expect many features 
 ![Screenshot 4](preview/backend_1.PNG)
 ![Screenshot 5](preview/backend_2.PNG)
 ![Screenshot 6](preview/backend_3.PNG)
+![Screenshot 7](preview/backend_4.PNG)
 
 ## Development setup
 
