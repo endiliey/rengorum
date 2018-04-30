@@ -38,6 +38,7 @@ class ThreadCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Thread
         fields = (
+            'id',
             'name',
             'forum',
             'pinned',
@@ -46,7 +47,7 @@ class ThreadCreateSerializer(serializers.ModelSerializer):
             'created_at',
             'last_activity'
         )
-        read_only_fields=('pinned', 'creator', 'created_at', 'last_activity')
+        read_only_fields=('id', 'pinned', 'creator', 'created_at', 'last_activity')
 
     def create(self, validated_data):
         name = validated_data['name']

@@ -78,10 +78,10 @@ class PostCreateSerializer(serializers.ModelSerializer):
             thread=thread,
             creator=user
         )
-        # Update the thread last_activity to now
-        thread.last_activity = now()
-        thread.save()
+        # Update the thread last_activity to post creation time
         post.save()
+        thread.last_activity = post.created_at
+        thread.save()
         return post
 
 class PostUpdateSerializer(serializers.ModelSerializer):
