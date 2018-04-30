@@ -24,13 +24,14 @@ Single-page forum application that aims to be fast, performant and simple.
 > * [etc](https://github.com/endiliey/rengorum/blob/master/requirements.txt)
 
 ```
-List of available API (browseable) at http://localhost:8000/api
+List of available API (browseable) at /api
+* /user
 * /user/login/
 * /user/register/
 * /user/logout/
 * /user/{username}/
-* /user/{username}/delete
 * /user/{username}/edit
+* /user/{username}/delete
 * /forum/
 * /forum/create/
 * /forum/{slug}/
