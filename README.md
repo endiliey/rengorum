@@ -1,5 +1,6 @@
 # Rengorum
 Single-page forum application that aims to be fast, performant and simple.
+
 ![Screenshot 1](preview/frontend_1.PNG)
 
 
@@ -21,6 +22,31 @@ Single-page forum application that aims to be fast, performant and simple.
 > * [Django v2.0](https://www.djangoproject.com/)
 > * [Djangorestframework v3.7](http://www.django-rest-framework.org/)
 > * [etc](https://github.com/endiliey/rengorum/blob/master/requirements.txt)
+
+```
+List of available API (browseable) at http://localhost:8000/api
+* /user/login/
+* /user/register/
+* /user/logout/
+* /user/{username}/
+* /user/{username}/delete
+* /user/{username}/edit
+* /forum/
+* /forum/create/
+* /forum/{slug}/
+* /forum/{slug}/edit/
+* /forum/{slug}/delete/
+* /thread/
+* /thread/create/
+* /thread/{id}/
+* /thread/{id}/edit/
+* /thread/{id}/delete/
+* /post/
+* /post/create/
+* /post/{id}/
+* /post/{id}/edit/
+* /post/{id}/delete/
+```
 
 ### Screenshots:
 ![Screenshot 4](preview/backend_1.PNG)
@@ -84,8 +110,8 @@ Make sure backend testcases that I've wrote is not failing
 python manage.py test
 ```
 
-Then run the server, endpoint should be available on http://localhost:8000/
-For example, browseable user login API available on http://localhost:8000/api/user/login/
+Then run the server, api endpoint should be available on http://localhost:8000/api
+
 ```
 cd backend
 python manage.py runserver
