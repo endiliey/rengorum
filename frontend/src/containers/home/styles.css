@@ -2,10 +2,64 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
+}
+
+.homeContainer a:-webkit-any-link {
+  cursor: pointer;
+  color: black;
+  font-weight: bold;
+}
+
+.homeContainer a:hover {
+  text-decoration:underline;
+}
+
+.home-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-top: 4px;
+}
+
+.home-text {
+  vertical-align: middle;
+  text-align: left;
+}
+
+.home-vertical {
+  position: relative;
+  top: 10%;
+}
+
+.home-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.home-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.home-stats {
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.home-meta a {
+  color: gray !important;
+  font-size: 12px;
+}
+
+.home-meta b{
+  color: blue;
+  font-size: 10px;
 }
 
 .home-loading {
@@ -25,10 +79,4 @@
   font-size: 12px;
   font-weight: bold;
   text-align: center;
-}
-
-.homeContainer .forumCard {
-  margin:25px 50px;
-  width: 128px;
-  font-size: 12px;
 }

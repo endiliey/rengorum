@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   fetchForums
 } from '../../api';
-import { Message } from 'semantic-ui-react';
+import {
+  Message,
+  Image,
+  Segment,
+  Grid,
+  Icon
+} from 'semantic-ui-react';
 import Loader from '../../components/loader';
+import Avatar from '../../components/avatar';
 import './styles.css';
 
 class Home extends Component {
@@ -58,48 +66,92 @@ class Home extends Component {
     const forumCardList = forums.map((forum) => {
       const {
         name,
+        slug,
         description,
         posts_count,
         threads_count,
-        last_post
+        last_activity,
       } = forum;
 
-      let lastPost = null;
-      if (last_post) {
+      let lastActivity = (
+        <div className='home-text home-vertical'>
+          {'—  No activity —'}
+        </div>
+      );
+
+      if (last_activity) {
         const {
           thread_id,
           thread_name,
           username,
           avatar,
-          seconds_elapsed
-        } = last_post;
+          pinned,
+          naturaltime
+        } = last_activity;
 
-        // TODO
-        lastPost = (
-          <div>
-            {thread_id}
-            {thread_name}
-            {username}
-            {avatar}
-            {seconds_elapsed}
+        lastActivity = (
+          <div className='home-row'>
+              <Avatar
+                className='home-avatar'
+                avatar={avatar}
+                centered={false}
+                link={`/user/${username}`}
+              />
+              <div className="home-column">
+                <div>
+                  {pinned ? <Icon name='pin' /> : <Icon name='talk outline' /> }
+                  <Link to={`/thread/${thread_id}`}>
+                  {thread_name}
+                  </Link>
+                </div>
+                <div className='home-meta'>
+                  <Link to={`/user/${username}`}>
+                    <Icon name='user ' />{username}
+                  </Link>
+                    <b>{`  —  ${naturaltime}`}</b>
+                </div>
+              </div>
           </div>
         );
       }
 
       return (
-        <div key={name} className="forumCard">
-          {name}
-          {description}
-          {posts_count}
-          {threads_count}
-          {lastPost}
-        </div>
+        <Segment vertical>
+          <Grid textAlign='left' padded='horizontally'>
+            <Grid.Column width={7}>
+              <Grid.Row>
+                <Icon name='edit' />
+                <Link to={`/forum/${slug}`}>{name}</Link>
+              </Grid.Row>
+              <Grid.Row>
+                {description}
+              </Grid.Row>
+            </Grid.Column>
+            <Grid.Column width={3}>
+              <div className="home-column home-stats home-vertical">
+                <div style={{paddingBottom: '5px'}}>
+                  <Icon name='write' />
+                  {threads_count} {threads_count > 1 ? 'threads' : 'thread'}
+                </div>
+                <div>
+                  <Icon name='comment outline' />
+                  {posts_count} {posts_count > 1 ? 'posts' : 'post'}
+                </div>
+              </div>
+            </Grid.Column>
+            <Grid.Column width={6}>
+              {lastActivity}
+            </Grid.Column>
+          </Grid>
+        </Segment>
       );
     });
 
     return (
       <div className="homeContainer">
-        {forumCardList}
+        <Segment.Group>
+          {forumCardList}
+        </Segment.Group>
       </div>
     );
   }
