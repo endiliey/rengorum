@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Card, Image } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
+import Avatar from '../avatar';
 import { Link } from 'react-router-dom';
+import './styles.css'
 
 class UserCard extends Component {
   render() {
@@ -13,7 +15,11 @@ class UserCard extends Component {
 
     return (
       <Card>
-        <Image src={avatar} />
+        <Avatar
+          className='userCard-avatar'
+          avatar={avatar}
+          link={`/user/${username}`}
+        />
         <Card.Content>
           <Card.Header>
             {name}
