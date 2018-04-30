@@ -13,7 +13,7 @@ Single-page forum application that aims to be fast, performant and simple.
 > * [Redux Persist v5.9](https://github.com/rt2zz/redux-persist)
 > * [etc](https://github.com/endiliey/rengorum/blob/master/frontend/package.json)
 
-### Screenshots:
+### Demo Screenshots:
 ![Screenshot 2](preview/frontend_2.PNG)
 ![Screenshot 3](preview/frontend_3.PNG)
 
@@ -25,7 +25,7 @@ Single-page forum application that aims to be fast, performant and simple.
 
 ```
 List of available API (browseable) at /api
-* /user
+* /user/
 * /user/login/
 * /user/register/
 * /user/logout/
@@ -49,7 +49,7 @@ List of available API (browseable) at /api
 * /post/{id}/delete/
 ```
 
-### Screenshots:
+### Demo Screenshots:
 ![Screenshot 4](preview/backend_1.PNG)
 ![Screenshot 5](preview/backend_2.PNG)
 ![Screenshot 6](preview/backend_3.PNG)
