@@ -6,7 +6,6 @@ import {
 } from '../../api';
 import {
   Message,
-  Image,
   Segment,
   Grid,
   Icon
@@ -34,7 +33,7 @@ class Home extends Component {
           <br />
           <Message size="tiny">
             <Message.Content>
-              <Message.Header>Just one second</Message.Header>
+              <Message.Header>Just few seconds</Message.Header>
               We are fetching the homepage for you.
             </Message.Content>
           </Message>
@@ -80,7 +79,7 @@ class Home extends Component {
       );
 
       if (last_activity) {
-        const {
+        let {
           thread_id,
           thread_name,
           username,
@@ -88,6 +87,9 @@ class Home extends Component {
           pinned,
           naturaltime
         } = last_activity;
+
+        thread_name = thread_name.length > 43 ?
+          (thread_name.substring(0, 43) + '...') : thread_name;
 
         lastActivity = (
           <div className='home-row'>
@@ -101,12 +103,13 @@ class Home extends Component {
                 <div>
                   {pinned ? <Icon name='pin' /> : <Icon name='talk outline' /> }
                   <Link to={`/thread/${thread_id}`}>
-                  {thread_name}
+                    {thread_name}
                   </Link>
                 </div>
                 <div className='home-meta'>
                   <Link to={`/user/${username}`}>
-                    <Icon name='user ' />{username}
+                    <Icon name='user ' />
+                    {username}
                   </Link>
                     <b>{`  —  ${naturaltime}`}</b>
                 </div>
@@ -121,7 +124,9 @@ class Home extends Component {
             <Grid.Column width={7}>
               <Grid.Row>
                 <Icon name='edit' />
-                <Link to={`/forum/${slug}`}>{name}</Link>
+                <Link to={`/forum/${slug}`}>
+                  {name}
+                </Link>
               </Grid.Row>
               <Grid.Row>
                 {description}
@@ -131,11 +136,13 @@ class Home extends Component {
               <div className="home-column home-stats home-vertical">
                 <div style={{paddingBottom: '5px'}}>
                   <Icon name='write' />
-                  {threads_count} {threads_count > 1 ? 'threads' : 'thread'}
+                  {threads_count}
+                  {threads_count > 1 ? ' threads' : ' thread'}
                 </div>
                 <div>
                   <Icon name='comment outline' />
-                  {posts_count} {posts_count > 1 ? 'posts' : 'post'}
+                  {posts_count}
+                  {posts_count > 1 ? ' posts' : ' post'}
                 </div>
               </div>
             </Grid.Column>
