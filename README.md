@@ -1,7 +1,7 @@
 # Rengorum
 Single-page forum application that aims to be fast, performant and simple.
 
-![Screenshot 1](preview/frontend_2.PNG)
+![Screenshot 1](preview/frontend_1.PNG)
 
 ## Development Status: IN PROGRESS
 Rengorum is currently still under development so you might expect many features not yet implemented.
@@ -15,7 +15,9 @@ Rengorum is currently still under development so you might expect many features 
 > * [Redux Persist v5.9](https://github.com/rt2zz/redux-persist)
 > * [etc](https://github.com/endiliey/rengorum/blob/master/frontend/package.json)
 
-![Screenshot 2](preview/frontend_1.PNG)
+### Screenshots:
+![Screenshot 2](preview/frontend_2.PNG)
+![Screenshot 3](preview/frontend_3.PNG)
 
 ## Backend
 > The backend is a scalable system that provides data through its RESTful API (browseable API available), written in Python and built with following technologies:
@@ -23,7 +25,10 @@ Rengorum is currently still under development so you might expect many features 
 > * [Djangorestframework v3.7](http://www.django-rest-framework.org/)
 > * [etc](https://github.com/endiliey/rengorum/blob/master/requirements.txt)
 
-![Screenshot 2](preview/backend_1.PNG)
+### Screenshots:
+![Screenshot 4](preview/backend_1.PNG)
+![Screenshot 5](preview/backend_2.PNG)
+![Screenshot 6](preview/backend_3.PNG)
 
 ## Development setup
 
