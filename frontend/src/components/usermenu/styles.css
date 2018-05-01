@@ -1,8 +1,6 @@
 .userMenu {
-  align-items: right;
-  position: relative;
-  display: inline-block;
-  margin: 0 25px;
+  display: flex;
+  align-items: center;
   color: white !important;
   height: inherit;
 }

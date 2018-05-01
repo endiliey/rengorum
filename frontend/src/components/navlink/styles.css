@@ -2,10 +2,9 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  margin-left: 10px;
 }
 
-.navlinkContainer div{
+.navlinkContainer .link{
   font-size: 18px;
   font-weight: 300;
   margin: 0 10px;

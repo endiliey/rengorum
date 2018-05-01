@@ -8,15 +8,15 @@ const Navlink = () => {
   return (
     <div className='navlinkContainer'>
       <Logo />
-      <div>
+      <div className='link'>
         <Icon name="home" className="navlinkIcon" />
         <Link to="/">Home</Link>
       </div>
-      <div>
+      <div className='link'>
         <Icon name="users" className="navlinkIcon" />
         <Link to="/users">Users</Link>
       </div>
-      <div>
+      <div className='link'>
         <Icon name="github" className="navlinkIcon" />
         <a href="https://github.com/endiliey/rengorum">Github</a>
       </div>

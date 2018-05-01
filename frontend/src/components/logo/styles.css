@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: flex-start;
   margin-right: 10px !important;
-  margin-left: 0px !important;
+  margin-left: -15px !important;
 }
 
 .logo {
@@ -16,7 +16,7 @@
   font-size: 20px !important;
   font-weight: 700 !important;
   color: white;
-  margin-left: -10px !important;
+  margin-left: -7px !important;
 }
 
 @keyframes logo-spin {

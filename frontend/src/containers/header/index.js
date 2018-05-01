@@ -25,7 +25,7 @@ class Header extends Component {
     } = this.props;
 
     return (
-      <header className="rengorumHeader">
+      <div className="headerContainer">
         <Navlink />
         <UserMenu
           isAuthenticated={isAuthenticated}
@@ -38,7 +38,7 @@ class Header extends Component {
           showLogin={showLogin}
           showEditProfile={showEditProfile}
         />
-      </header>
+      </div>
     );
   }
 }

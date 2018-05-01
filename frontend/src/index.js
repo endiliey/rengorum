@@ -20,8 +20,9 @@ ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={<Loader />} persistor={persistor}>
       <BrowserRouter>
-        <div className="container">
-          <div>
+        <div>
+          <header className="header-background" />
+          <div className="app-layout">
             <HeaderContainer />
             <Switch>
               <Route path="/app" component={App} />
