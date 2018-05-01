@@ -8,6 +8,10 @@
   justify-content: center;
 }
 
+.home-list {
+  width: 100%;
+}
+
 .homeContainer a:-webkit-any-link {
   cursor: pointer;
   color: black;

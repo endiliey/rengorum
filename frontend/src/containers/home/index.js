@@ -156,7 +156,7 @@ class Home extends Component {
 
     return (
       <div className="homeContainer">
-        <Segment.Group>
+        <Segment.Group className="home-list">
           {forumCardList}
         </Segment.Group>
       </div>
