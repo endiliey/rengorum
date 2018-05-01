@@ -16,6 +16,7 @@ Single-page forum application that aims to be fast, performant and simple.
 ### Demo Screenshots:
 ![Screenshot 2](preview/frontend_2.PNG)
 ![Screenshot 3](preview/frontend_3.PNG)
+![Screenshot 4](preview/frontend_4.PNG)
 
 ## Backend
 > The backend is a scalable system that provides data through its RESTful API (browseable API available), written in Python and built with following technologies:
@@ -50,10 +51,10 @@ List of available API (browseable) at /api
 ```
 
 ### Demo Screenshots:
-![Screenshot 4](preview/backend_1.PNG)
-![Screenshot 5](preview/backend_2.PNG)
-![Screenshot 6](preview/backend_3.PNG)
-![Screenshot 7](preview/backend_4.PNG)
+![Screenshot 5](preview/backend_1.PNG)
+![Screenshot 6](preview/backend_2.PNG)
+![Screenshot 7](preview/backend_3.PNG)
+![Screenshot 8](preview/backend_4.PNG)
 
 ## Development setup
 
