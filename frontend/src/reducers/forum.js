@@ -6,7 +6,10 @@ import {
 
 const initialState = {
   isLoading: false,
-  forum: null,
+  name: null,
+  slug: null,
+  description: null,
+  threads: null,
   error: null
 };
 
@@ -20,13 +23,19 @@ const forum = (state = initialState, action) => {
     case FETCH_FORUM_SUCCESS:
       return {
         isLoading: false,
-        forum: action.forum,
+        name: action.name,
+        slug: action.slug,
+        description: action.description,
+        threads: action.threads,
         error: null
       };
     case FETCH_FORUM_FAILURE:
       return {
         isLoading: false,
-        forum: null,
+        name: null,
+        slug: null,
+        description: null,
+        threads: null,
         error: action.error
       };
     default:

@@ -10,10 +10,13 @@ export const fetchForumRequest = () => {
   };
 };
 
-export const fetchForumSuccess = (data) => {
+export const fetchForumSuccess = (forum) => {
   return {
     type: FETCH_FORUM_SUCCESS,
-    forum: data
+    name: forum.name,
+    slug: forum.slug,
+    description: forum.description,
+    threads: forum.threads
   };
 };
 
