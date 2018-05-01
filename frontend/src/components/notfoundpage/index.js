@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Message } from 'semantic-ui-react';
+import { Message, Image } from 'semantic-ui-react';
 import './styles.css';
 
 class NotFoundPage extends Component {
@@ -14,10 +14,10 @@ class NotFoundPage extends Component {
             </Message.Content>
           </Message>
         </div>
-        <img
+        <Image
           className="not-found-page-img"
-          alt="not-found" 
           src="https://i.imgur.com/yG7L3Lb.gif"
+          centered
         />
       </div>
     );
