@@ -35,7 +35,7 @@ class LoginModal extends Component {
         <Login
           handleLogin={handleLogin}
           showRegister={showRegister}
-          loading={isLoading}
+          isLoading={isLoading}
           error={error}
         />
       </Modal>

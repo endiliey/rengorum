@@ -5,12 +5,11 @@ import {
   fetchForum
 } from '../../api';
 import {
-  Message,
   Segment,
   Grid,
   Icon
 } from 'semantic-ui-react';
-import Loader from '../../components/loader';
+import StatusMessage from '../../components/statusmessage';
 import Avatar from '../../components/avatar';
 import './styles.css';
 
@@ -28,7 +27,6 @@ class Forum extends Component {
     }
   }
 
-
   render() {
     const {
       isLoading,
@@ -39,40 +37,20 @@ class Forum extends Component {
       threads
     } = this.props;
 
-    if (isLoading) {
+    if (error || !threads || isLoading || threads.length === 0 ) {
       return (
-        <div className="forum-loading">
-          <Loader />
-          <br />
-          <Message size="tiny">
-            <Message.Content>
-              <Message.Header>Just few seconds</Message.Header>
-              We are fetching the forum for you.
-            </Message.Content>
-          </Message>
-          <br /><br />
-        </div>
+        <StatusMessage
+          error={error || !threads}
+          errorClassName='forum-error'
+          errorMessage={error}
+          loading={isLoading}
+          loadingMessage={`We are fetching threads in '${name}' forum for you`}
+          nothing={threads && threads.length === 0}
+          nothingMessage={`No threads to display`}
+          nothingClassName='forum-error'
+          type='default'
+        />
       );
-    } else if (error || !threads) {
-        return (
-          <div className="forum-error">
-            <Message negative={true}>
-              <Message.Content>
-                {error || "Error"}
-              </Message.Content>
-            </Message>
-          </div>
-        );
-    } else if (threads.length === 0) {
-        return (
-          <div className="forum-error">
-            <Message negative={true}>
-              <Message.Content>
-                No threads to display
-              </Message.Content>
-            </Message>
-          </div>
-        );
     }
 
     const threadList = threads.map((thread) => {
@@ -87,36 +65,32 @@ class Forum extends Component {
         last_activity
       } = thread;
 
-      let lastActivity = (
+      let lastActivity = last_activity ? (
+        <div className='forum-row'>
+          <Avatar
+            className='forum-avatar'
+            avatar={last_activity.avatar}
+            centered={false}
+            link={`/user/${last_activity.username}`}
+          />
+          <div className="forum-column">
+            <div className='forum-name'>
+              {last_activity.name}
+            </div>
+            <div className='forum-meta'>
+              <Link to={`/user/${last_activity.username}`}>
+                <Icon name='user ' />
+                {last_activity.username}
+              </Link>
+              <b>{`  —  ${last_activity.naturaltime}`}</b>
+            </div>
+          </div>
+        </div>
+      ) : (
         <div className='forum-text forum-vertical'>
           {'—  No activity —'}
         </div>
       );
-
-      if (last_activity) {
-        lastActivity = (
-          <div className='forum-row'>
-              <Avatar
-                className='forum-avatar'
-                avatar={last_activity.avatar}
-                centered={false}
-                link={`/user/${last_activity.username}`}
-              />
-              <div className="forum-column">
-                <div className='forum-name'>
-                  {last_activity.name}
-                </div>
-                <div className='forum-meta'>
-                  <Link to={`/user/${last_activity.username}`}>
-                    <Icon name='user ' />
-                    {last_activity.username}
-                  </Link>
-                  <b>{`  —  ${last_activity.naturaltime}`}</b>
-                </div>
-              </div>
-          </div>
-        );
-      }
 
       return (
         <Segment vertical>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Icon, Message, Button } from 'semantic-ui-react';
+import StatusMessage from '../../components/statusmessage';
 import './styles.css';
 
 export default class Register extends Component {
@@ -56,30 +57,15 @@ export default class Register extends Component {
       showLogin
     } = this.props;
 
-    let message = null;
-    if (error) {
-      message = (
-        <div className="register-message">
-          <Message attached error icon>
-            <Message.Content>
-              <Icon name='thumbs down' size='big' />
-              {error || "Unknown Error"}
-            </Message.Content>
-          </Message>
-        </div>
-      );
-    } else if (isLoading) {
-      message = (
-        <div className="register-message">
-          <Message attached icon>
-            <Message.Content>
-              <Icon name='circle notched' loading size='big' />
-              Loading
-            </Message.Content>
-          </Message>
-        </div>
-      );
-    }
+    const statusMessage = (
+      <StatusMessage
+        error={error}
+        errorMessage={error || 'Login Error'}
+        loading={isLoading}
+        loadingMessage={'Registering your account'}
+        type='modal'
+      />
+    );
 
     return (
       <div>
@@ -88,7 +74,7 @@ export default class Register extends Component {
           header='Welcome to our site!'
           content='Fill out the form below to sign-up for a new account'
         />
-        {message}
+        {statusMessage}
         <Form
           className='attached fluid segment'
         >

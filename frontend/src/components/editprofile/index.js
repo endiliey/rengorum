@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import {
   Form,
-  Icon,
   Image,
   Message,
   Button,
@@ -12,6 +11,7 @@ import {
 import {
   imageUpload
 } from '../../api/image';
+import StatusMessage from '../../components/statusmessage';
 import './styles.css';
 
 export default class EditProfile extends Component {
@@ -114,49 +114,18 @@ export default class EditProfile extends Component {
       avatarUploading
     } = this.state;
 
-    isLoading = isLoading || avatarUploading;
-    error = error || avatarError;
-
-    let message = null;
-    if (isLoading) {
-      message = (
-        <div className="editProfile-message">
-          <Message attached icon>
-            <Message.Content>
-              <Icon name='circle notched' loading size='big' />
-              Loading
-            </Message.Content>
-          </Message>
-        </div>
-      );
-    } else if (error) {
-      message = (
-        <div className="editProfile-message">
-          <Message attached error icon>
-            <Message.Content>
-              <Icon name='thumbs down' size='big' />
-              {error || "Unknown Error"}
-            </Message.Content>
-          </Message>
-        </div>
-      );
-    } else if (success) {
-      message = (
-        <div className="editProfile-message">
-          <Message attached positive icon>
-            <Message.Content>
-              <Icon name='thumbs up' size='big' />
-              Your profile edit was successful
-            </Message.Content>
-          </Message>
-        </div>
-      );
-    }
-
-    let avatarURL = avatar;
-    if (avatarFile) {
-      avatarURL = avatarFile.preview;
-    }
+    const statusMessage = (
+      <StatusMessage
+        error={error || avatarError}
+        errorMessage={error || avatarError}
+        loading={isLoading || avatarUploading}
+        loadingMessage={'Editing your profile'}
+        success={success}
+        successMessage={'Your profile edit was successful'}
+        type='modal'
+      />
+    );
+    const avatarURL = avatarFile ? avatarFile.preview : avatar;
 
     return (
       <div>
@@ -165,7 +134,7 @@ export default class EditProfile extends Component {
           header='Edit Your Profile'
           content='Fill out any part of the form below to edit your profile'
         />
-        {message}
+        {statusMessage}
         <Form className='attached segment'>
           <Grid celled columns={2}>
             <Grid.Column>

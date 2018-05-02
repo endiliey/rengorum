@@ -67,14 +67,6 @@
   font-size: 10px;
 }
 
-.forum-loading {
-  text-align: center;
-  width: 33%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-}
-
 .forum-error {
   margin-top: 20px;
   margin-left: auto;

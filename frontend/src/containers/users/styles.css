@@ -8,14 +8,6 @@
   justify-content: center;
 }
 
-.users-loading {
-  text-align: center;
-  width: 33%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-}
-
 .users-error {
   margin-top: 20px;
   margin-left: auto;

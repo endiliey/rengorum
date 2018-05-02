@@ -1,0 +1,13 @@
+.statusMessage-default {
+  text-align: center;
+  width: 33%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+}
+
+.statusMessage-modal {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}

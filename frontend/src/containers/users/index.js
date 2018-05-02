@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import {
   fetchUsers
 } from '../../api';
-import { Message } from 'semantic-ui-react';
-import Loader from '../../components/loader';
+import StatusMessage from '../../components/statusmessage';
 import UserCard from '../../components/usercard';
 import './styles.css';
 
@@ -20,40 +19,20 @@ class Users extends Component {
       users
     } = this.props;
 
-    if (isLoading) {
+    if (error || !users || isLoading || users.length === 0 ) {
       return (
-        <div className="users-loading">
-          <Loader />
-          <br />
-          <Message size="tiny">
-            <Message.Content>
-              <Message.Header>Just one second</Message.Header>
-              We are fetching the users for you.
-            </Message.Content>
-          </Message>
-          <br /><br />
-        </div>
+        <StatusMessage
+          error={error || !users}
+          errorClassName='users-error'
+          errorMessage={error}
+          loading={isLoading}
+          loadingMessage={`We are fetching the users for you`}
+          nothing={users && users.length === 0}
+          nothingMessage={`No user to display`}
+          nothingClassName='users-error'
+          type='default'
+        />
       );
-    } else if (error || !users) {
-        return (
-          <div className="users-error">
-            <Message negative={true}>
-              <Message.Content>
-                {error || "Error"}
-              </Message.Content>
-            </Message>
-          </div>
-        );
-    } else if (users.length === 0) {
-        return (
-          <div className="users-error">
-            <Message negative={true}>
-              <Message.Content>
-                No user
-              </Message.Content>
-            </Message>
-          </div>
-        );
     }
 
     const userCardList = users.map((user) => {

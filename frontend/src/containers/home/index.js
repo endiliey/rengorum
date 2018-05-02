@@ -5,12 +5,11 @@ import {
   fetchForums
 } from '../../api';
 import {
-  Message,
   Segment,
   Grid,
   Icon
 } from 'semantic-ui-react';
-import Loader from '../../components/loader';
+import StatusMessage from '../../components/statusmessage';
 import Avatar from '../../components/avatar';
 import './styles.css';
 
@@ -26,40 +25,20 @@ class Home extends Component {
       forums
     } = this.props;
 
-    if (isLoading) {
+    if (error || !forums || isLoading || forums.length === 0 ) {
       return (
-        <div className="home-loading">
-          <Loader />
-          <br />
-          <Message size="tiny">
-            <Message.Content>
-              <Message.Header>Just few seconds</Message.Header>
-              We are fetching the homepage for you.
-            </Message.Content>
-          </Message>
-          <br /><br />
-        </div>
+        <StatusMessage
+          error={error || !forums}
+          errorClassName='home-error'
+          errorMessage={error}
+          loading={isLoading}
+          loadingMessage={'We are fetching the homepage for you'}
+          nothing={forums && forums.length === 0}
+          nothingMessage={'No forum to display'}
+          nothingClassName='home-error'
+          type='default'
+        />
       );
-    } else if (error || !forums) {
-        return (
-          <div className="home-error">
-            <Message negative={true}>
-              <Message.Content>
-                {error || "Error"}
-              </Message.Content>
-            </Message>
-          </div>
-        );
-    } else if (forums.length === 0) {
-        return (
-          <div className="home-error">
-            <Message negative={true}>
-              <Message.Content>
-                No forum to display
-              </Message.Content>
-            </Message>
-          </div>
-        );
     }
 
     const forumCardList = forums.map((forum) => {
@@ -90,30 +69,29 @@ class Home extends Component {
 
         thread_name = thread_name.length > 43 ?
           (thread_name.substring(0, 43) + '...') : thread_name;
-
         lastActivity = (
           <div className='home-row'>
-              <Avatar
-                className='home-avatar'
-                avatar={avatar}
-                centered={false}
-                link={`/user/${username}`}
-              />
-              <div className="home-column">
-                <div>
-                  {pinned ? <Icon name='pin' /> : <Icon name='talk outline' /> }
-                  <Link to={`/thread/${thread_id}`}>
-                    {thread_name}
-                  </Link>
-                </div>
-                <div className='home-meta'>
-                  <Link to={`/user/${username}`}>
-                    <Icon name='user ' />
-                    {username}
-                  </Link>
-                    <b>{`  —  ${naturaltime}`}</b>
-                </div>
+            <Avatar
+              className='home-avatar'
+              avatar={avatar}
+              centered={false}
+              link={`/user/${username}`}
+            />
+            <div className="home-column">
+              <div>
+                {pinned ? <Icon name='pin' /> : <Icon name='talk outline' /> }
+                <Link to={`/thread/${thread_id}`}>
+                  {thread_name}
+                </Link>
               </div>
+              <div className='home-meta'>
+                <Link to={`/user/${username}`}>
+                  <Icon name='user ' />
+                  {username}
+                </Link>
+                  <b>{`  —  ${naturaltime}`}</b>
+              </div>
+            </div>
           </div>
         );
       }
