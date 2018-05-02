@@ -37,7 +37,7 @@ export default class ThreadList extends Component {
     }
 
     const threadList = threads.map((thread) => {
-      const {
+      let {
         id,
         name,
         pinned,
@@ -47,6 +47,9 @@ export default class ThreadList extends Component {
         replies_count,
         last_activity
       } = thread;
+
+      name = name.length > 57 ?
+        (name.substring(0, 55) + '...') : name;
 
       let lastActivity = last_activity ? (
         <div className='forum-row'>
@@ -89,7 +92,7 @@ export default class ThreadList extends Component {
                   />
                   <div className="forum-column">
                     <div>
-                      {pinned ? <Icon name='pin' /> : <Icon name='talk outline' /> }
+                      <Icon name={pinned ? 'pin' : 'talk outline'} />
                       <Link to={`/thread/${id}`}>
                         {name}
                       </Link>

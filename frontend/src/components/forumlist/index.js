@@ -71,7 +71,7 @@ export default class ForumList extends Component {
             />
             <div className="home-column">
               <div>
-                {pinned ? <Icon name='pin' /> : <Icon name='talk outline' /> }
+                <Icon name={pinned ? 'pin' : 'talk outline'} />
                 <Link to={`/thread/${thread_id}`}>
                   {thread_name}
                 </Link>
