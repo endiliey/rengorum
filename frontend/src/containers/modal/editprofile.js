@@ -32,7 +32,7 @@ class EditProfileModal extends Component {
     return !isAuthenticated ? null : (
       <Modal
         onClose={handleClose}
-        dialogStyle={{ width: '40%', minWidth: '500px'}}
+        dialogStyle={{ minWidth: '500px'}}
       >
         <EditProfile
           avatar={avatar}

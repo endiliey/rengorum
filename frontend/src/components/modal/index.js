@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Icon } from 'semantic-ui-react';
 import './styles.css';
 
 export default class Modal extends Component {
@@ -20,7 +21,7 @@ export default class Modal extends Component {
     }
   }
 
-  onOverlayClick = () => {
+  closeModal = () => {
     this.props.onClose();
   };
 
@@ -36,8 +37,9 @@ export default class Modal extends Component {
     return (
       <div>
         <div className="modal-overlay-div" style={overlayStyle} />
-        <div className="modal-content-div" style={contentStyle} onClick={this.onOverlayClick.bind(this)}>
+        <div className="modal-content-div" style={contentStyle} onClick={this.closeModal}>
           <div className="modal-dialog-div" style={dialogStyle} onClick={this.onDialogClick}>
+            <Icon name='window close outline' size='large' className='modal-close-div' onClick={this.closeModal} />
             {this.props.children}
           </div>
         </div>

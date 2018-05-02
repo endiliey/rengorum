@@ -39,10 +39,18 @@
   content: '';
 }
 
+.modal-close-div {
+  position: relative;
+  float: right;
+  cursor: pointer;
+  z-index: 10100;
+  padding: 4px;
+}
+
+
 .modal-dialog-div {
   position: relative;
   outline: 0;
-  width: 25%;
   display: inline-block;
   vertical-align: middle;
   box-sizing: border-box;
