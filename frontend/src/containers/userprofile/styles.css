@@ -1,18 +1,3 @@
-.UserProfile {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  @media largeBP { flex-flow: row nowrap; }
-}
-
-.userProfile-loading {
-  text-align: center;
-  width: 33%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-}
-
 .userProfile-error {
   margin-top: 20px;
   margin-left: auto;

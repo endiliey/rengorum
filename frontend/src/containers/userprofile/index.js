@@ -3,19 +3,17 @@ import { connect } from 'react-redux';
 import {
   fetchUserProfile
 } from '../../api';
-import { Message } from 'semantic-ui-react';
-import Loader from '../../components/loader';
+import StatusMessage from '../../components/statusmessage';
 import Profile from '../../components/profile';
 import './styles.css';
 
 class UserProfile extends Component {
   componentDidMount() {
-    const { username } = this.props.match.params; // from react-router
+    const { username } = this.props.match.params;
     this.props.fetchUserProfile(username);
   }
 
   componentWillReceiveProps(newProps) {
-    // fetch profile if different username
     const { username: oldUsername } = this.props.match.params;
     const { username: futureUsername } = newProps.match.params;
     if (oldUsername !== futureUsername) {
@@ -30,30 +28,17 @@ class UserProfile extends Component {
       profile
     } = this.props;
 
-    if (isLoading) {
+    if (error || !profile || isLoading) {
       return (
-        <div className="userProfile-loading">
-          <Loader />
-          <br />
-          <Message size="tiny">
-            <Message.Content>
-              <Message.Header>Just one second</Message.Header>
-              We are fetching the user profile for you.
-            </Message.Content>
-          </Message>
-          <br /><br />
-        </div>
+        <StatusMessage
+          error={error || !profile}
+          errorClassName='userProfile-error'
+          errorMessage={error}
+          loading={isLoading}
+          loadingMessage={`We are fetching the user profile for you`}
+          type='default'
+        />
       );
-    } else if (error || !profile) {
-        return (
-          <div className="userProfile-error">
-            <Message negative={true}>
-              <Message.Content>
-                {error || "Error"}
-              </Message.Content>
-            </Message>
-          </div>
-        );
     }
 
     const {

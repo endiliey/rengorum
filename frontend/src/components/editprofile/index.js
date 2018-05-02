@@ -62,7 +62,7 @@ export default class EditProfile extends Component {
     });
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = () => {
     const {
       currentPassword,
       avatarFile
