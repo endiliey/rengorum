@@ -15,7 +15,8 @@ const userProfile = (state = initialState, action) => {
     case FETCH_USER_PROFILE_REQUEST:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        error: null
       };
     case FETCH_USER_PROFILE_SUCCESS:
       return {
@@ -25,8 +26,7 @@ const userProfile = (state = initialState, action) => {
       };
     case FETCH_USER_PROFILE_FAILURE:
       return {
-        isLoading: false,
-        profile: null,
+        ...initialState,
         error: action.error
       };
     default:

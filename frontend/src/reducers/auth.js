@@ -10,18 +10,26 @@ import {
   LOGOUT
 } from '../actions/types';
 
-const initialState = {
+const loginInitialState = {
   isLoading: false,
   isAuthenticated: false,
-  isEditing: false,
   username: null,
   name: null,
   avatar: null,
   token: null,
   isStaff: false,
-  error: null,
+  error: null
+};
+
+const editInitialState = {
+  isEditing: false,
   editError: null,
   editSuccess: false
+};
+
+const initialState = {
+  ...loginInitialState,
+  ...editInitialState
 };
 
 const auth = (state = initialState, action) => {
@@ -31,6 +39,7 @@ const auth = (state = initialState, action) => {
         ...state,
         isLoading: true,
         isAuthenticated: false,
+        error: null
       };
     case LOGIN_SUCCESS:
       return {
@@ -47,13 +56,7 @@ const auth = (state = initialState, action) => {
     case LOGIN_FAILURE:
       return {
         ...state,
-        isLoading: false,
-        isAuthenticated: false,
-        token: null,
-        username: null,
-        avatar: null,
-        name: null,
-        isStaff: false,
+        ...loginInitialState,
         error: action.error
       };
     case EDIT_PROFILE_REQUEST:
@@ -75,34 +78,24 @@ const auth = (state = initialState, action) => {
     case EDIT_PROFILE_FAILURE:
       return {
         ...state,
-        isEditing: false,
-        editError: action.error,
-        editSuccess: false
+        ...editInitialState,
+        editError: action.error
       };
     case EDIT_PROFILE_RESET:
       return {
         ...state,
-        isEditing: false,
-        editError: null,
-        editSuccess: false
+        ...editInitialState
       };
     case LOGIN_RESET:
       return {
         ...state,
-        isLoading: false,
-        isAuthenticated: false,
-        username: null,
-        name: null,
-        avatar: null,
-        token: null,
-        isStaff: false,
-        error: null
+        ...loginInitialState
       };
     case LOGOUT:
       return initialState;
     default:
       return state;
   }
-}
+};
 
 export default auth;

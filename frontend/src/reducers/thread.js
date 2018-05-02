@@ -15,7 +15,8 @@ const thread = (state = initialState, action) => {
     case FETCH_THREAD_REQUEST:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        error: null
       };
     case FETCH_THREAD_SUCCESS:
       return {
@@ -25,8 +26,7 @@ const thread = (state = initialState, action) => {
       };
     case FETCH_THREAD_FAILURE:
       return {
-        isLoading: false,
-        thread: null,
+        ...initialState,
         error: action.error
       };
     default:

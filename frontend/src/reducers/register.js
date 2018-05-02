@@ -15,7 +15,8 @@ const register = (state = initialState, action) => {
     case REGISTER_REQUEST:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        error: null
       };
     case REGISTER_SUCCESS:
       return {

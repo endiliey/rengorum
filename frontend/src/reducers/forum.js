@@ -18,7 +18,8 @@ const forum = (state = initialState, action) => {
     case FETCH_FORUM_REQUEST:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        error: null
       };
     case FETCH_FORUM_SUCCESS:
       return {
@@ -31,11 +32,7 @@ const forum = (state = initialState, action) => {
       };
     case FETCH_FORUM_FAILURE:
       return {
-        isLoading: false,
-        name: null,
-        slug: null,
-        description: null,
-        threads: null,
+        ...initialState,
         error: action.error
       };
     default:

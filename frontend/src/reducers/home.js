@@ -15,7 +15,8 @@ const home = (state = initialState, action) => {
     case FETCH_HOME_REQUEST:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        error: null
       };
     case FETCH_HOME_SUCCESS:
       return {
@@ -25,8 +26,7 @@ const home = (state = initialState, action) => {
       };
     case FETCH_HOME_FAILURE:
       return {
-        isLoading: false,
-        forums: null,
+        ...initialState,
         error: action.error
       };
     default:

@@ -15,7 +15,8 @@ const users = (state = initialState, action) => {
     case FETCH_USERS_REQUEST:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        error: null
       };
     case FETCH_USERS_SUCCESS:
       return {
@@ -25,8 +26,7 @@ const users = (state = initialState, action) => {
       };
     case FETCH_USERS_FAILURE:
       return {
-        isLoading: false,
-        users: null,
+        ...initialState,
         error: action.error
       };
     default:

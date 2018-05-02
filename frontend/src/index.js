@@ -5,7 +5,7 @@ import 'semantic-ui-css/semantic.min.css';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/integration/react';
-import App from './App';
+import Test from './test';
 import Loader from './components/loader';
 import store, { persistor } from './store';
 import HeaderContainer from './containers/header';
@@ -26,7 +26,7 @@ ReactDOM.render(
           <div className="app-layout">
             <HeaderContainer />
             <Switch>
-              <Route path="/app" component={App} />
+              <Route path="/test" component={Test} />
               <Route path="/users" component={UsersContainer} />
               <Route path="/user/:username" component={UserProfileContainer} />
               <Route path="/forum/:forum" component={ForumContainer} />
