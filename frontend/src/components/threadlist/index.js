@@ -65,7 +65,7 @@ export default class ThreadList extends Component {
             </div>
             <div className='forum-meta'>
               <Link to={`/user/${last_activity.username}`}>
-                <Icon name='user ' />
+                <Icon name='user' />
                 {last_activity.username}
               </Link>
               <b>{`  —  ${last_activity.naturaltime}`}</b>
@@ -79,7 +79,7 @@ export default class ThreadList extends Component {
       );
 
       return (
-        <Segment vertical>
+        <Segment vertical key={id}>
           <Grid textAlign='left' padded='horizontally'>
             <Grid.Column width={7}>
               <Grid.Row>
@@ -99,7 +99,7 @@ export default class ThreadList extends Component {
                     </div>
                     <div className='forum-meta'>
                       <Link to={`/user/${creator}`}>
-                        <Icon name='user ' />
+                        <Icon name='user' />
                         {creator}
                       </Link>
                         <b>{`  —  ${naturaltime}`}</b>

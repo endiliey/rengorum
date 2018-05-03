@@ -4,6 +4,7 @@ import {
   fetchForum
 } from '../../api';
 import ThreadList from '../../components/threadlist';
+import RichEditor from '../../components/richeditor';
 
 class Forum extends Component {
   componentDidMount() {
@@ -20,8 +21,26 @@ class Forum extends Component {
   }
 
   render() {
+    const {
+      isLoading,
+      name,
+      slug,
+      description,
+      threads,
+      error
+    } = this.props;
     return (
-      <ThreadList {...this.props} />
+      <div>
+        <RichEditor />
+        <ThreadList
+          isLoading={isLoading}
+          name={name}
+          slug={slug}
+          description={description}
+          threads={threads}
+          error={error}
+        />
+      </div>
     );
   }
 }

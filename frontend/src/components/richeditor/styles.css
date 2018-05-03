@@ -1,4 +1,4 @@
-.demo-root {
+.richEditorContainer {
   width: 100%;
   display: flex;
   font-family: Roboto;
@@ -6,44 +6,41 @@
   flex-direction: column;
   justify-content: center;
 }
-.demo-label {
-  display: block;
-  font-size: 20px;
-  font-weight: 500;
-  margin: 50px 0 25px;
-}
-.demo-label-high {
-  display: block;
-  font-size: 20px;
-  font-weight: 500;
-  margin: 50px 0 90px;
-}
-.demo-subLabel {
-  margin-bottom: 20px;
-}
-.demo-editorSection {
-  display: flex;
-  justify-content: space-between;
-}
-.demo-wrapper {
+
+.richEditor-wrapper {
   width: 100% !important;
   display: block !important;
+  margin-top: 25px !important;
   margin-bottom: 25px !important;
-  height: 400px !important;
 }
-.demo-wrapper-medium {
-  width: 650px !important;
-  display: block !important;
-  margin-bottom: 50px !important;
-  height: 300px !important;
+
+.richEditor-editor a{
+  color: blue;
 }
-.demo-editor {
-  height: 275px !important;
+
+.richEditor-toolbar a {
+  color: black;
+}
+
+.richEditor-toolbar {
+  padding: 6px 5px 0;
+  border-radius: 2px;
+  border: 1px solid #F1F1F1;
+  display: flex;
+  justify-content: flex-start;
+  background: white;
+  flex-wrap: wrap;
+  font-size: 15px;
+  margin-bottom: 5px;
+  user-select: none;
+}
+
+.richEditor-editor {
+  height: auto !important;
   border: 1px solid #F1F1F1 !important;
   padding: 5px !important;
   border-radius: 2px !important;
-}
-.demo-editorWrapper {
+  min-height: 150px !important;
 }
 .demo-content {
   border: 1px solid #F1F1F1;

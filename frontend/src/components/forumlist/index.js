@@ -78,7 +78,7 @@ export default class ForumList extends Component {
               </div>
               <div className='home-meta'>
                 <Link to={`/user/${username}`}>
-                  <Icon name='user ' />
+                  <Icon name='user' />
                   {username}
                 </Link>
                   <b>{`  —  ${naturaltime}`}</b>
