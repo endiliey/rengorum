@@ -7,6 +7,7 @@ import {
   USER_EDIT_URL,
   USER_URL
 } from './constants';
+import { apiErrorHandler } from '../utils/errorhandler';
 import {
   loginRequest,
   loginSuccess,
@@ -46,23 +47,12 @@ export const login = (username, password) => (dispatch) => {
     username,
     password
   })
-  .then(function (response) {
+  .then(response => {
     dispatch(loginSuccess(response.data));
     dispatch(hideModal());
   })
-  .catch(function (error) {
-    var errorMessage = "Unknown Error";
-    if (!error.response) {
-      errorMessage = "Error: Network Error";
-    } else if (error.response.data.non_field_errors){
-      errorMessage = error.response.data.non_field_errors;
-    } else if (error.response.data.username) {
-      errorMessage = "Username: " + error.response.data.username;
-    } else if (error.response.data.password) {
-      errorMessage = "Password: "+ error.response.data.password;
-    } else if (error.response.data) {
-      errorMessage = error.response.data;
-    }
+  .catch(error => {
+    const errorMessage = apiErrorHandler(error);
     dispatch(loginFailure(errorMessage));
   });
 };
@@ -83,27 +73,12 @@ export const register = (username, name, email, password) => (dispatch) => {
     email,
     password
   })
-  .then(function (response) {
+  .then(response => {
     dispatch(registerSuccess());
     dispatch(login(username, password));
   })
-  .catch(function (error) {
-    let errorMessage = "Unknown Error";
-    if (!error.response) {
-      errorMessage = "Error: Network Error";
-    } else if (error.response.data.non_field_errors){
-      errorMessage = error.response.data.non_field_errors;
-    } else if (error.response.data.username) {
-      errorMessage = "Username: " + error.response.data.username;
-    } else if (error.response.data.name) {
-      errorMessage = "Name: " + error.response.data.name;
-    } else if (error.response.data.email) {
-      errorMessage = "Email: "+ error.response.data.email;
-    } else if (error.response.data.password) {
-      errorMessage = "Password: "+ error.response.data.password;
-    } else if (error.response.data) {
-      errorMessage = error.response.data;
-    }
+  .catch(error => {
+    const errorMessage = apiErrorHandler(error);
     dispatch(registerFailure(errorMessage));
   });
 };
@@ -111,19 +86,12 @@ export const register = (username, name, email, password) => (dispatch) => {
 export const fetchUserProfile = username => dispatch => {
   dispatch(fetchUserProfileRequest());
 
-  axios.get(USER_URL + username)
-  .then(function (response) {
+  axios.get(USER_URL + username, null, getConfig())
+  .then(response => {
     dispatch(fetchUserProfileSuccess(response.data));
   })
-  .catch(function (error) {
-    let errorMessage = "Unknown Error";
-    if (!error.response) {
-      errorMessage = "Error: Network Error";
-    } else if (error.response.data.detail){
-      errorMessage = "User: " + error.response.data.detail;
-    } else if (error.response.data) {
-      errorMessage = error.response.data;
-    }
+  .catch(error => {
+    const errorMessage = apiErrorHandler(error);
     dispatch(fetchUserProfileFailure(errorMessage));
   });
 };
@@ -136,34 +104,11 @@ export const editProfile = newProfile => dispatch => {
     dispatch(editProfileFailure('Not authenticated'));
   } else {
     axios.put(USER_URL + username + USER_EDIT_URL, newProfile, getConfig())
-    .then(function (response) {
+    .then(response => {
       dispatch(editProfileSuccess(newProfile));
     })
-    .catch(function (error) {
-      let errorMessage = "Unknown Error";
-      if (!error.response) {
-        errorMessage = "Error: Network Error";
-      } else if (error.response.data.non_field_errors){
-        errorMessage = error.response.data.non_field_errors;
-      } else if (error.response.data.name) {
-        errorMessage = "Name: " + error.response.data.username;
-      } else if (error.response.data.email) {
-        errorMessage = "Email: " + error.response.data.email;
-      } else if (error.response.data.current_password) {
-        errorMessage = "Current Password: " + error.response.data.current_password;
-      } else if (error.response.data.new_password) {
-        errorMessage = "New Password: " + error.response.data.new_password;
-      } else if (error.response.data.bio) {
-        errorMessage = "Bio: " + error.response.data.bio;
-      } else if (error.response.data.avatar) {
-        errorMessage = "Avatar: " + error.response.data.avatar;
-      } else if (error.response.data.email) {
-        errorMessage = "Status: "+ error.response.data.status;
-      } else if (error.response.data.detail){
-        errorMessage = error.response.data.detail;
-      } else if (error.response.data) {
-        errorMessage = error.response.data;
-      }
+    .catch(error => {
+      const errorMessage = apiErrorHandler(error);
       dispatch(editProfileFailure(errorMessage));
     });
   }
@@ -173,18 +118,11 @@ export const fetchUsers = () => dispatch => {
   dispatch(fetchUsersRequest());
 
   axios.get(USER_URL)
-  .then(function (response) {
+  .then(response => {
     dispatch(fetchUsersSuccess(response.data));
   })
-  .catch(function (error) {
-    let errorMessage = "Unknown Error";
-    if (!error.response) {
-      errorMessage = "Error: Network Error";
-    } else if (error.response.data.detail){
-      errorMessage = "Users: " + error.response.data.detail;
-    } else if (error.response.data) {
-      errorMessage = error.response.data;
-    }
+  .catch(error => {
+    const errorMessage = apiErrorHandler(error);
     dispatch(fetchUsersFailure(errorMessage));
   });
 };

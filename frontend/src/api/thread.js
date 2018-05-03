@@ -5,9 +5,8 @@ import {
   THREAD_EDIT_URL,
   THREAD_DELETE_URL
 } from './constants';
-import {
-  getConfig
-} from './user';
+import { getConfig} from './user';
+import { apiErrorHandler } from '../utils/errorhandler';
 import {
   fetchThreadRequest,
   fetchThreadSuccess,
@@ -18,18 +17,11 @@ export const fetchThread = (thread) => dispatch => {
   dispatch(fetchThreadRequest());
 
   axios.get(THREAD_URL + thread, null, getConfig())
-  .then(function (response) {
+  .then(response => {
     dispatch(fetchThreadSuccess(response.data));
   })
-  .catch(function (error) {
-    let errorMessage = "Unknown Error";
-    if (!error.response) {
-      errorMessage = "Error: Network Error";
-    } else if (error.response.data.detail){
-      errorMessage = "Thread: " + error.response.data.detail;
-    } else if (error.response.data) {
-      errorMessage = error.response.data;
-    }
+  .catch(error => {
+    const errorMessage = apiErrorHandler(error);
     dispatch(fetchThreadFailure(errorMessage));
   });
 };

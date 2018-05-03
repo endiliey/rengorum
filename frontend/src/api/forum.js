@@ -5,9 +5,8 @@ import {
   FORUM_EDIT_URL,
   FORUM_DELETE_URL
 } from './constants';
-import {
-  getConfig
-} from './user';
+import { getConfig } from './user';
+import { apiErrorHandler } from '../utils/errorhandler';
 import {
   fetchHomeRequest,
   fetchHomeSuccess,
@@ -21,18 +20,11 @@ export const fetchForums = () => dispatch => {
   dispatch(fetchHomeRequest());
 
   axios.get(FORUM_URL, null, getConfig())
-  .then(function (response) {
+  .then(response => {
     dispatch(fetchHomeSuccess(response.data));
   })
-  .catch(function (error) {
-    let errorMessage = "Unknown Error";
-    if (!error.response) {
-      errorMessage = "Error: Network Error";
-    } else if (error.response.data.detail){
-      errorMessage = "Forums: " + error.response.data.detail;
-    } else if (error.response.data) {
-      errorMessage = error.response.data;
-    }
+  .catch(error => {
+    const errorMessage = apiErrorHandler(error);
     dispatch(fetchHomeFailure(errorMessage));
   });
 };
@@ -41,18 +33,11 @@ export const fetchForum = (forum) => dispatch => {
   dispatch(fetchForumRequest());
 
   axios.get(FORUM_URL + forum, null, getConfig())
-  .then(function (response) {
+  .then(response => {
     dispatch(fetchForumSuccess(response.data));
   })
-  .catch(function (error) {
-    let errorMessage = "Unknown Error";
-    if (!error.response) {
-      errorMessage = "Error: Network Error";
-    } else if (error.response.data.detail){
-      errorMessage = "Forum: " + error.response.data.detail;
-    } else if (error.response.data) {
-      errorMessage = error.response.data;
-    }
+  .catch(error => {
+    const errorMessage = apiErrorHandler(error);
     dispatch(fetchForumFailure(errorMessage));
   });
 };
