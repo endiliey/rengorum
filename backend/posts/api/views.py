@@ -28,6 +28,7 @@ class PostCreateAPIView(generics.CreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostCreateSerializer
     permission_classes = [IsAuthenticated]
+    throttle_scope = 'create_post'
 
 class PostDetailAPIView(generics.RetrieveAPIView):
     queryset = Post.objects.all()

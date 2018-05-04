@@ -26,6 +26,7 @@ class UserCreateAPIView(generics.CreateAPIView):
     serializer_class = UserCreateSerializer
     queryset = User.objects.all()
     permission_classes = [AllowAny]
+    throttle_scope = 'create_user'
 
 class UserDetailAPIView(generics.RetrieveAPIView):
     queryset = User.objects.all()
@@ -44,6 +45,7 @@ class UserUpdateAPIView(generics.UpdateAPIView):
     serializer_class = UserUpdateSerializer
     lookup_field = 'username'
     permission_classes = [IsOwnerOrAdminOrReadOnly]
+    throttle_scope = 'edit_user'
 
 class UserListAPIView(generics.ListAPIView):
     queryset = User.objects.all()
@@ -53,6 +55,7 @@ class UserListAPIView(generics.ListAPIView):
 class UserLoginAPIView(views.APIView):
     permission_classes = [AllowAny]
     serializer_class = UserLoginSerializer
+    throttle_scope = 'login'
 
     def post(self, request, *args, **kwargs):
         serializer = UserTokenSerializer(

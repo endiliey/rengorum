@@ -37,6 +37,21 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
+    # http://www.django-rest-framework.org/api-guide/throttling/#userratethrottle
+    'DEFAULT_THROTTLE_CLASSES': (
+        'rest_framework.throttling.ScopedRateThrottle',
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'create_user': '1/day',
+        'create_post': '1/min',
+        'create_thread': '1/hour',
+        'edit_user': '3/min',
+        'login': '5/min',
+        'anon': '20/min',
+        'user': '100/min'
+    }
 }
 
 
