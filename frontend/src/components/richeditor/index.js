@@ -1,33 +1,32 @@
 import React, { Component } from 'react';
-import { getSelectedBlock } from "draftjs-utils";
-import htmlToDraft from "html-to-draftjs";
-import { OrderedMap, List } from "immutable";
-import {
-  EditorState,
-  convertFromRaw,
-  Modifier,
-  ContentState
-} from 'draft-js';
+import { EditorState, convertFromRaw } from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './styles.css';
 import { Editor } from 'react-draft-wysiwyg';
 import { imageUpload } from '../../api/image';
 
-const contenta = {"entityMap":{},"blocks":[{"key":"637gr","text":"Hey this editor rocks 😀.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
-
 export default class RichEditor extends Component {
   constructor(props) {
     super(props);
+    const defaultContent = {
+      "entityMap":{},
+      "blocks":[
+        {
+          "key":"637gr","text":"Hey this editor rocks 😀.",
+          "type":"unstyled",
+          "depth":0,
+          "inlineStyleRanges":[],
+          "entityRanges":[],
+          "data":{}
+        }
+      ]
+    };
     let {
       content,
       editorState
     } = this.props;
-    content = contenta; // test having data from db TODO remove this
-    if (content) {
-      editorState = EditorState.createWithContent(convertFromRaw(content));
-    } else if (!editorState) {
-      editorState = EditorState.createEmpty();
-    }
+    content = content || defaultContent;
+    editorState = editorState || EditorState.createWithContent(convertFromRaw(content));
     this.state = {
       editorState
     };
@@ -59,91 +58,46 @@ export default class RichEditor extends Component {
     );
   };
 
-  isValidLength = (contentState) => {
-    const maxLength = this.props.maxLength || 2000;
-    return contentState.getPlainText('').length <= maxLength;
-  };
-
-  handleBeforeInput = (input) => {
-    const { editorState } = this.state;
-    if (!this.isValidLength(editorState.getCurrentContent())) {
-      return 'handled';
-    }
-  };
-
-
-  handlePastedText = (text, html, editorState = this.state.editorState, onChange) => {
-    const selectedBlock = getSelectedBlock(editorState);
-    if (selectedBlock && selectedBlock.type === "code") {
-      const contentState = Modifier.replaceText(
-        editorState.getCurrentContent(),
-        editorState.getSelection(),
-        text.trim(),
-        editorState.getCurrentInlineStyle()
-      );
-      if (!this.isValidLength(contentState)) {
-        return 'handled';
-      }
-      onChange(EditorState.push(editorState, contentState, "insert-characters"));
-      return true;
-    } else if (html) {
-        const contentBlock = htmlToDraft(html);
-        let contentState = editorState.getCurrentContent();
-        contentBlock.entityMap.forEach((value, key) => {
-          contentState = contentState.mergeEntityData(key, value);
-        });
-        contentState = Modifier.replaceWithFragment(
-          contentState,
-          editorState.getSelection(),
-          new List(contentBlock.contentBlocks)
-        );
-        if (!this.isValidLength(contentState)) {
-          return 'handled';
-        }
-        onChange(EditorState.push(editorState, contentState, "insert-characters"));
-        return true;
-    }
-    const newState = Modifier.replaceText(
-      editorState.getCurrentContent(),
-      editorState.getSelection(),
-      text.trim(),
-      editorState.getCurrentInlineStyle()
-    );
-    if (!this.isValidLength(newState)) {
-      return 'handled';
-    }
-    onChange(EditorState.push(editorState, newState, 'insert-characters'));
-    return false;
-  };
-
   render() {
-    const { editorState } = this.state;
     const {
-      readOnly
+      readOnly,
+      wrapperClassName,
+      toolbarClassName,
+      editorClassName,
+      handleBeforeInput,
+      handlePastedText,
+      onEditorStateChange,
+      editorState,
+      uploadImageCallBack,
+      placeholder
     } = this.props;
     return (
       <Editor
         toolbar={{
-            options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'emoji', 'image', 'history'],
-            inline: { inDropdown: true },
-            list: { inDropdown: true },
-            textAlign: { inDropdown: true },
-            link: { inDropdown: true },
-            image: { uploadCallback: this.uploadImageCallBack, alt: { present: true }, previewImage: true },
-            fontFamily: {
-              options: ['Arial', 'Georgia', 'Impact', 'Tahoma', 'Roboto', 'Times New Roman', 'Verdana'],
-            }
-
+          options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'emoji', 'image', 'history'],
+          inline: { inDropdown: true },
+          list: { inDropdown: true },
+          textAlign: { inDropdown: true },
+          link: { inDropdown: true },
+          image: {
+            uploadCallback: uploadImageCallBack || this.uploadImageCallBack,
+            alt: { present: true },
+            previewImage: true
+          },
+          fontFamily: {
+            options: ['Arial', 'Georgia', 'Impact', 'Tahoma', 'Roboto', 'Times New Roman', 'Verdana'],
+          }
         }}
-        editorState={editorState}
-        wrapperClassName="richEditor-wrapper"
-        toolbarClassName="richEditor-toolbar"
-        editorClassName="richEditor-editor"
-        onEditorStateChange={this.onEditorStateChange}
+        editorState={editorState || this.state.editorState}
+        wrapperClassName={wrapperClassName || 'richEditor-wrapper'}
+        toolbarClassName={toolbarClassName || 'richEditor-toolbar'}
+        editorClassName={editorClassName || 'richEditor-editor'}
+        onEditorStateChange={onEditorStateChange || this.onEditorStateChange}
         readOnly={readOnly}
         toolbarHidden={readOnly}
-        handleBeforeInput={this.handleBeforeInput}
-        handlePastedText={this.handlePastedText}
+        handleBeforeInput={handleBeforeInput}
+        handlePastedText={handlePastedText}
+        placeholder={placeholder || 'Start typing here...'}
       />
     );
   }
