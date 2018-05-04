@@ -15,8 +15,6 @@ export default class ThreadList extends Component {
       isLoading,
       error,
       name,
-      slug,
-      description,
       threads
     } = this.props;
 

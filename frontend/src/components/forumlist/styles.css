@@ -3,13 +3,14 @@
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 40px;
+  margin-bottom: 30px;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
 }
 
 .home-list {
-  width: 100%;
+  width: 100% !im;
 }
 
 .homeContainer a:-webkit-any-link {

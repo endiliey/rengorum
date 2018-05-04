@@ -89,7 +89,7 @@ export default class ForumList extends Component {
       }
 
       return (
-        <Segment vertical>
+        <Segment vertical key={slug}>
           <Grid textAlign='left' padded='horizontally'>
             <Grid.Column width={7}>
               <Grid.Row>
