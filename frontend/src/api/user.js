@@ -33,7 +33,7 @@ export const getConfig = () => {
   if (isAuthenticated) {
     const token = store.getState().auth.token;
     const config = {
-      headers: {'Authorization': 'Token ' + token}
+      headers: {Authorization: 'Token ' + token}
     };
     return config;
   }
@@ -46,7 +46,7 @@ export const login = (username, password) => (dispatch) => {
   axios.post(USER_LOGIN_URL, {
     username,
     password
-  })
+  }, getConfig())
   .then(response => {
     dispatch(loginSuccess(response.data));
     dispatch(hideModal());
@@ -72,7 +72,7 @@ export const register = (username, name, email, password) => (dispatch) => {
     name,
     email,
     password
-  })
+  }, getConfig())
   .then(response => {
     dispatch(registerSuccess());
     dispatch(login(username, password));
@@ -86,7 +86,7 @@ export const register = (username, name, email, password) => (dispatch) => {
 export const fetchUserProfile = username => dispatch => {
   dispatch(fetchUserProfileRequest());
 
-  axios.get(USER_URL + username, null, getConfig())
+  axios.get(USER_URL + username, getConfig())
   .then(response => {
     dispatch(fetchUserProfileSuccess(response.data));
   })
@@ -117,7 +117,7 @@ export const editProfile = newProfile => dispatch => {
 export const fetchUsers = () => dispatch => {
   dispatch(fetchUsersRequest());
 
-  axios.get(USER_URL)
+  axios.get(USER_URL, getConfig())
   .then(response => {
     dispatch(fetchUsersSuccess(response.data));
   })

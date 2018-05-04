@@ -31,11 +31,8 @@ export default class NewThread extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    let { editorState } = this.state;
     const { name: newName, content: newContent } = newProps;
-    if (newContent) {
-      editorState = this.convertToEditorState(newContent);
-    }
+    const editorState = this.convertToEditorState(newContent);
     this.setState({
       name: newName,
       editorState

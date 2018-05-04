@@ -16,7 +16,7 @@ import {
 export const fetchForums = () => dispatch => {
   dispatch(fetchHomeRequest());
 
-  axios.get(FORUM_URL, null, getConfig())
+  axios.get(FORUM_URL, getConfig())
   .then(response => {
     dispatch(fetchHomeSuccess(response.data));
   })
@@ -29,7 +29,7 @@ export const fetchForums = () => dispatch => {
 export const fetchForum = (forum) => dispatch => {
   dispatch(fetchForumRequest());
 
-  axios.get(FORUM_URL + forum, null, getConfig())
+  axios.get(FORUM_URL + forum, getConfig())
   .then(response => {
     dispatch(fetchForumSuccess(response.data));
   })

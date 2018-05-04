@@ -18,7 +18,7 @@ import {
 export const fetchThread = thread => dispatch => {
   dispatch(fetchThreadRequest());
 
-  axios.get(THREAD_URL + thread, null, getConfig())
+  axios.get(THREAD_URL + thread, getConfig())
   .then(response => {
     dispatch(fetchThreadSuccess(response.data));
   })

@@ -73,7 +73,7 @@ const forum = (state = initialState, action) => {
         newThreadName: '',
         newThreadContent: '',
         newThreadId: action.newThread.id,
-        newThreadShow: false,
+        newThreadShow: true,
         newThreadError: null
       };
     case CREATE_THREAD_FAILURE:
