@@ -1,9 +1,6 @@
 import axios from 'axios';
 import {
-  FORUM_URL,
-  FORUM_CREATE_URL,
-  FORUM_EDIT_URL,
-  FORUM_DELETE_URL
+  FORUM_URL
 } from './constants';
 import { getConfig } from './user';
 import { apiErrorHandler } from '../utils/errorhandler';
