@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  fetchForum
+  fetchForum,
+  createThread
 } from '../../api';
+import {
+  createThreadSave,
+  createThreadToggle
+} from '../../actions';
 import ThreadList from '../../components/threadlist';
-import RichEditor from '../../components/richeditor';
+import NewThread from '../../components/newthread';
 
 class Forum extends Component {
   componentDidMount() {
@@ -27,11 +32,36 @@ class Forum extends Component {
       slug,
       description,
       threads,
-      error
+      error,
+      isAuthenticated,
+      newThreadLoading,
+      newThreadSuccess,
+      newThreadName,
+      newThreadContent,
+      newThreadId,
+      newThreadError,
+      newThreadShow,
+      createThread,
+      createThreadSave,
+      createThreadToggle
     } = this.props;
     return (
       <div>
-        <RichEditor />
+        <NewThread
+          forum={slug}
+          isAuthenticated={isAuthenticated}
+          isLoading={newThreadLoading}
+          success={newThreadSuccess}
+          name={newThreadName}
+          content={newThreadContent}
+          id={newThreadId}
+          error={newThreadError}
+          showEditor={newThreadShow}
+          createThread={createThread}
+          updateNewThread={createThreadSave}
+          toggleShowEditor={createThreadToggle}
+          maxLength={2000}
+        />
         <ThreadList
           isLoading={isLoading}
           name={name}
@@ -51,12 +81,29 @@ const mapStateToProps = (state) => ({
   slug: state.forum.slug,
   description: state.forum.description,
   threads: state.forum.threads,
-  error: state.forum.error
+  error: state.forum.error,
+  isAuthenticated: state.auth.isAuthenticated,
+  newThreadLoading: state.forum.newThreadLoading,
+  newThreadSuccess: state.forum.newThreadSuccess,
+  newThreadName: state.forum.newThreadName,
+  newThreadContent: state.forum.newThreadContent,
+  newThreadId: state.forum.newThreadId,
+  newThreadError: state.forum.newThreadError,
+  newThreadShow: state.forum.newThreadShow
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchForum: (forum) => {
     dispatch(fetchForum(forum));
+  },
+  createThread: (newThread) => {
+    dispatch(createThread(newThread));
+  },
+  createThreadSave: (newThread) => {
+    dispatch(createThreadSave(newThread));
+  },
+  createThreadToggle: () => {
+    dispatch(createThreadToggle());
   }
 });
 

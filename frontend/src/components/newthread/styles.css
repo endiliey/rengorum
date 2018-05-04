@@ -1,0 +1,75 @@
+.newThread-show {
+  width: 100%;
+  display: flex;
+  font-family: Roboto;
+  align-items: center;
+  text-align: left;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.newThread-hidden {
+  display: flex;
+  width: 100%;
+  font-family: Roboto;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.newThread-none {;
+  margin-top: 40px;
+}
+
+.newThread-message {
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 33%;
+  color: rgba(231, 76, 60,1.0);
+  text-align: center;
+}
+
+.newThread-message a:-webkit-any-link{
+  text-decoration:none;
+  cursor: pointer;
+  color: green;
+}
+
+.newThread-message a:-webkit-any-link:hover{
+  text-decoration:underline;
+}
+
+.newThread-wrapper {
+  width: 100% !important;
+  display: block !important;
+  margin-top: 10px !important;
+  margin-bottom: 25px !important;
+}
+
+.newThread-toolbar {
+  padding: 0px !important;
+  border: none !important;
+  display: flex;
+  justify-content: flex-start;
+  background: white;
+  flex-wrap: wrap;
+  font-size: 15px;
+  user-select: none;
+  margin-left: -3px;
+}
+
+.newThread-toolbar a {
+  color: black;
+}
+
+.newThread-editor {
+  height: auto !important;
+  padding: 0px !important;
+  border: none !important;
+  min-height: 100px;
+}
+
+.newThread-editor a{
+  color: blue;
+}
