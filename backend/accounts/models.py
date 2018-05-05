@@ -18,7 +18,7 @@ class UserProfile(models.Model):
     )
     # we use URL instead of imagefield because we'll use 3rd party img hosting later on
     avatar = models.URLField(default='', blank=True)
-    status = models.CharField(max_length=30, default='', blank=True)
+    status = models.CharField(max_length=16, default='', blank=True)
     name = models.CharField(max_length=32, default='')
 
     def __str__(self):
