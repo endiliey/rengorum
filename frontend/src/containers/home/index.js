@@ -5,7 +5,7 @@ import {
 } from '../../api';
 import ForumList from '../../components/forumlist';
 
-class Home extends Component {
+class HomeContainer extends Component {
   componentDidMount() {
     this.props.fetchForums();
   }
@@ -29,9 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-const HomeContainer = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Home);
-
-export default HomeContainer;
+)(HomeContainer);

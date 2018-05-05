@@ -11,7 +11,7 @@ import {
 import ThreadList from '../../components/threadlist';
 import NewThread from '../../components/newthread';
 
-class Forum extends Component {
+class ForumContainer extends Component {
   componentDidMount() {
     const { forum } = this.props.match.params;
     this.props.fetchForum(forum);
@@ -107,9 +107,7 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-const ForumContainer = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Forum);
-
-export default ForumContainer;
+)(ForumContainer);

@@ -7,7 +7,7 @@ import StatusMessage from '../../components/statusmessage';
 import Profile from '../../components/profile';
 import './styles.css';
 
-class UserProfile extends Component {
+class UserProfileContainer extends Component {
   componentDidMount() {
     const { username } = this.props.match.params;
     this.props.fetchUserProfile(username);
@@ -77,9 +77,7 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-const UserProfileContainer = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(UserProfile);
-
-export default UserProfileContainer;
+)(UserProfileContainer);

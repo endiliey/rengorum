@@ -5,11 +5,11 @@ import {
 } from '../../api';
 import UserList from '../../components/userlist';
 
-class Users extends Component {
+class UsersContainer extends Component {
   componentDidMount() {
     this.props.fetchUsers();
   }
-  
+
   render() {
     return (
       <UserList {...this.props} />
@@ -29,9 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-const UsersContainer = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Users);
-
-export default UsersContainer;
+)(UsersContainer);

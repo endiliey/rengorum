@@ -10,7 +10,7 @@ import {
   logout
 } from '../../api';
 
-class Header extends Component {
+class HeaderContainer extends Component {
   render() {
     const {
       isAuthenticated,
@@ -66,8 +66,7 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-const HeaderContainer = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Header);
-export default HeaderContainer;
+)(HeaderContainer);
