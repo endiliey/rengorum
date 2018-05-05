@@ -6,7 +6,12 @@ import {
 
 const initialState = {
   isLoading: false,
-  thread: null,
+  name: null,
+  content: null,
+  pinned: false,
+  creator: null,
+  createdt: null,
+  posts: [],
   error: null
 };
 
@@ -21,7 +26,12 @@ const thread = (state = initialState, action) => {
     case FETCH_THREAD_SUCCESS:
       return {
         isLoading: false,
-        thread: action.thread,
+        name: action.thread.name,
+        content: action.thread.content,
+        pinned: action.thread.pinned,
+        creator: action.thread.creator,
+        createdAt: action.thread.created_at,
+        posts: action.thread.posts,
         error: null
       };
     case FETCH_THREAD_FAILURE:

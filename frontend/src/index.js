@@ -12,6 +12,7 @@ import HeaderContainer from './containers/header';
 import ModalContainer from './containers/modal';
 import UserProfileContainer from './containers/userprofile';
 import UsersContainer from './containers/users';
+import ThreadContainer from './containers/thread';
 import HomeContainer from './containers/home';
 import ForumContainer from './containers/forum';
 import NotFoundPage from './components/notfoundpage';
@@ -30,6 +31,7 @@ ReactDOM.render(
               <Route path="/users" component={UsersContainer} />
               <Route path="/user/:username" component={UserProfileContainer} />
               <Route path="/forum/:forum" component={ForumContainer} />
+              <Route path="/thread/:thread" component={ThreadContainer} />
               <Route exact path="/" component={HomeContainer} />
               <Route component={NotFoundPage} />
             </Switch>
