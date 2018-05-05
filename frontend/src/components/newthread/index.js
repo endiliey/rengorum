@@ -5,6 +5,7 @@ import htmlToDraft from "html-to-draftjs";
 import { List } from "immutable";
 import {
   EditorState,
+  ContentState,
   convertFromRaw,
   convertToRaw,
   Modifier
@@ -40,18 +41,15 @@ export default class NewThread extends Component {
   }
 
   convertToEditorState = (content) => {
-    const isValidJSON = (text) => {
-      try {
-        JSON.parse(text);
-        return true;
-      } catch (error) {
-        return false;
-      }
-    };
     let editorState = EditorState.createEmpty();
-    if (isValidJSON(content)) {
-      const contentState = convertFromRaw(JSON.parse(content));
-      editorState = EditorState.createWithContent(contentState);
+    if (content) {
+      try {
+        const contentState = convertFromRaw(JSON.parse(content));
+        editorState = EditorState.createWithContent(contentState);
+      } catch (error) {
+        const contentState = ContentState.createFromText(content);
+        editorState = EditorState.createWithContent(contentState);
+      }
     }
     return editorState;
   };

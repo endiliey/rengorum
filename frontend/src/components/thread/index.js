@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   Segment,
   Grid,
-  Icon,
-  Divider
+  Icon
 } from 'semantic-ui-react';
 import RichEditor from '../richeditor';
 import StatusMessage from '../statusmessage';
@@ -70,7 +69,13 @@ export default class Thread extends Component {
             <div className='thread-time'>
               {createdAt}
             </div>
-            {content}
+            <RichEditor
+              readOnly
+              content={content}
+              wrapperClassName='threadPost-wrapper'
+              toolbarClassName='threadPost-toolbar'
+              editorClassName='threadPost-editor'
+            />
           </Grid.Column>
         </Grid>
       </Segment>
@@ -117,7 +122,12 @@ export default class Thread extends Component {
               <div className='thread-time'>
                 {postCreatedAt}
               </div>
-              {postContent}
+              <RichEditor
+                readOnly
+                content={postContent}
+                wrapperClassName='threadPost-wrapper'
+                editorClassName='threadPost-editor'
+              />
             </Grid.Column>
           </Grid>
         </Segment>

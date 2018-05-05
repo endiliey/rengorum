@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { EditorState, convertFromRaw } from 'draft-js';
+import {
+  EditorState,
+  ContentState,
+  convertFromRaw
+} from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './styles.css';
 import { Editor } from 'react-draft-wysiwyg';
@@ -8,29 +12,37 @@ import { imageUpload } from '../../api/image';
 export default class RichEditor extends Component {
   constructor(props) {
     super(props);
-    const defaultContent = {
-      "entityMap":{},
-      "blocks":[
-        {
-          "key":"637gr","text":"Hey this editor rocks 😀.",
-          "type":"unstyled",
-          "depth":0,
-          "inlineStyleRanges":[],
-          "entityRanges":[],
-          "data":{}
-        }
-      ]
-    };
     let {
       content,
       editorState
     } = this.props;
-    content = content || defaultContent;
-    editorState = editorState || EditorState.createWithContent(convertFromRaw(content));
+    editorState = editorState || this.convertToEditorState(content);
     this.state = {
       editorState
     };
   }
+
+  componentWillReceiveProps(newProps) {
+    const { editorState: newEditorState, content: newContent } = newProps;
+    const editorState = newEditorState || this.convertToEditorState(newContent);
+    this.setState({
+      editorState
+    });
+  }
+
+  convertToEditorState = (content) => {
+    let editorState = EditorState.createEmpty();
+    if (content) {
+      try {
+        const contentState = convertFromRaw(JSON.parse(content));
+        editorState = EditorState.createWithContent(contentState);
+      } catch (error) {
+        const contentState = ContentState.createFromText(content);
+        editorState = EditorState.createWithContent(contentState);
+      }
+    }
+    return editorState;
+  };
 
   onEditorStateChange = (editorState) => {
     this.setState({
