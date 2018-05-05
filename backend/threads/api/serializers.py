@@ -36,7 +36,7 @@ class ThreadCreateSerializer(serializers.ModelSerializer):
         required=True,
         help_text=_('Required. Slug of the forum this thread is created in')
     )
-    content = serializers.CharField(max_length=4000, default='')
+    content = serializers.CharField(default='')
     class Meta:
         model = Thread
         fields = (
@@ -82,7 +82,7 @@ class ThreadCreateSerializer(serializers.ModelSerializer):
 
 class ThreadUpdateSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=75, allow_blank=True)
-    content = serializers.CharField(max_length=4000, allow_blank=True)
+    content = serializers.CharField(allow_blank=True)
     pinned = serializers.BooleanField(default=False)
     class Meta:
         model = Thread
