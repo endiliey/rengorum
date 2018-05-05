@@ -6,7 +6,8 @@ import {
   CREATE_THREAD_SUCCESS,
   CREATE_THREAD_FAILURE,
   CREATE_THREAD_SAVE,
-  CREATE_THREAD_TOGGLE
+  CREATE_THREAD_TOGGLE,
+  LOGOUT
 } from '../actions/types';
 
 const forumInitialState = {
@@ -97,6 +98,11 @@ const forum = (state = initialState, action) => {
         newThreadShow: !state.newThreadShow,
         newThreadSuccess: false,
         newThreadError: null
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        ...newThreadInitialState
       };
     default:
       return state;
