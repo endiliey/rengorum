@@ -1,4 +1,4 @@
-export const API_URL = "http://127.0.0.1:8000/api/";
+export const API_URL = "/api/";
 export const USER_URL = API_URL + "user/";
 export const USER_REGISTER_URL = USER_URL + "register/";
 export const USER_LOGIN_URL = USER_URL + "login/";
