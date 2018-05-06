@@ -3,7 +3,7 @@ const CLOUDINARY_UPLOAD_TRANSFORM_PRESET = 'dfnrvqvx'; // img transformed to 200
 const CLOUDINARY_UPLOAD_PRESET = 'nlczu2np';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/rengorum/upload';
 
-export const imageUpload = (file, transform = true) => {
+export const imageUploadApi = (file, transform = true) => {
   const formData = new FormData();
   formData.append("file", file);
   const upload_preset = (

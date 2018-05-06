@@ -9,6 +9,32 @@ import {
   EDIT_PROFILE_RESET,
   LOGOUT
 } from './types';
+import {
+  loginApi,
+  logoutApi,
+  editProfileApi
+} from '../api';
+import store from '../store';
+import {
+  hideModal
+} from './modal';
+import { apiErrorHandler } from '../utils/errorhandler';
+
+
+export const login = (username, password) => (dispatch) => {
+  dispatch(loginRequest());
+
+  loginApi(username, password)
+  .then(response => {
+    dispatch(loginSuccess(response.data));
+    dispatch(hideModal());
+  })
+  .catch(error => {
+    const errorMessage = apiErrorHandler(error);
+    dispatch(loginFailure(errorMessage));
+  });
+};
+
 
 export const loginRequest = () => {
   return {
@@ -34,16 +60,35 @@ export const loginFailure = (error) => {
   };
 };
 
-export const logoutAction = () => {
-  return {
+export const logout = () => dispatch => {
+  logoutApi();
+  dispatch({
     type: LOGOUT
-  };
+  });
 };
 
 export const loginReset = () => {
   return {
     type: LOGIN_RESET
   };
+};
+
+export const editProfile = newProfile => dispatch => {
+  dispatch(editProfileRequest());
+
+  const username = store.getState().auth.username;
+  if (!username) {
+    dispatch(editProfileFailure('Not authenticated'));
+  } else {
+    editProfileApi(username, newProfile)
+    .then(response => {
+      dispatch(editProfileSuccess(newProfile));
+    })
+    .catch(error => {
+      const errorMessage = apiErrorHandler(error);
+      dispatch(editProfileFailure(errorMessage));
+    });
+  }
 };
 
 export const editProfileRequest = () => {

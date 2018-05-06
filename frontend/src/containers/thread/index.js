@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  fetchThread,
-  createPost
-} from '../../api';
+  createPost,
+  fetchThread
+} from '../../actions';
 import Thread from '../../components/thread';
 
 class ThreadContainer extends Component {

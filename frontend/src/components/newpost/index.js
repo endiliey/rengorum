@@ -24,6 +24,15 @@ export default class NewPost extends Component {
     };
   }
 
+  componentWillReceiveProps(newProps) {
+    const { success } = newProps;
+    if (success) {
+      this.setState({
+        editorState: EditorState.createEmpty()
+      });
+    }
+  }
+
   onEditorStateChange = (editorState) => {
     this.setState({
       editorState,
@@ -92,7 +101,6 @@ export default class NewPost extends Component {
     const {
       isAuthenticated,
       isLoading,
-      success,
       error
     } = this.props;
     if (!isAuthenticated) {
@@ -108,9 +116,6 @@ export default class NewPost extends Component {
         error={error}
         errorClassName='newPost-message'
         errorMessage={error || 'Oops! Something went wrong.'}
-        success={success}
-        successClassName='newPost-message'
-        successMessage={'Successful on creating post'}
         type='modal'
       />
     );

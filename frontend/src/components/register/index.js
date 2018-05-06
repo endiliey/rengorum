@@ -41,12 +41,13 @@ export default class Register extends Component {
 
   handleSubmit = (e) => {
     if (this.isFormValid()) {
-      this.props.handleRegister(
-        this.state.username,
-        this.state.name,
-        this.state.email,
-        this.state.password
-      );
+      let data = {
+        username: this.state.username,
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password
+      };
+      this.props.handleRegister(data);
     }
   }
 

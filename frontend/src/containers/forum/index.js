@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
+  createThreadSave,
+  createThreadToggle,
   fetchForum,
   createThread
-} from '../../api';
-import {
-  createThreadSave,
-  createThreadToggle
 } from '../../actions';
 import ThreadList from '../../components/threadlist';
 import NewThread from '../../components/newthread';

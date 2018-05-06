@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   fetchForums
-} from '../../api';
+} from '../../actions';
 import ForumList from '../../components/forumlist';
 
 class HomeContainer extends Component {

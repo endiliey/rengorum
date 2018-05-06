@@ -3,6 +3,21 @@ import {
   FETCH_HOME_SUCCESS,
   FETCH_HOME_FAILURE,
 } from './types';
+import { fetchForumsApi } from '../api';
+import { apiErrorHandler } from '../utils/errorhandler';
+
+export const fetchForums = () => dispatch => {
+  dispatch(fetchHomeRequest());
+
+  fetchForumsApi()
+  .then(response => {
+    dispatch(fetchHomeSuccess(response.data));
+  })
+  .catch(error => {
+    const errorMessage = apiErrorHandler(error);
+    dispatch(fetchHomeFailure(errorMessage));
+  });
+};
 
 export const fetchHomeRequest = () => {
   return {

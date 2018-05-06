@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   fetchUsers
-} from '../../api';
+} from '../../actions';
 import UserList from '../../components/userlist';
 
 class UsersContainer extends Component {

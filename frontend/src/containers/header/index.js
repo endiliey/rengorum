@@ -4,11 +4,9 @@ import Navlink from '../../components/navlink';
 import UserMenu from '../../components/usermenu';
 import './styles.css';
 import {
-  showModal
-} from '../../actions';
-import {
+  showModal,
   logout
-} from '../../api';
+} from '../../actions';
 
 class HeaderContainer extends Component {
   render() {

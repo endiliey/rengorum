@@ -9,7 +9,7 @@ import {
   Grid,
 } from 'semantic-ui-react';
 import {
-  imageUpload
+  imageUploadApi
 } from '../../api/image';
 import StatusMessage from '../../components/statusmessage';
 import './styles.css';
@@ -76,7 +76,7 @@ export default class EditProfile extends Component {
           avatarUploading: true
         });
 
-        imageUpload(avatarFile)
+        imageUploadApi(avatarFile)
         .then(response => {
           this.setState({
             avatar: response.data.secure_url,

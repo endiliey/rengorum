@@ -5,11 +5,9 @@ import Modal from '../../components/modal';
 import {
   hideModal,
   loginReset,
-  showModal
-} from '../../actions';
-import {
+  showModal,
   login
-} from '../../api';
+} from '../../actions';
 
 class LoginModal extends Component {
   componentWillMount() {

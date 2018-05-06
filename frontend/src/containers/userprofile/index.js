@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   fetchUserProfile
-} from '../../api';
+} from '../../actions';
 import StatusMessage from '../../components/statusmessage';
 import Profile from '../../components/profile';
 import './styles.css';

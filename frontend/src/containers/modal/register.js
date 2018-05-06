@@ -5,11 +5,9 @@ import Modal from '../../components/modal';
 import {
   hideModal,
   registerReset,
-  showModal
-} from '../../actions';
-import {
+  showModal,
   register
-} from '../../api';
+} from '../../actions';
 
 class RegisterModal extends Component {
   componentWillMount() {
@@ -50,8 +48,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleRegister: (username, name, email, password) => {
-    dispatch(register(username, name, email, password));
+  handleRegister: (data) => {
+    dispatch(register(data));
   },
   handleClose: () => {
     dispatch(hideModal());

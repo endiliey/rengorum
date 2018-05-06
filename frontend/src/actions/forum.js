@@ -3,6 +3,22 @@ import {
   FETCH_FORUM_SUCCESS,
   FETCH_FORUM_FAILURE
 } from './types';
+import { fetchForumApi } from '../api';
+import { apiErrorHandler } from '../utils/errorhandler';
+
+export const fetchForum = (forum) => dispatch => {
+  dispatch(fetchForumRequest());
+
+  fetchForumApi(forum)
+  .then(response => {
+    dispatch(fetchForumSuccess(response.data));
+  })
+  .catch(error => {
+    const errorMessage = apiErrorHandler(error);
+    dispatch(fetchForumFailure(errorMessage));
+  });
+};
+
 
 export const fetchForumRequest = () => {
   return {

@@ -4,11 +4,9 @@ import EditProfile from '../../components/editprofile';
 import Modal from '../../components/modal';
 import {
   hideModal,
-  editProfileReset
-} from '../../actions';
-import {
+  editProfileReset,
   editProfile
-} from '../../api';
+} from '../../actions';
 
 class EditProfileModal extends Component {
   componentWillMount() {

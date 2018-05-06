@@ -8,6 +8,49 @@ import {
   CREATE_THREAD_SAVE,
   CREATE_THREAD_TOGGLE
 } from './types';
+import {
+  fetchThreadApi,
+  createThreadApi,
+  fetchForumApi
+} from '../api';
+import { fetchForumSuccess, fetchForumFailure } from './forum';
+import { apiErrorHandler } from '../utils/errorhandler';
+
+export const fetchThread = thread => dispatch => {
+  dispatch(fetchThreadRequest());
+
+  fetchThreadApi(thread)
+  .then(response => {
+    dispatch(fetchThreadSuccess(response.data));
+  })
+  .catch(error => {
+    const errorMessage = apiErrorHandler(error);
+    dispatch(fetchThreadFailure(errorMessage));
+  });
+};
+
+export const createThread = newThread => dispatch => {
+  dispatch(createThreadRequest(newThread));
+
+  createThreadApi(newThread)
+  .then(response => {
+    dispatch(createThreadSuccess(response.data));
+
+    // re-load forum page
+    fetchForumApi(newThread.forum)
+    .then(response => {
+      dispatch(fetchForumSuccess(response.data));
+    })
+    .catch(error => {
+      const errorMessage = apiErrorHandler(error);
+      dispatch(fetchForumFailure(errorMessage));
+    });
+  })
+  .catch(error => {
+    const errorMessage = apiErrorHandler(error);
+    dispatch(createThreadFailure(errorMessage));
+  });
+};
 
 export const fetchThreadRequest = () => {
   return {
@@ -57,7 +100,6 @@ export const createThreadSave = (newThread) => {
     content: newThread.content
   };
 };
-
 
 export const createThreadToggle = () => {
   return {

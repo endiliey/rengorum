@@ -7,7 +7,7 @@ import {
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './styles.css';
 import { Editor } from 'react-draft-wysiwyg';
-import { imageUpload } from '../../api/image';
+import { imageUploadApi } from '../../api/image';
 
 export default class RichEditor extends Component {
   constructor(props) {
@@ -53,7 +53,7 @@ export default class RichEditor extends Component {
   uploadImageCallBack = (file) => {
     return new Promise(
       (resolve, reject) => {
-        imageUpload(file, false)
+        imageUploadApi(file, false)
         .then(response => {
           /* react-draft-wywsgi need data.link as the uploaded image url
           so we had to slightly modify the result from cloudinary response */
