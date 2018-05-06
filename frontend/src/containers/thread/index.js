@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  fetchThread
+  fetchThread,
+  createPost
 } from '../../api';
 import Thread from '../../components/thread';
-import RichEditor from '../../components/richeditor';
 
 class ThreadContainer extends Component {
   componentDidMount() {
@@ -31,10 +31,13 @@ class ThreadContainer extends Component {
       createdAt,
       posts,
       error,
-      isAuthenticated
+      isAuthenticated,
+      createPost,
+      newPostLoading,
+      newPostError,
+      newPostSuccess
     } = this.props;
     return (
-    <div>
       <Thread
         id={threadID}
         isLoading={isLoading}
@@ -45,11 +48,12 @@ class ThreadContainer extends Component {
         createdAt={createdAt}
         posts={posts}
         error={error}
-      />
-      <RichEditor
         isAuthenticated={isAuthenticated}
+        createPost={createPost}
+        newPostSuccess={newPostSuccess}
+        newPostLoading={newPostLoading}
+        newPostError={newPostError}
       />
-    </div>
     );
   }
 }
@@ -63,12 +67,18 @@ const mapStateToProps = (state) => ({
   createdAt: state.thread.createdAt,
   posts: state.thread.posts,
   error: state.thread.error,
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  newPostSuccess: state.thread.newPostSuccess,
+  newPostLoading: state.thread.newPostLoading,
+  newPostError: state.thread.newPostError
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchThread: (thread) => {
     dispatch(fetchThread(thread));
+  },
+  createPost: (newPost) => {
+    dispatch(createPost(newPost));
   }
 });
 

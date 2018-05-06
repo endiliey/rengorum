@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Segment, Icon } from 'semantic-ui-react';
 import StatusMessage from '../statusmessage';
 import Post from '../post';
+import NewPost from '../newpost';
 import './styles.css';
 
 export default class Thread extends Component {
@@ -15,7 +16,12 @@ export default class Thread extends Component {
       creator,
       createdAt,
       posts,
-      error
+      error,
+      isAuthenticated,
+      createPost,
+      newPostSuccess,
+      newPostLoading,
+      newPostError
     } = this.props;
 
     if (error || isLoading || !name) {
@@ -27,7 +33,7 @@ export default class Thread extends Component {
           loading={isLoading}
           loadingMessage={'We are fetching the thread for you'}
           nothing={!name}
-          nothingMessage={'No thread to display'}
+          nothingMessage={'No thread exist'}
           type='default'
         />
       );
@@ -53,6 +59,7 @@ export default class Thread extends Component {
 
       return (
         <Post
+          key={postID}
           id={postID}
           isThread={false}
           content={postContent}
@@ -72,6 +79,15 @@ export default class Thread extends Component {
           {threadPost}
           {postsList}
         </Segment.Group>
+        <NewPost
+          isAuthenticated={isAuthenticated}
+          threadID={id}
+          createPost={createPost}
+          success={newPostSuccess}
+          isLoading={newPostLoading}
+          error={newPostError}
+          maxLength={2000}
+        />
       </div>
     );
   }

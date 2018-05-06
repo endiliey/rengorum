@@ -1,10 +1,13 @@
 import {
   FETCH_THREAD_REQUEST,
   FETCH_THREAD_SUCCESS,
-  FETCH_THREAD_FAILURE
+  FETCH_THREAD_FAILURE,
+  CREATE_POST_REQUEST,
+  CREATE_POST_SUCCESS,
+  CREATE_POST_FAILURE
 } from '../actions/types';
 
-const initialState = {
+const threadInitialState = {
   isLoading: false,
   name: null,
   content: null,
@@ -13,6 +16,17 @@ const initialState = {
   createdt: null,
   posts: [],
   error: null
+};
+
+const newPostInitialState = {
+  newPostSuccess: false,
+  newPostLoading: false,
+  newPostError: null
+};
+
+const initialState = {
+  ...threadInitialState,
+  ...newPostInitialState
 };
 
 const thread = (state = initialState, action) => {
@@ -25,6 +39,8 @@ const thread = (state = initialState, action) => {
       };
     case FETCH_THREAD_SUCCESS:
       return {
+        ...state,
+        ...newPostInitialState,
         isLoading: false,
         name: action.thread.name,
         content: action.thread.content,
@@ -38,6 +54,27 @@ const thread = (state = initialState, action) => {
       return {
         ...initialState,
         error: action.error
+      };
+    case CREATE_POST_REQUEST:
+      return {
+        ...state,
+        newPostLoading: true,
+        newPostError: null,
+        newPostSuccess: false
+      };
+    case CREATE_POST_SUCCESS:
+      return {
+        ...state,
+        newPostLoading: false,
+        newPostError: null,
+        newPostSuccess: true
+      };
+    case CREATE_POST_FAILURE:
+      return {
+        ...state,
+        newPostLoading: false,
+        newPostError: action.error,
+        newPostSuccess: false
       };
     default:
       return state;

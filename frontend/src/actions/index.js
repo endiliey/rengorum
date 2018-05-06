@@ -7,3 +7,4 @@ export * from './home';
 export * from './users';
 export * from './forum';
 export * from './thread';
+export * from './post';

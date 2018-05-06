@@ -12,6 +12,7 @@
 
 .post-editor {
   height: auto !important;
+  min-height: 80px;
 }
 
 .post-editor a{
@@ -32,6 +33,10 @@
 
 .post-toolbar a {
   color: black;
+}
+
+.post-dropdown {
+  float: right;
 }
 
 .post-avatar {

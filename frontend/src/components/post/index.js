@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import {
   Segment,
   Grid,
-  Icon
+  Icon,
+  Dropdown
 } from 'semantic-ui-react';
 import RichEditor from '../richeditor';
 import Avatar from '../avatar';
@@ -19,8 +20,9 @@ export default class Post extends Component {
       creator
     } = this.props;
 
+    const color = (isThread ? 'black' : null);
     return (
-      <Segment key={(isThread ? 't' : 'p') + id}>
+      <Segment color={color}>
         <Grid textAlign='left' padded='horizontally'>
           <Grid.Column width={4}>
             <Grid.Row>
@@ -51,6 +53,14 @@ export default class Post extends Component {
           <Grid.Column width={12}>
             <div className='post-time'>
               {createdAt}
+              <div className='post-dropdown'>
+                <Dropdown simple icon='caret down' direction='left'>
+                  <Dropdown.Menu>
+                    <Dropdown.Item onClick={() => console.log('edit' + id)} icon='edit' text='Edit post' />
+                    <Dropdown.Item onClick={() => console.log('delete' + id)} icon='delete' text='Delete post' />
+                  </Dropdown.Menu>
+                </Dropdown>
+              </div>
             </div>
             <RichEditor
               readOnly={true}

@@ -181,9 +181,6 @@ export default class NewThread extends Component {
         error={error}
         errorClassName='newThread-message'
         errorMessage={error || 'Oops! Something went wrong.'}
-        loading={isLoading}
-        loadingClassName='newThread-message'
-        loadingMessage={`We are creating the thread for you`}
         success={success}
         successClassName='newThread-message'
         successMessage={
@@ -196,7 +193,7 @@ export default class NewThread extends Component {
     );
 
     if (!showEditor) {
-      const newThreadButton = (
+      return (
         <div className='newThread-hidden'>
           <Button
             size='small'
@@ -209,18 +206,15 @@ export default class NewThread extends Component {
           </Button>
         </div>
       );
-      return (
-        <div>
-          {statusMessage}
-          {newThreadButton}
-        </div>
-      );
     }
 
     return (
       <div className='newThread-show'>
         {statusMessage}
-        <Form className='attached fluid segment'>
+        <Form
+          loading={isLoading}
+          className='attached fluid segment'
+        >
           <Form.Input required fluid transparent
             icon='edit'
             iconPosition='left'
