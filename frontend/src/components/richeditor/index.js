@@ -109,7 +109,7 @@ export default class RichEditor extends Component {
         toolbarHidden={readOnly}
         handleBeforeInput={handleBeforeInput}
         handlePastedText={handlePastedText}
-        placeholder={placeholder || 'Start typing here...'}
+        placeholder={placeholder}
       />
     );
   }

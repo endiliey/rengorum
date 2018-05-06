@@ -4,6 +4,7 @@ import {
   fetchThread
 } from '../../api';
 import Thread from '../../components/thread';
+import RichEditor from '../../components/richeditor';
 
 class ThreadContainer extends Component {
   componentDidMount() {
@@ -20,8 +21,35 @@ class ThreadContainer extends Component {
   }
 
   render() {
+    const { thread: threadID } = this.props.match.params;
+    const {
+      isLoading,
+      name,
+      content,
+      pinned,
+      creator,
+      createdAt,
+      posts,
+      error,
+      isAuthenticated
+    } = this.props;
     return (
-      <Thread {...this.props} />
+    <div>
+      <Thread
+        id={threadID}
+        isLoading={isLoading}
+        name={name}
+        content={content}
+        pinned={pinned}
+        creator={creator}
+        createdAt={createdAt}
+        posts={posts}
+        error={error}
+      />
+      <RichEditor
+        isAuthenticated={isAuthenticated}
+      />
+    </div>
     );
   }
 }

@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import {
-  Segment,
-  Grid,
-  Icon
-} from 'semantic-ui-react';
-import RichEditor from '../richeditor';
+import { Segment, Icon } from 'semantic-ui-react';
 import StatusMessage from '../statusmessage';
-import Avatar from '../avatar';
+import Post from '../post';
 import './styles.css';
 
 export default class Thread extends Component {
   render() {
     const {
+      id,
       isLoading,
       name,
       content,
@@ -23,62 +18,29 @@ export default class Thread extends Component {
       error
     } = this.props;
 
-    if (error || isLoading ) {
+    if (error || isLoading || !name) {
       return (
         <StatusMessage
-          error={error}
+          error={error || !name} // because a thread name cannot be empty
           errorClassName='thread-error'
           errorMessage={error}
           loading={isLoading}
           loadingMessage={'We are fetching the thread for you'}
+          nothing={!name}
+          nothingMessage={'No thread to display'}
           type='default'
         />
       );
     }
 
     const threadPost = (
-      <Segment key={name}>
-        <Grid textAlign='left' padded='horizontally'>
-          <Grid.Column width={4}>
-            <Grid.Row>
-              <div className='thread-row'>
-                <Avatar
-                  className='thread-avatar'
-                  avatar={creator.avatar}
-                  centered={false}
-                  link={`/user/${creator.username}`}
-                />
-                <div className="thread-column">
-                  <div className='thread-name'>
-                    {creator.name}
-                  </div>
-                  <div className='thread-username'>
-                    <Link to={`/user/${creator.username}`}>
-                      <Icon name='user' />
-                      {creator.username}
-                    </Link>
-                  </div>
-                  <div className='thread-status'>
-                    {creator.status || 'Member'}
-                  </div>
-                </div>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-          <Grid.Column width={12}>
-            <div className='thread-time'>
-              {createdAt}
-            </div>
-            <RichEditor
-              readOnly
-              content={content}
-              wrapperClassName='threadPost-wrapper'
-              toolbarClassName='threadPost-toolbar'
-              editorClassName='threadPost-editor'
-            />
-          </Grid.Column>
-        </Grid>
-      </Segment>
+      <Post
+        id={id}
+        isThread={true}
+        content={content}
+        createdAt={createdAt}
+        creator={creator}
+      />
     );
 
     const postsList = posts.length === 0 ? null : posts.map((post) => {
@@ -90,47 +52,13 @@ export default class Thread extends Component {
       } = post;
 
       return (
-        <Segment key={postID}>
-          <Grid textAlign='left' padded='horizontally'>
-            <Grid.Column width={4}>
-              <Grid.Row>
-                <div className='thread-row'>
-                  <Avatar
-                    className='thread-avatar'
-                    avatar={postCreator.avatar}
-                    centered={false}
-                    link={`/user/${postCreator.username}`}
-                  />
-                  <div className="thread-column">
-                    <div className='thread-name'>
-                      {postCreator.name}
-                    </div>
-                    <div className='thread-username'>
-                      <Link to={`/user/${postCreator.username}`}>
-                        <Icon name='user' />
-                        {postCreator.username}
-                      </Link>
-                    </div>
-                    <div className='thread-status'>
-                      {postCreator.status || 'Member'}
-                    </div>
-                  </div>
-                </div>
-              </Grid.Row>
-            </Grid.Column>
-            <Grid.Column width={12}>
-              <div className='thread-time'>
-                {postCreatedAt}
-              </div>
-              <RichEditor
-                readOnly
-                content={postContent}
-                wrapperClassName='threadPost-wrapper'
-                editorClassName='threadPost-editor'
-              />
-            </Grid.Column>
-          </Grid>
-        </Segment>
+        <Post
+          id={postID}
+          isThread={false}
+          content={postContent}
+          createdAt={postCreatedAt}
+          creator={postCreator}
+        />
       );
     });
 
@@ -144,7 +72,6 @@ export default class Thread extends Component {
           {threadPost}
           {postsList}
         </Segment.Group>
-        <RichEditor />
       </div>
     );
   }

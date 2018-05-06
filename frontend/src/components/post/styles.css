@@ -1,0 +1,82 @@
+.post-wrapper-edit {
+  width: 100% !important;
+  display: block !important;
+  margin-top: 10px !important;
+  margin-bottom: 25px !important;
+}
+
+.post-wrapper-read {
+  width: 100% !important;
+  display: block !important;
+}
+
+.post-editor {
+  height: auto !important;
+}
+
+.post-editor a{
+  color: blue;
+}
+
+.post-toolbar {
+  padding: 0px !important;
+  border: none !important;
+  display: flex;
+  justify-content: flex-start;
+  background: white;
+  flex-wrap: wrap;
+  font-size: 15px;
+  margin-left: -3px;
+  user-select: none;
+}
+
+.post-toolbar a {
+  color: black;
+}
+
+.post-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 6px;
+  margin-left: -5px;
+  margin-right: 12px;
+}
+
+.post-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.post-column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.post-name {
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.post-username a{
+  font-size: 14px;
+  margin-top: auto;
+  margin-bottom: auto;
+  color: gray !important;
+}
+
+.post-status {
+  font-weight: normal;
+  font-size: 14px;
+  color: purple;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.post-time {
+  color: gray !important;
+  font-size: 14px;
+}
