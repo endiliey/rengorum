@@ -21,19 +21,30 @@ export default class Thread extends Component {
       createPost,
       newPostSuccess,
       newPostLoading,
-      newPostError
+      newPostError,
+      authenticatedUsername,
+      authenticatedIsStaff,
+      deletePostList,
+      deletePost,
+      isDeleting,
+      deleteError,
+      deleteThread
     } = this.props;
 
-    if (error || isLoading || !name) {
+    if (error || deleteError || isLoading || isDeleting || !name) {
+      let loadingMessage = 'We are fetching the thread for you';
+      if (isDeleting) {
+        loadingMessage = 'We are deleting the thread for you';
+      }
       return (
         <StatusMessage
-          error={error || !name} // because a thread name cannot be empty
+          error={error || deleteError || !name} // because a thread name cannot be empty
           errorClassName='thread-error'
-          errorMessage={error}
-          loading={isLoading}
-          loadingMessage={'We are fetching the thread for you'}
+          errorMessage={error || deleteError}
+          loading={isLoading || isDeleting}
+          loadingMessage={loadingMessage}
           nothing={!name}
-          nothingMessage={'No thread exist'}
+          nothingMessage={'Thread does not exist'}
           type='default'
         />
       );
@@ -42,10 +53,14 @@ export default class Thread extends Component {
     const threadPost = (
       <Post
         id={id}
+        threadID={id}
         isThread={true}
         content={content}
         createdAt={createdAt}
         creator={creator}
+        authenticatedUsername={authenticatedUsername}
+        authenticatedIsStaff={authenticatedIsStaff}
+        deleteAction={deleteThread}
       />
     );
 
@@ -60,11 +75,16 @@ export default class Thread extends Component {
       return (
         <Post
           key={postID}
+          threadID={id}
           id={postID}
           isThread={false}
           content={postContent}
           createdAt={postCreatedAt}
           creator={postCreator}
+          authenticatedUsername={authenticatedUsername}
+          authenticatedIsStaff={authenticatedIsStaff}
+          deletePostList={deletePostList}
+          deleteAction={deletePost}
         />
       );
     });

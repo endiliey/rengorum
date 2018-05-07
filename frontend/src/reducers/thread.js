@@ -4,7 +4,13 @@ import {
   FETCH_THREAD_FAILURE,
   CREATE_POST_REQUEST,
   CREATE_POST_SUCCESS,
-  CREATE_POST_FAILURE
+  CREATE_POST_FAILURE,
+  DELETE_POST_REQUEST,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_FAILURE,
+  DELETE_THREAD_REQUEST,
+  DELETE_THREAD_SUCCESS,
+  DELETE_THREAD_FAILURE
 } from '../actions/types';
 
 const threadInitialState = {
@@ -24,23 +30,33 @@ const newPostInitialState = {
   newPostError: null
 };
 
+const deletePostInitialState = {
+  deletePostList: []
+};
+
+const deleteThreadInitialState = {
+  isDeleting: false,
+  deleteError: null
+};
+
 const initialState = {
   ...threadInitialState,
-  ...newPostInitialState
+  ...newPostInitialState,
+  ...deletePostInitialState,
+  ...deleteThreadInitialState
 };
 
 const thread = (state = initialState, action) => {
   switch(action.type) {
     case FETCH_THREAD_REQUEST:
       return {
-        ...state,
+        ...initialState,
         isLoading: true,
         error: null
       };
     case FETCH_THREAD_SUCCESS:
       return {
         ...state,
-        ...newPostInitialState,
         isLoading: false,
         name: action.thread.name,
         content: action.thread.content,
@@ -52,9 +68,28 @@ const thread = (state = initialState, action) => {
       };
     case FETCH_THREAD_FAILURE:
       return {
-        ...initialState,
+        ...state,
+        isLoading: false,
         error: action.error
       };
+    case DELETE_THREAD_REQUEST:
+      return {
+        ...state,
+        isDeleting: true,
+        deleteError: null
+      };
+    case DELETE_THREAD_SUCCESS:
+      return {
+        ...state,
+        isDeleting: false,
+        deleteError: null
+      };
+    case DELETE_THREAD_FAILURE:
+      return {
+        ...state,
+        isDeleting: false,
+        deleteError: action.error
+      }
     case CREATE_POST_REQUEST:
       return {
         ...state,
@@ -76,6 +111,17 @@ const thread = (state = initialState, action) => {
         newPostError: action.error,
         newPostSuccess: false
       };
+    case DELETE_POST_REQUEST:
+      return {
+        ...state,
+        deletePostList: [...state.deletePostList, action.id]
+      };
+    case DELETE_POST_SUCCESS:
+    case DELETE_POST_FAILURE:
+      return {
+        ...state,
+        deletePostList: state.deletePostList.filter(id => id !== action.id)
+      }
     default:
       return state;
   }

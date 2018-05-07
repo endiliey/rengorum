@@ -11,18 +11,41 @@ import Avatar from '../avatar';
 import './styles.css';
 
 export default class Post extends Component {
+  onDelete = () => {
+    const { deleteAction, id, threadID, isThread } = this.props;
+    if (isThread) {
+      deleteAction(threadID);
+    } else {
+      deleteAction(id, threadID);
+    }
+  };
+
   render() {
     const {
       id,
       isThread,
       content,
       createdAt,
-      creator
+      creator,
+      authenticatedUsername,
+      authenticatedIsStaff,
+      deletePostList
     } = this.props;
 
     const color = (isThread ? 'black' : null);
+    const deleteText = isThread ? 'Delete Thread' : 'Delete Post';
+    const actions = (
+      <div className='post-dropdown'>
+        <Dropdown simple icon='caret down' direction='left'>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={this.onDelete} icon='delete' text={deleteText} />
+          </Dropdown.Menu>
+        </Dropdown>
+      </div>
+    );
+    const isLoading = !isThread && deletePostList.indexOf(id) >= 0;
     return (
-      <Segment color={color}>
+      <Segment loading={isLoading} color={color}>
         <Grid textAlign='left' padded='horizontally'>
           <Grid.Column width={4}>
             <Grid.Row>
@@ -53,14 +76,7 @@ export default class Post extends Component {
           <Grid.Column width={12}>
             <div className='post-time'>
               {createdAt}
-              <div className='post-dropdown'>
-                <Dropdown simple icon='caret down' direction='left'>
-                  <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => console.log('edit' + id)} icon='edit' text='Edit post' />
-                    <Dropdown.Item onClick={() => console.log('delete' + id)} icon='delete' text='Delete post' />
-                  </Dropdown.Menu>
-                </Dropdown>
-              </div>
+              {(authenticatedIsStaff || authenticatedUsername === creator.username) && actions}
             </div>
             <RichEditor
               readOnly={true}

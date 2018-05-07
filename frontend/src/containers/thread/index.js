@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   createPost,
-  fetchThread
+  fetchThread,
+  deletePost,
+  deleteThread
 } from '../../actions';
 import Thread from '../../components/thread';
 
@@ -35,7 +37,14 @@ class ThreadContainer extends Component {
       createPost,
       newPostLoading,
       newPostError,
-      newPostSuccess
+      newPostSuccess,
+      authenticatedUsername,
+      authenticatedIsStaff,
+      deletePostList,
+      deletePost,
+      isDeleting,
+      deleteError,
+      deleteThread
     } = this.props;
     return (
       <Thread
@@ -53,6 +62,13 @@ class ThreadContainer extends Component {
         newPostSuccess={newPostSuccess}
         newPostLoading={newPostLoading}
         newPostError={newPostError}
+        authenticatedUsername={authenticatedUsername}
+        authenticatedIsStaff={authenticatedIsStaff}
+        deletePostList={deletePostList}
+        deletePost={deletePost}
+        isDeleting={isDeleting}
+        deleteError={deleteError}
+        deleteThread={deleteThread}
       />
     );
   }
@@ -68,9 +84,14 @@ const mapStateToProps = (state) => ({
   posts: state.thread.posts,
   error: state.thread.error,
   isAuthenticated: state.auth.isAuthenticated,
+  authenticatedUsername: state.auth.username,
+  authenticatedIsStaff: state.auth.isStaff,
   newPostSuccess: state.thread.newPostSuccess,
   newPostLoading: state.thread.newPostLoading,
-  newPostError: state.thread.newPostError
+  newPostError: state.thread.newPostError,
+  deletePostList: state.thread.deletePostList,
+  isDeleting: state.thread.isDeleting,
+  deleteError: state.thread.deleteError
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -79,6 +100,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   createPost: (newPost) => {
     dispatch(createPost(newPost));
+  },
+  deletePost: (id, threadID) => {
+    dispatch(deletePost(id, threadID));
+  },
+  deleteThread: (id) => {
+    dispatch(deleteThread(id));
   }
 });
 
