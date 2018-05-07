@@ -91,7 +91,7 @@ Install all required dependencies for backend by typing
 pip install -r requirements.txt
 ```
 
-Copy the .env.example as .env
+Copy the .env.example as .env in backend folder
 ```
 cp .env.example .env
 ```
@@ -100,6 +100,11 @@ Install all required dependencies for frontend in rengorum/frontend folder by ty
 ```
 cd ../frontend
 npm install
+```
+
+Copy the .env.example as .env in frontend folder
+```
+cp .env.example .env
 ```
 
 *Note: Exit python virtualenv by
