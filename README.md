@@ -77,7 +77,7 @@ pip install virtualenv
 
 Create an isolated environments through virtualenv, note that it must be Python 3, because I'm using latest Django version (v2)
 ```
-cd rengorum
+cd rengorum/backend
 virtualenv venv -p python3
 ```
 
@@ -91,9 +91,14 @@ Install all required dependencies for backend by typing
 pip install -r requirements.txt
 ```
 
-Install all required dependencies for frontend by typing
+Copy the .env.example as .env
 ```
-cd frontend
+cp .env.example .env
+```
+
+Install all required dependencies for frontend in rengorum/frontend folder by typing
+```
+cd ../frontend
 npm install
 ```
 
@@ -105,6 +110,7 @@ deactivate
 ## Running Backend on Local Server
 Make sure you've activated your virtualenv, activate by
 ```
+cd backend
 source venv/bin/activate
 ```
 
@@ -116,7 +122,6 @@ python manage.py test
 Then run the server, api endpoint should be available on http://localhost:8000/api
 
 ```
-cd backend
 python manage.py runserver
 ```
 
