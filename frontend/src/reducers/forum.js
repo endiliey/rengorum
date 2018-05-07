@@ -38,7 +38,7 @@ const forum = (state = initialState, action) => {
   switch(action.type) {
     case FETCH_FORUM_REQUEST:
       return {
-        ...state,
+        ...initialState,
         isLoading: true,
         error: null
       };
@@ -54,7 +54,7 @@ const forum = (state = initialState, action) => {
       };
     case FETCH_FORUM_FAILURE:
       return {
-        ...forumInitialState,
+        ...state,
         error: action.error
       };
     case CREATE_THREAD_REQUEST:
@@ -74,7 +74,7 @@ const forum = (state = initialState, action) => {
         newThreadName: '',
         newThreadContent: '',
         newThreadId: action.newThread.id,
-        newThreadShow: true,
+        newThreadShow: false,
         newThreadError: null
       };
     case CREATE_THREAD_FAILURE:

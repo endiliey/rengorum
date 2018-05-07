@@ -194,16 +194,19 @@ export default class NewThread extends Component {
 
     if (!showEditor) {
       return (
-        <div className='newThread-hidden'>
-          <Button
-            size='small'
-            color='blue'
-            floated='left'
-            onClick={ this.toggleShowEditor}
-          >
-            <Icon name='edit' />
-            New Thread
-          </Button>
+        <div>
+          {statusMessage} {/*this will only show the success message*/}
+          <div className='newThread-hidden'>
+            <Button
+              size='small'
+              color='blue'
+              floated='left'
+              onClick={ this.toggleShowEditor}
+            >
+              <Icon name='edit' />
+              New Thread
+            </Button>
+          </div>
         </div>
       );
     }
