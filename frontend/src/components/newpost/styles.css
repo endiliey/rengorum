@@ -38,6 +38,7 @@
   width: 100% !important;
   display: block !important;
   margin-bottom: 25px !important;
+  line-height: normal !important;
 }
 
 .newPost-toolbar {

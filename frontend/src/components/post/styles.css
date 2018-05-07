@@ -3,11 +3,13 @@
   display: block !important;
   margin-top: 10px !important;
   margin-bottom: 25px !important;
+  line-height: normal !important;
 }
 
 .post-wrapper-read {
   width: 100% !important;
   display: block !important;
+  line-height: normal !important;
 }
 
 .post-editor {

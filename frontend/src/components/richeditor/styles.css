@@ -3,6 +3,7 @@
   display: block !important;
   margin-top: 25px !important;
   margin-bottom: 25px !important;
+  line-height: normal !important;
 }
 
 .richEditor-editor {
