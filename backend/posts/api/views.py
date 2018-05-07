@@ -40,7 +40,7 @@ class PostDeleteAPIView(generics.DestroyAPIView):
     # because if user keep on deleting post doesn't make sense
     queryset = Post.objects.all()
     serializer_class = PostDeleteSerializer
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsOwnerOrAdminOrReadOnly]
 
     def delete(self, request, pk, format=None):
         try:
