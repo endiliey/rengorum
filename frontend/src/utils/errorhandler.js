@@ -4,7 +4,12 @@ export const apiErrorHandler = (error) => {
       return "Error: Network Error";
     } else if (error.response.data) {
       const erd = error.response.data;
-      if (erd.detail) return erd.detail;
+      if (erd.detail) {
+        if (erd.detail === "Invalid token.") {
+          return "Invalid Token. Please re-login.";
+        }
+        return erd.detail;
+      }
       if (erd[0]) return erd[0];
       const key = Object.keys(erd)[0];
       const errorString = erd[key][0];
