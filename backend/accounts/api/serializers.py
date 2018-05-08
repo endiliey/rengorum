@@ -63,15 +63,17 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     # A field from the user's profile:
     bio = serializers.CharField(source='profile.bio', allow_blank=True)
     name = serializers.CharField(
-	source='profile.name',
-	max_length=32,
-	allow_blank=True
+    	source='profile.name',
+    	max_length=32,
+    	allow_blank=True
     )
     avatar = serializers.URLField(source='profile.avatar', allow_blank=True)
     status = serializers.CharField(
-	source='profile.status',
-	allow_blank=True,
-	max_length=16
+        source='profile.status',
+    	allow_blank=True,
+        default='',
+        min_length=0,
+    	max_length=16
     )
     current_password = serializers.CharField(
         write_only=True,
@@ -194,9 +196,11 @@ class UserCreateSerializer(serializers.ModelSerializer):
     )
     avatar = serializers.URLField(source='profile.avatar', allow_blank=True, default='')
     status = serializers.CharField(
-	source='profile.status',
-	allow_blank=True,
-	max_length=16
+    	source='profile.status',
+    	allow_blank=True,
+    	max_length=16,
+        min_length=0,
+        default=''
     )
 
     class Meta:
@@ -231,7 +235,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
             bio = profile_data.get('bio', ''),
             avatar = avatar,
             name = profile_data.get('name', ''),
-            status = profile_data.get('status','member')
+            status = profile_data.get('status', 'Member')
         )
         profile.save()
         return user

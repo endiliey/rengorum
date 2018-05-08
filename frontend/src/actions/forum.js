@@ -19,7 +19,6 @@ export const fetchForum = (forum) => dispatch => {
   });
 };
 
-
 export const fetchForumRequest = () => {
   return {
     type: FETCH_FORUM_REQUEST,
