@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Avatar from '../avatar';
 import './styles.css';
 
 class Profile extends Component {
@@ -19,8 +20,12 @@ class Profile extends Component {
 
     return (
       <div className="profileContainer">
-        <div className="profileAvatar">
-          <img className="avatar" src={avatar} alt={`${name} avatar`} />
+        <div>
+          <Avatar
+            className="profileAvatar"
+            avatar={avatar}
+            centered={false}
+          />
         </div>
         <div className="profileInfo">
           <div className="name">{ name }</div>
@@ -35,8 +40,8 @@ class Profile extends Component {
             { status }
           </div>
           <div className="dateJoined">
-            <strong>Date Joined: </strong>
-            { this.formatDateTime(dateJoined) }
+            <strong>Joined: </strong>
+            { dateJoined }
           </div>
           <div className="bio">
             <strong>Bio: </strong>

@@ -22,10 +22,3 @@ a:-webkit-any-link:hover{
   text-decoration:underline;
   color: white;
 }
-
-.logo-link {
-  font-size: 1.5em;
-  text-decoration:none;
-  cursor: pointer;
-  color: white;
-}
