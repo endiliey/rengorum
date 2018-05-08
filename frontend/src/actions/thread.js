@@ -33,6 +33,26 @@ export const fetchThread = thread => dispatch => {
   });
 };
 
+export const fetchThreadRequest = () => {
+  return {
+    type: FETCH_THREAD_REQUEST,
+  };
+};
+
+export const fetchThreadSuccess = (thread) => {
+  return {
+    type: FETCH_THREAD_SUCCESS,
+    thread
+  };
+};
+
+export const fetchThreadFailure = (error) => {
+  return {
+    type: FETCH_THREAD_FAILURE,
+    error
+  };
+};
+
 export const createThread = newThread => dispatch => {
   dispatch(createThreadRequest(newThread));
 
@@ -54,26 +74,6 @@ export const createThread = newThread => dispatch => {
     const errorMessage = apiErrorHandler(error);
     dispatch(createThreadFailure(errorMessage));
   });
-};
-
-export const fetchThreadRequest = () => {
-  return {
-    type: FETCH_THREAD_REQUEST,
-  };
-};
-
-export const fetchThreadSuccess = (thread) => {
-  return {
-    type: FETCH_THREAD_SUCCESS,
-    thread
-  };
-};
-
-export const fetchThreadFailure = (error) => {
-  return {
-    type: FETCH_THREAD_FAILURE,
-    error
-  };
 };
 
 export const createThreadRequest = (newThread) => {

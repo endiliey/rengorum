@@ -20,7 +20,6 @@ import {
 } from './modal';
 import { apiErrorHandler } from '../utils/errorhandler';
 
-
 export const login = (username, password) => (dispatch) => {
   dispatch(loginRequest());
 

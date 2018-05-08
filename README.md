@@ -1,8 +1,8 @@
 # Rengorum
 Single-page forum application that aims to be fast, performant and simple.
 
+## Demo: https://rengorum.herokuapp.com/
 ![Screenshot 1](preview/frontend_1.PNG)
-
 
 ## Frontend
 > The frontend is a fast, interactive and simple Single-Page-Application (SPA), written in ES6 Javascript and built with following technologies:
@@ -25,6 +25,7 @@ Single-page forum application that aims to be fast, performant and simple.
 > * [Djangorestframework v3.7](http://www.django-rest-framework.org/)
 > * [etc](https://github.com/endiliey/rengorum/blob/master/requirements.txt)
 
+## API endpoint for Demo: https://rengorum.endiliey.com/api
 ```
 List of available API (browseable) at /api
 * /user/
