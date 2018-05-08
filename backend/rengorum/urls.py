@@ -15,10 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from frontend.views import ReactAppView
 
 urlpatterns = [
-    path('', ReactAppView.as_view()),
     path('admin/', admin.site.urls),
     path('api/', include('rest_framework.urls')),
     path('api/user/', include('accounts.api.urls')),

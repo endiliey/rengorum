@@ -69,8 +69,7 @@ INSTALLED_APPS = [
     'accounts',
     'forums',
     'threads',
-    'posts',
-    'frontend'
+    'posts'
 ]
 
 # https://github.com/ottoyiu/django-cors-headers
@@ -156,15 +155,10 @@ USE_TZ = True
 
 
 RENGORUM_DIR = os.path.dirname(BASE_DIR)
-REACT_APP_DIR = os.path.join(RENGORUM_DIR, 'frontend')
 
 BACKEND_DIR = os.path.join(RENGORUM_DIR, 'backend')
 STATIC_ROOT = os.path.join(BACKEND_DIR, 'static')
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(REACT_APP_DIR, 'build'),
-]
 
 # MEDIA
 # Absolute filesystem path to the directory that will hold user-uploaded files.

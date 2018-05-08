@@ -32,8 +32,8 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 # New superuser profile
 @receiver(post_save, sender=User)
-def create_superuser_profile(sender, instance, **kwargs):
-    if instance.is_superuser:
+def create_superuser_profile(sender, instance, created, **kwargs):
+    if created and instance.is_superuser:
         UserProfile.objects.create(
             user=instance,
             bio='I am the admin and I manage this website',
