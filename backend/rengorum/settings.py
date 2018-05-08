@@ -161,13 +161,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
 
 RENGORUM_DIR = os.path.dirname(BASE_DIR)
 REACT_APP_DIR = os.path.join(RENGORUM_DIR, 'frontend')
 
+BACKEND_DIR = os.path.join(RENGORUM_DIR, 'backend')
+STATIC_ROOT = os.path.join(BACKEND_DIR, 'static')
+STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    os.path.join(REACT_APP_DIR, 'build', 'static'),
+    os.path.join(REACT_APP_DIR, 'build'),
 ]
 
 # MEDIA
