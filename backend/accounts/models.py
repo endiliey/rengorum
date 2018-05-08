@@ -29,3 +29,15 @@ class UserProfile(models.Model):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+# New superuser profile
+@receiver(post_save, sender=User)
+def create_superuser_profile(sender, instance, **kwargs):
+    if instance.is_superuser:
+        UserProfile.objects.create(
+            user=instance,
+            bio='I am the admin and I manage this website',
+            avatar='http://res.cloudinary.com/rengorum/image/upload/v1525768360/admin.png',
+            name='Administrator',
+            status='Administrator'
+        )

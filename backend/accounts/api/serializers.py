@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from rest_framework.compat import authenticate
 from rest_framework.validators import UniqueValidator
+from django.contrib.humanize.templatetags.humanize import naturaltime
 from accounts.models import UserProfile
 
 class UserDetailSerializer(serializers.ModelSerializer):
@@ -22,6 +23,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
         view_name='post-detail',
         lookup_field='pk'
     )
+    date_joined = serializers.SerializerMethodField()
     class Meta:
         model = User
         fields = [
@@ -36,6 +38,9 @@ class UserDetailSerializer(serializers.ModelSerializer):
             'posts'
         ]
         lookup_field = 'username'
+
+    def get_date_joined(self, obj):
+        return naturaltime(obj.date_joined)
 
 class UserListSerializer(serializers.ModelSerializer):
     bio = serializers.CharField(source='profile.bio')
