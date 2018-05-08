@@ -62,9 +62,17 @@ class UserListSerializer(serializers.ModelSerializer):
 class UserUpdateSerializer(serializers.ModelSerializer):
     # A field from the user's profile:
     bio = serializers.CharField(source='profile.bio', allow_blank=True)
-    name = serializers.CharField(source='profile.name', allow_blank=True)
+    name = serializers.CharField(
+	source='profile.name',
+	max_length=32,
+	allow_blank=True
+    )
     avatar = serializers.URLField(source='profile.avatar', allow_blank=True)
-    status = serializers.CharField(source='profile.status', allow_blank=True)
+    status = serializers.CharField(
+	source='profile.status',
+	allow_blank=True,
+	max_length=16
+    )
     current_password = serializers.CharField(
         write_only=True,
         allow_blank=True,
@@ -185,7 +193,11 @@ class UserCreateSerializer(serializers.ModelSerializer):
         max_length=32
     )
     avatar = serializers.URLField(source='profile.avatar', allow_blank=True, default='')
-    status = serializers.CharField(source='profile.status', allow_blank=True, default='member')
+    status = serializers.CharField(
+	source='profile.status',
+	allow_blank=True,
+	max_length=16
+    )
 
     class Meta:
         model = User
