@@ -9,28 +9,28 @@ import {
   CREATE_THREAD_TOGGLE,
   DELETE_THREAD_REQUEST,
   DELETE_THREAD_SUCCESS,
-  DELETE_THREAD_FAILURE
+  DELETE_THREAD_FAILURE,
 } from './types';
 import {
   fetchThreadApi,
   createThreadApi,
   fetchForumApi,
-  deleteThreadApi
+  deleteThreadApi,
 } from '../api';
-import { fetchForumSuccess, fetchForumFailure } from './forum';
-import { apiErrorHandler } from '../utils/errorhandler';
+import {fetchForumSuccess, fetchForumFailure} from './forum';
+import {apiErrorHandler} from '../utils/errorhandler';
 
 export const fetchThread = thread => dispatch => {
   dispatch(fetchThreadRequest());
 
   fetchThreadApi(thread)
-  .then(response => {
-    dispatch(fetchThreadSuccess(response.data));
-  })
-  .catch(error => {
-    const errorMessage = apiErrorHandler(error);
-    dispatch(fetchThreadFailure(errorMessage));
-  });
+    .then(response => {
+      dispatch(fetchThreadSuccess(response.data));
+    })
+    .catch(error => {
+      const errorMessage = apiErrorHandler(error);
+      dispatch(fetchThreadFailure(errorMessage));
+    });
 };
 
 export const fetchThreadRequest = () => {
@@ -39,17 +39,17 @@ export const fetchThreadRequest = () => {
   };
 };
 
-export const fetchThreadSuccess = (thread) => {
+export const fetchThreadSuccess = thread => {
   return {
     type: FETCH_THREAD_SUCCESS,
-    thread
+    thread,
   };
 };
 
-export const fetchThreadFailure = (error) => {
+export const fetchThreadFailure = error => {
   return {
     type: FETCH_THREAD_FAILURE,
-    error
+    error,
   };
 };
 
@@ -57,98 +57,98 @@ export const createThread = newThread => dispatch => {
   dispatch(createThreadRequest(newThread));
 
   createThreadApi(newThread)
-  .then(response => {
-    dispatch(createThreadSuccess(response.data));
-
-    // re-load forum page
-    fetchForumApi(newThread.forum)
     .then(response => {
-      dispatch(fetchForumSuccess(response.data));
+      dispatch(createThreadSuccess(response.data));
+
+      // re-load forum page
+      fetchForumApi(newThread.forum)
+        .then(response => {
+          dispatch(fetchForumSuccess(response.data));
+        })
+        .catch(error => {
+          const errorMessage = apiErrorHandler(error);
+          dispatch(fetchForumFailure(errorMessage));
+        });
     })
     .catch(error => {
       const errorMessage = apiErrorHandler(error);
-      dispatch(fetchForumFailure(errorMessage));
+      dispatch(createThreadFailure(errorMessage));
     });
-  })
-  .catch(error => {
-    const errorMessage = apiErrorHandler(error);
-    dispatch(createThreadFailure(errorMessage));
-  });
 };
 
-export const createThreadRequest = (newThread) => {
+export const createThreadRequest = newThread => {
   return {
     type: CREATE_THREAD_REQUEST,
-    newThread
+    newThread,
   };
 };
 
-export const createThreadSuccess = (newThread) => {
+export const createThreadSuccess = newThread => {
   return {
     type: CREATE_THREAD_SUCCESS,
-    newThread
+    newThread,
   };
 };
 
-export const createThreadFailure = (error) => {
+export const createThreadFailure = error => {
   return {
     type: CREATE_THREAD_FAILURE,
-    error
+    error,
   };
 };
 
-export const createThreadSave = (newThread) => {
+export const createThreadSave = newThread => {
   return {
     type: CREATE_THREAD_SAVE,
     name: newThread.name,
-    content: newThread.content
+    content: newThread.content,
   };
 };
 
 export const createThreadToggle = () => {
   return {
-    type: CREATE_THREAD_TOGGLE
+    type: CREATE_THREAD_TOGGLE,
   };
 };
 
-export const deleteThread = (id) => dispatch => {
+export const deleteThread = id => dispatch => {
   dispatch(deleteThreadRequest());
 
   deleteThreadApi(id)
-  .then(response => {
-    dispatch(deleteThreadSuccess());
-
-    // re-load thread page
-    fetchThreadApi(id)
     .then(response => {
-      dispatch(fetchThreadSuccess(response.data));
+      dispatch(deleteThreadSuccess());
+
+      // re-load thread page
+      fetchThreadApi(id)
+        .then(response => {
+          dispatch(fetchThreadSuccess(response.data));
+        })
+        .catch(error => {
+          const errorMessage = apiErrorHandler(error);
+          dispatch(fetchThreadFailure(errorMessage));
+        });
     })
     .catch(error => {
       const errorMessage = apiErrorHandler(error);
-      dispatch(fetchThreadFailure(errorMessage));
+      dispatch(deleteThreadFailure(errorMessage));
     });
-  })
-  .catch(error => {
-    const errorMessage = apiErrorHandler(error);
-    dispatch(deleteThreadFailure(errorMessage));
-  });
 };
 
 export const deleteThreadRequest = () => {
   return {
-    type: DELETE_THREAD_REQUEST
+    type: DELETE_THREAD_REQUEST,
   };
 };
 
 export const deleteThreadSuccess = () => {
   return {
-    type: DELETE_THREAD_SUCCESS
+    type: DELETE_THREAD_SUCCESS,
   };
 };
 
-export const deleteThreadFailure = (error) => {
+export const deleteThreadFailure = error => {
   return {
     type: DELETE_THREAD_FAILURE,
-    error
+    error,
   };
 };

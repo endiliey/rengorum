@@ -1,39 +1,31 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import {
-  Segment,
-  Grid,
-  Icon
-} from 'semantic-ui-react';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import {Segment, Grid, Icon} from 'semantic-ui-react';
 import StatusMessage from '../statusmessage';
 import Avatar from '../avatar';
 import './styles.css';
 
 export default class ForumList extends Component {
   render() {
-    const {
-      isLoading,
-      error,
-      forums
-    } = this.props;
+    const {isLoading, error, forums} = this.props;
 
-    if (error || !forums || isLoading || forums.length === 0 ) {
+    if (error || !forums || isLoading || forums.length === 0) {
       return (
         <StatusMessage
           error={error || !forums}
-          errorClassName='home-error'
+          errorClassName="home-error"
           errorMessage={error}
           loading={isLoading}
           loadingMessage={'We are fetching the homepage for you'}
           nothing={forums && forums.length === 0}
           nothingMessage={'No forum to display'}
-          nothingClassName='home-error'
-          type='default'
+          nothingClassName="home-error"
+          type="default"
         />
       );
     }
 
-    const forumCardList = forums.map((forum) => {
+    const forumCardList = forums.map(forum => {
       const {
         name,
         slug,
@@ -44,9 +36,7 @@ export default class ForumList extends Component {
       } = forum;
 
       let lastActivity = (
-        <div className='home-text home-vertical'>
-          {'—  No activity —'}
-        </div>
+        <div className="home-text home-vertical">{'—  No activity —'}</div>
       );
 
       if (last_activity) {
@@ -56,15 +46,17 @@ export default class ForumList extends Component {
           username,
           avatar,
           pinned,
-          naturaltime
+          naturaltime,
         } = last_activity;
 
-        thread_name = thread_name.length > 43 ?
-          (thread_name.substring(0, 43) + '...') : thread_name;
+        thread_name =
+          thread_name.length > 43
+            ? thread_name.substring(0, 43) + '...'
+            : thread_name;
         lastActivity = (
-          <div className='home-row'>
+          <div className="home-row">
             <Avatar
-              className='home-avatar'
+              className="home-avatar"
               avatar={avatar}
               centered={false}
               link={`/user/${username}`}
@@ -72,16 +64,14 @@ export default class ForumList extends Component {
             <div className="home-column">
               <div>
                 <Icon name={pinned ? 'pin' : 'talk outline'} />
-                <Link to={`/thread/${thread_id}`}>
-                  {thread_name}
-                </Link>
+                <Link to={`/thread/${thread_id}`}>{thread_name}</Link>
               </div>
-              <div className='home-meta'>
+              <div className="home-meta">
                 <Link to={`/user/${username}`}>
-                  <Icon name='user' />
+                  <Icon name="user" />
                   {username}
                 </Link>
-                  <b>{`  —  ${naturaltime}`}</b>
+                <b>{`  —  ${naturaltime}`}</b>
               </div>
             </div>
           </div>
@@ -90,35 +80,29 @@ export default class ForumList extends Component {
 
       return (
         <Segment vertical key={slug}>
-          <Grid textAlign='left' padded='horizontally'>
+          <Grid textAlign="left" padded="horizontally">
             <Grid.Column width={7}>
               <Grid.Row>
-                <Icon name='edit' />
-                <Link to={`/forum/${slug}`}>
-                  {name}
-                </Link>
+                <Icon name="edit" />
+                <Link to={`/forum/${slug}`}>{name}</Link>
               </Grid.Row>
-              <Grid.Row>
-                {description}
-              </Grid.Row>
+              <Grid.Row>{description}</Grid.Row>
             </Grid.Column>
             <Grid.Column width={3}>
               <div className="home-column home-stats home-vertical">
                 <div style={{paddingBottom: '5px'}}>
-                  <Icon name='write' />
+                  <Icon name="write" />
                   {threads_count}
                   {threads_count > 1 ? ' threads' : ' thread'}
                 </div>
                 <div>
-                  <Icon name='comment outline' />
+                  <Icon name="comment outline" />
                   {posts_count}
                   {posts_count > 1 ? ' posts' : ' post'}
                 </div>
               </div>
             </Grid.Column>
-            <Grid.Column width={6}>
-              {lastActivity}
-            </Grid.Column>
+            <Grid.Column width={6}>{lastActivity}</Grid.Column>
           </Grid>
         </Segment>
       );
@@ -126,9 +110,7 @@ export default class ForumList extends Component {
 
     return (
       <div className="homeContainer">
-        <Segment.Group className="home-list">
-          {forumCardList}
-        </Segment.Group>
+        <Segment.Group className="home-list">{forumCardList}</Segment.Group>
       </div>
     );
   }

@@ -1,13 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Login from '../../components/login';
 import Modal from '../../components/modal';
-import {
-  hideModal,
-  loginReset,
-  showModal,
-  login
-} from '../../actions';
+import {hideModal, loginReset, showModal, login} from '../../actions';
 
 class LoginModal extends Component {
   componentWillMount() {
@@ -23,13 +18,11 @@ class LoginModal extends Component {
       error,
       handleClose,
       showRegister,
-      handleLogin
+      handleLogin,
     } = this.props;
 
     return isAuthenticated ? null : (
-      <Modal
-        onClose={handleClose}
-      >
+      <Modal onClose={handleClose}>
         <Login
           handleLogin={handleLogin}
           showRegister={showRegister}
@@ -44,7 +37,7 @@ class LoginModal extends Component {
 const mapStateToProps = state => ({
   isLoading: state.auth.isLoading,
   error: state.auth.error,
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -58,10 +51,10 @@ const mapDispatchToProps = dispatch => ({
   showRegister: () => {
     dispatch(showModal('REGISTER', {}));
     dispatch(loginReset());
-  }
+  },
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(LoginModal);

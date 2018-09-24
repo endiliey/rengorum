@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Icon, Message } from 'semantic-ui-react';
+import React, {Component} from 'react';
+import {Icon, Message} from 'semantic-ui-react';
 import Loader from '../loader';
 import './styles.css';
 
@@ -18,7 +18,7 @@ export default class StatusMessage extends Component {
       nothing,
       nothingClassName,
       nothingMessage,
-      type
+      type,
     } = this.props;
 
     if (loading) {
@@ -27,7 +27,7 @@ export default class StatusMessage extends Component {
           <div className={loadingClassName || 'statusMessage-modal'}>
             <Message attached icon>
               <Message.Content>
-                <Icon name='circle notched' loading size='big' />
+                <Icon name="circle notched" loading size="big" />
                 {loadingMessage || 'Loading ...'}
               </Message.Content>
             </Message>
@@ -52,7 +52,7 @@ export default class StatusMessage extends Component {
           <div className={errorClassName || 'statusMessage-modal'}>
             <Message attached error icon>
               <Message.Content>
-                <Icon name='thumbs outline down' size='big' />
+                <Icon name="thumbs outline down" size="big" />
                 {errorMessage || error || 'Sorry, something went wrong'}
               </Message.Content>
             </Message>
@@ -63,7 +63,7 @@ export default class StatusMessage extends Component {
         <div className={errorClassName || 'statusMessage-default'}>
           <Message error>
             <Message.Content>
-              <Icon name='thumbs outline down' size='big' />
+              <Icon name="thumbs outline down" size="big" />
               {errorMessage || error || 'Sorry, something went wrong'}
             </Message.Content>
           </Message>
@@ -75,7 +75,7 @@ export default class StatusMessage extends Component {
           <div className={successClassName || 'statusMessage-modal'}>
             <Message attached positive icon>
               <Message.Content>
-                <Icon name='thumbs outline up' size='big' />
+                <Icon name="thumbs outline up" size="big" />
                 {successMessage || 'Successful'}
               </Message.Content>
             </Message>
@@ -86,7 +86,7 @@ export default class StatusMessage extends Component {
         <div className={successClassName || 'statusMessage-default'}>
           <Message positive>
             <Message.Content>
-              <Icon name='thumbs outline up' size='big' />
+              <Icon name="thumbs outline up" size="big" />
               {successMessage || 'Successful'}
             </Message.Content>
           </Message>
@@ -98,7 +98,7 @@ export default class StatusMessage extends Component {
           <div className={nothingClassName || 'statusMessage-modal'}>
             <Message attached error icon>
               <Message.Content>
-                <Icon name='thumbs outline down' size='big' />
+                <Icon name="thumbs outline down" size="big" />
                 {nothingMessage || 'Successful'}
               </Message.Content>
             </Message>
@@ -109,7 +109,7 @@ export default class StatusMessage extends Component {
         <div className={nothingClassName || 'statusMessage-default'}>
           <Message error>
             <Message.Content>
-              <Icon name='thumbs outline down' size='big' />
+              <Icon name="thumbs outline down" size="big" />
               {nothingMessage || 'Nothing to display'}
             </Message.Content>
           </Message>
@@ -118,4 +118,4 @@ export default class StatusMessage extends Component {
     }
     return null;
   }
-};
+}

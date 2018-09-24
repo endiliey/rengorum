@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {
   createThreadSave,
   createThreadToggle,
   fetchForum,
-  createThread
+  createThread,
 } from '../../actions';
 import ThreadList from '../../components/threadlist';
 import NewThread from '../../components/newthread';
 
 class ForumContainer extends Component {
   componentDidMount() {
-    const { forum } = this.props.match.params;
+    const {forum} = this.props.match.params;
     this.props.fetchForum(forum);
   }
 
   componentWillReceiveProps(newProps) {
-    const { forum: oldForum } = this.props.match.params;
-    const { forum: futureForum } = newProps.match.params;
+    const {forum: oldForum} = this.props.match.params;
+    const {forum: futureForum} = newProps.match.params;
     if (oldForum !== futureForum) {
       this.props.fetchForum(futureForum);
     }
@@ -41,7 +41,7 @@ class ForumContainer extends Component {
       newThreadShow,
       createThread,
       createThreadSave,
-      createThreadToggle
+      createThreadToggle,
     } = this.props;
     return (
       <div>
@@ -73,7 +73,7 @@ class ForumContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isLoading: state.forum.isLoading,
   name: state.forum.name,
   slug: state.forum.slug,
@@ -87,25 +87,25 @@ const mapStateToProps = (state) => ({
   newThreadContent: state.forum.newThreadContent,
   newThreadId: state.forum.newThreadId,
   newThreadError: state.forum.newThreadError,
-  newThreadShow: state.forum.newThreadShow
+  newThreadShow: state.forum.newThreadShow,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchForum: (forum) => {
+const mapDispatchToProps = dispatch => ({
+  fetchForum: forum => {
     dispatch(fetchForum(forum));
   },
-  createThread: (newThread) => {
+  createThread: newThread => {
     dispatch(createThread(newThread));
   },
-  createThreadSave: (newThread) => {
+  createThreadSave: newThread => {
     dispatch(createThreadSave(newThread));
   },
   createThreadToggle: () => {
     dispatch(createThreadToggle());
-  }
+  },
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ForumContainer);

@@ -7,7 +7,7 @@ import {
   EDIT_PROFILE_SUCCESS,
   EDIT_PROFILE_FAILURE,
   EDIT_PROFILE_RESET,
-  LOGOUT
+  LOGOUT,
 } from '../actions/types';
 
 const loginInitialState = {
@@ -18,28 +18,28 @@ const loginInitialState = {
   avatar: null,
   token: null,
   isStaff: false,
-  error: null
+  error: null,
 };
 
 const editInitialState = {
   isEditing: false,
   editError: null,
-  editSuccess: false
+  editSuccess: false,
 };
 
 const initialState = {
   ...loginInitialState,
-  ...editInitialState
+  ...editInitialState,
 };
 
 const auth = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case LOGIN_REQUEST:
       return {
         ...state,
         isLoading: true,
         isAuthenticated: false,
-        error: null
+        error: null,
       };
     case LOGIN_SUCCESS:
       return {
@@ -51,20 +51,20 @@ const auth = (state = initialState, action) => {
         avatar: action.avatar,
         name: action.name,
         isStaff: action.isStaff,
-        error: null
+        error: null,
       };
     case LOGIN_FAILURE:
       return {
         ...state,
         ...loginInitialState,
-        error: action.error
+        error: action.error,
       };
     case EDIT_PROFILE_REQUEST:
       return {
         ...state,
         isEditing: true,
         editError: null,
-        editSuccess: false
+        editSuccess: false,
       };
     case EDIT_PROFILE_SUCCESS:
       return {
@@ -73,23 +73,23 @@ const auth = (state = initialState, action) => {
         editError: null,
         editSuccess: true,
         avatar: action.avatar || state.avatar,
-        name: action.name || state.name
+        name: action.name || state.name,
       };
     case EDIT_PROFILE_FAILURE:
       return {
         ...state,
         ...editInitialState,
-        editError: action.error
+        editError: action.error,
       };
     case EDIT_PROFILE_RESET:
       return {
         ...state,
-        ...editInitialState
+        ...editInitialState,
       };
     case LOGIN_RESET:
       return {
         ...state,
-        ...loginInitialState
+        ...loginInitialState,
       };
     case LOGOUT:
       return initialState;

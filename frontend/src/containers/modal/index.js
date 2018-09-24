@@ -1,23 +1,17 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import RegisterModal from './register';
 import LoginModal from './login';
 import EditProfileModal from './editprofile';
 
-const ModalContainer = (props) => {
+const ModalContainer = props => {
   switch (props.modalType) {
     case 'REGISTER':
-      return (
-        <RegisterModal />
-      );
+      return <RegisterModal />;
     case 'LOGIN':
-      return (
-        <LoginModal />
-      );
+      return <LoginModal />;
     case 'EDIT_PROFILE':
-      return (
-        <EditProfileModal />
-      );
+      return <EditProfileModal />;
     default:
       return null;
   }
@@ -25,7 +19,7 @@ const ModalContainer = (props) => {
 
 const mapStateToProps = state => ({
   modalType: state.modal.modalType,
-  modalProps: state.modal.modalProps // for future use if need to pass props
+  modalProps: state.modal.modalProps, // for future use if need to pass props
 });
 
 export default connect(mapStateToProps)(ModalContainer);

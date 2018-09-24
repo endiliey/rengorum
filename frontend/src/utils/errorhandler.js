@@ -1,12 +1,12 @@
-export const apiErrorHandler = (error) => {
+export const apiErrorHandler = error => {
   try {
     if (!error.response) {
-      return "Error: Network Error";
+      return 'Error: Network Error';
     } else if (error.response.data) {
       const erd = error.response.data;
       if (erd.detail) {
-        if (erd.detail === "Invalid token.") {
-          return "Invalid Token. Please re-login.";
+        if (erd.detail === 'Invalid token.') {
+          return 'Invalid Token. Please re-login.';
         }
         return erd.detail;
       }
@@ -18,15 +18,14 @@ export const apiErrorHandler = (error) => {
       }
       const errorField = String(key).replace('_', ' ');
       return (
-        errorField.charAt(0).toUpperCase()
-        + errorField.substring(1)
-        + ': '
-        + errorString
+        errorField.charAt(0).toUpperCase() +
+        errorField.substring(1) +
+        ': ' +
+        errorString
       );
     }
-  }
-  catch(error) {
+  } catch (error) {
     console.log(error);
-    return "Something wrong happened. Please report this.";
+    return 'Something wrong happened. Please report this.';
   }
 };

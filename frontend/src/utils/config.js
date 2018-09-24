@@ -5,7 +5,7 @@ export const getConfig = () => {
   if (isAuthenticated) {
     const token = store.getState().auth.token;
     const config = {
-      headers: {Authorization: 'Token ' + token}
+      headers: {Authorization: 'Token ' + token},
     };
     return config;
   }

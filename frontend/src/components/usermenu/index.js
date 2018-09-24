@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import GuestNav from './guestnav';
 import UserNav from './usernav';
 
@@ -13,7 +13,7 @@ class UserMenu extends Component {
       isLoading,
       showRegister,
       showLogin,
-      showEditProfile
+      showEditProfile,
     } = this.props;
 
     if (isAuthenticated) {
@@ -28,12 +28,7 @@ class UserMenu extends Component {
         />
       );
     } else {
-      return (
-        <GuestNav
-          showRegister={showRegister}
-          showLogin={showLogin}
-        />
-      );
+      return <GuestNav showRegister={showRegister} showLogin={showLogin} />;
     }
   }
 }

@@ -7,7 +7,7 @@ import {
   CREATE_THREAD_FAILURE,
   CREATE_THREAD_SAVE,
   CREATE_THREAD_TOGGLE,
-  LOGOUT
+  LOGOUT,
 } from '../actions/types';
 
 const forumInitialState = {
@@ -16,7 +16,7 @@ const forumInitialState = {
   slug: null,
   description: null,
   threads: null,
-  error: null
+  error: null,
 };
 
 const newThreadInitialState = {
@@ -26,21 +26,21 @@ const newThreadInitialState = {
   newThreadContent: '',
   newThreadId: null,
   newThreadError: null,
-  newThreadShow: false
+  newThreadShow: false,
 };
 
 const initialState = {
   ...forumInitialState,
-  ...newThreadInitialState
+  ...newThreadInitialState,
 };
 
 const forum = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case FETCH_FORUM_REQUEST:
       return {
         ...initialState,
         isLoading: true,
-        error: null
+        error: null,
       };
     case FETCH_FORUM_SUCCESS:
       return {
@@ -50,12 +50,12 @@ const forum = (state = initialState, action) => {
         slug: action.slug,
         description: action.description,
         threads: action.threads,
-        error: null
+        error: null,
       };
     case FETCH_FORUM_FAILURE:
       return {
         ...state,
-        error: action.error
+        error: action.error,
       };
     case CREATE_THREAD_REQUEST:
       return {
@@ -64,7 +64,7 @@ const forum = (state = initialState, action) => {
         newThreadSuccess: false,
         newThreadError: null,
         newThreadName: action.newThread.name,
-        newThreadContent: action.newThread.content
+        newThreadContent: action.newThread.content,
       };
     case CREATE_THREAD_SUCCESS:
       return {
@@ -75,7 +75,7 @@ const forum = (state = initialState, action) => {
         newThreadContent: '',
         newThreadId: action.newThread.id,
         newThreadShow: false,
-        newThreadError: null
+        newThreadError: null,
       };
     case CREATE_THREAD_FAILURE:
       return {
@@ -84,25 +84,25 @@ const forum = (state = initialState, action) => {
         newThreadSuccess: false,
         newThreadId: null,
         newThreadShow: true,
-        newThreadError: action.error
+        newThreadError: action.error,
       };
     case CREATE_THREAD_SAVE:
       return {
         ...state,
         newThreadName: action.name,
-        newThreadContent: action.content
+        newThreadContent: action.content,
       };
     case CREATE_THREAD_TOGGLE:
       return {
         ...state,
         newThreadShow: !state.newThreadShow,
         newThreadSuccess: false,
-        newThreadError: null
+        newThreadError: null,
       };
     case LOGOUT:
       return {
         ...state,
-        ...newThreadInitialState
+        ...newThreadInitialState,
       };
     default:
       return state;

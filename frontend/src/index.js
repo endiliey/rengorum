@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'semantic-ui-css/semantic.min.css';
-import { Provider } from 'react-redux';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { PersistGate } from 'redux-persist/integration/react';
+import {Provider} from 'react-redux';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {PersistGate} from 'redux-persist/integration/react';
 import Loader from './components/loader';
-import store, { persistor } from './store';
+import store, {persistor} from './store';
 import HeaderContainer from './containers/header';
 import ModalContainer from './containers/modal';
 import UserProfileContainer from './containers/userprofile';
@@ -38,7 +38,7 @@ ReactDOM.render(
         </div>
       </BrowserRouter>
     </PersistGate>
-  </Provider>
-  ,document.getElementById('root')
+  </Provider>,
+  document.getElementById('root'),
 );
 registerServiceWorker();

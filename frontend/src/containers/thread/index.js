@@ -1,29 +1,24 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import {
-  createPost,
-  fetchThread,
-  deletePost,
-  deleteThread
-} from '../../actions';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {createPost, fetchThread, deletePost, deleteThread} from '../../actions';
 import Thread from '../../components/thread';
 
 class ThreadContainer extends Component {
   componentDidMount() {
-    const { thread } = this.props.match.params;
+    const {thread} = this.props.match.params;
     this.props.fetchThread(thread);
   }
 
   componentWillReceiveProps(newProps) {
-    const { thread } = this.props.match.params;
-    const { thread: newThread } = newProps.match.params;
+    const {thread} = this.props.match.params;
+    const {thread: newThread} = newProps.match.params;
     if (thread !== newThread) {
       this.props.fetchThread(newThread);
     }
   }
 
   render() {
-    const { thread: threadID } = this.props.match.params;
+    const {thread: threadID} = this.props.match.params;
     const {
       isLoading,
       name,
@@ -44,7 +39,7 @@ class ThreadContainer extends Component {
       deletePost,
       isDeleting,
       deleteError,
-      deleteThread
+      deleteThread,
     } = this.props;
     return (
       <Thread
@@ -74,7 +69,7 @@ class ThreadContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isLoading: state.thread.isLoading,
   name: state.thread.name,
   content: state.thread.content,
@@ -91,25 +86,25 @@ const mapStateToProps = (state) => ({
   newPostError: state.thread.newPostError,
   deletePostList: state.thread.deletePostList,
   isDeleting: state.thread.isDeleting,
-  deleteError: state.thread.deleteError
+  deleteError: state.thread.deleteError,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchThread: (thread) => {
+const mapDispatchToProps = dispatch => ({
+  fetchThread: thread => {
     dispatch(fetchThread(thread));
   },
-  createPost: (newPost) => {
+  createPost: newPost => {
     dispatch(createPost(newPost));
   },
   deletePost: (id, threadID) => {
     dispatch(deletePost(id, threadID));
   },
-  deleteThread: (id) => {
+  deleteThread: id => {
     dispatch(deleteThread(id));
-  }
+  },
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ThreadContainer);

@@ -1,22 +1,22 @@
 import {
   FETCH_FORUM_REQUEST,
   FETCH_FORUM_SUCCESS,
-  FETCH_FORUM_FAILURE
+  FETCH_FORUM_FAILURE,
 } from './types';
-import { fetchForumApi } from '../api';
-import { apiErrorHandler } from '../utils/errorhandler';
+import {fetchForumApi} from '../api';
+import {apiErrorHandler} from '../utils/errorhandler';
 
-export const fetchForum = (forum) => dispatch => {
+export const fetchForum = forum => dispatch => {
   dispatch(fetchForumRequest());
 
   fetchForumApi(forum)
-  .then(response => {
-    dispatch(fetchForumSuccess(response.data));
-  })
-  .catch(error => {
-    const errorMessage = apiErrorHandler(error);
-    dispatch(fetchForumFailure(errorMessage));
-  });
+    .then(response => {
+      dispatch(fetchForumSuccess(response.data));
+    })
+    .catch(error => {
+      const errorMessage = apiErrorHandler(error);
+      dispatch(fetchForumFailure(errorMessage));
+    });
 };
 
 export const fetchForumRequest = () => {
@@ -25,19 +25,19 @@ export const fetchForumRequest = () => {
   };
 };
 
-export const fetchForumSuccess = (forum) => {
+export const fetchForumSuccess = forum => {
   return {
     type: FETCH_FORUM_SUCCESS,
     name: forum.name,
     slug: forum.slug,
     description: forum.description,
-    threads: forum.threads
+    threads: forum.threads,
   };
 };
 
-export const fetchForumFailure = (error) => {
+export const fetchForumFailure = error => {
   return {
     type: FETCH_FORUM_FAILURE,
-    error
+    error,
   };
 };

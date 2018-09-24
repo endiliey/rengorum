@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import {
-  fetchForums
-} from '../../actions';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {fetchForums} from '../../actions';
 import ForumList from '../../components/forumlist';
 
 class HomeContainer extends Component {
@@ -11,25 +9,23 @@ class HomeContainer extends Component {
   }
 
   render() {
-    return (
-      <ForumList {...this.props} />
-    );
+    return <ForumList {...this.props} />;
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isLoading: state.home.isLoading,
   forums: state.home.forums,
-  error: state.home.error
+  error: state.home.error,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   fetchForums: () => {
     dispatch(fetchForums());
-  }
+  },
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(HomeContainer);

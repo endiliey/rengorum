@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Segment, Icon } from 'semantic-ui-react';
+import React, {Component} from 'react';
+import {Segment, Icon} from 'semantic-ui-react';
 import StatusMessage from '../statusmessage';
 import Post from '../post';
 import NewPost from '../newpost';
@@ -28,7 +28,7 @@ export default class Thread extends Component {
       deletePost,
       isDeleting,
       deleteError,
-      deleteThread
+      deleteThread,
     } = this.props;
 
     if (error || deleteError || isLoading || isDeleting || !name) {
@@ -39,13 +39,13 @@ export default class Thread extends Component {
       return (
         <StatusMessage
           error={error || deleteError || !name} // because a thread name cannot be empty
-          errorClassName='thread-error'
+          errorClassName="thread-error"
           errorMessage={error || deleteError}
           loading={isLoading || isDeleting}
           loadingMessage={loadingMessage}
           nothing={!name}
           nothingMessage={'Thread does not exist'}
-          type='default'
+          type="default"
         />
       );
     }
@@ -64,34 +64,37 @@ export default class Thread extends Component {
       />
     );
 
-    const postsList = posts.length === 0 ? null : posts.map((post) => {
-      const {
-        id: postID,
-        content: postContent,
-        created_at: postCreatedAt,
-        creator: postCreator
-      } = post;
+    const postsList =
+      posts.length === 0
+        ? null
+        : posts.map(post => {
+            const {
+              id: postID,
+              content: postContent,
+              created_at: postCreatedAt,
+              creator: postCreator,
+            } = post;
 
-      return (
-        <Post
-          key={postID}
-          threadID={id}
-          id={postID}
-          isThread={false}
-          content={postContent}
-          createdAt={postCreatedAt}
-          creator={postCreator}
-          authenticatedUsername={authenticatedUsername}
-          authenticatedIsStaff={authenticatedIsStaff}
-          deletePostList={deletePostList}
-          deleteAction={deletePost}
-        />
-      );
-    });
+            return (
+              <Post
+                key={postID}
+                threadID={id}
+                id={postID}
+                isThread={false}
+                content={postContent}
+                createdAt={postCreatedAt}
+                creator={postCreator}
+                authenticatedUsername={authenticatedUsername}
+                authenticatedIsStaff={authenticatedIsStaff}
+                deletePostList={deletePostList}
+                deleteAction={deletePost}
+              />
+            );
+          });
 
     return (
       <div className="threadContainer">
-        <div className='thread-title'>
+        <div className="thread-title">
           <Icon name={pinned ? 'pin' : 'talk outline'} />
           {name}
         </div>

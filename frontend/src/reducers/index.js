@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 import auth from './auth';
 import modal from './modal';
 import register from './register';
@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
   home,
   users,
   forum,
-  thread
+  thread,
 });
 
 export default rootReducer;

@@ -1,11 +1,8 @@
-import {
-  SHOW_MODAL,
-  HIDE_MODAL
-} from '../actions/types';
+import {SHOW_MODAL, HIDE_MODAL} from '../actions/types';
 
 const initialState = {
   modalType: null,
-  modalProps: {}
+  modalProps: {},
 };
 
 const modal = (state = initialState, action) => {
@@ -13,16 +10,16 @@ const modal = (state = initialState, action) => {
     case SHOW_MODAL:
       return {
         modalType: action.modalType,
-        modalProps: action.modalProps
+        modalProps: action.modalProps,
       };
     case HIDE_MODAL:
       return {
         modalType: null,
-        modalProps: {}
+        modalProps: {},
       };
     default:
       return state;
   }
-}
+};
 
 export default modal;

@@ -1,12 +1,9 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Navlink from '../../components/navlink';
 import UserMenu from '../../components/usermenu';
 import './styles.css';
-import {
-  showModal,
-  logout
-} from '../../actions';
+import {showModal, logout} from '../../actions';
 
 class HeaderContainer extends Component {
   render() {
@@ -19,7 +16,7 @@ class HeaderContainer extends Component {
       isLoading,
       showRegister,
       showLogin,
-      showEditProfile
+      showEditProfile,
     } = this.props;
 
     return (
@@ -46,7 +43,7 @@ const mapStateToProps = state => ({
   name: state.auth.name,
   avatar: state.auth.avatar,
   isAuthenticated: state.auth.isAuthenticated,
-  isLoading: state.auth.isLoading
+  isLoading: state.auth.isLoading,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -66,5 +63,5 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(HeaderContainer);

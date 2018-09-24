@@ -4,9 +4,9 @@ import {
   USER_LOGOUT_URL,
   USER_REGISTER_URL,
   USER_EDIT_URL,
-  USER_URL
+  USER_URL,
 } from './constants';
-import { getConfig } from '../utils/config';
+import {getConfig} from '../utils/config';
 
 export const loginApi = (username, password) => {
   return axios.post(USER_LOGIN_URL, {username, password}, getConfig());
@@ -16,7 +16,7 @@ export const logoutApi = () => {
   return axios.post(USER_LOGOUT_URL, null, getConfig());
 };
 
-export const registerApi = (data) => {
+export const registerApi = data => {
   return axios.post(USER_REGISTER_URL, data, getConfig());
 };
 
@@ -28,7 +28,7 @@ export const editProfileApi = (username, newProfile) => {
   return axios.put(
     USER_URL + username + USER_EDIT_URL,
     newProfile,
-    getConfig()
+    getConfig(),
   );
 };
 

@@ -2,37 +2,37 @@ import {
   REGISTER_REQUEST,
   REGISTER_SUCCESS,
   REGISTER_FAILURE,
-  REGISTER_RESET
+  REGISTER_RESET,
 } from '../actions/types';
 
 const initialState = {
   isLoading: false,
-  error: null
+  error: null,
 };
 
 const register = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case REGISTER_REQUEST:
       return {
         ...state,
         isLoading: true,
-        error: null
+        error: null,
       };
     case REGISTER_SUCCESS:
       return {
         isLoading: false,
-        error: null
+        error: null,
       };
     case REGISTER_FAILURE:
       return {
         isLoading: false,
-        error: action.error
+        error: action.error,
       };
     case REGISTER_RESET:
       return initialState;
     default:
       return state;
   }
-}
+};
 
 export default register;
