@@ -1,8 +1,9 @@
 # Rengorum
-Single-page forum application that aims to be fast, performant and simple.
+Single-page forum application built in ReactJS and Django Rest Framework.
 
-## Demo: https://forum.endiliey.com/
-![Screenshot 1](preview/frontend_1.PNG)
+## Live Demo: https://forum.endiliey.com/
+### [https://youtu.be/t9vWwxydREs](https://youtu.be/t9vWwxydREs)
+[![Forum app in ReactJS and Django](preview/frontend_1.PNG)](http://www.youtube.com/watch?v=t9vWwxydREs "Forum app in ReactJS and Django")
 
 ## Frontend
 > The frontend is a fast, interactive and simple Single-Page-Application (SPA), written in ES6 Javascript and built with following technologies:
