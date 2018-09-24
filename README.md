@@ -1,13 +1,13 @@
 # Rengorum
 Single-page forum application that aims to be fast, performant and simple.
 
-## Demo: https://rengorum.herokuapp.com/
+## Demo: https://forum.endiliey.com/
 ![Screenshot 1](preview/frontend_1.PNG)
 
 ## Frontend
 > The frontend is a fast, interactive and simple Single-Page-Application (SPA), written in ES6 Javascript and built with following technologies:
 > * [React v16](https://facebook.github.io/react/)
-> * [Redux v5](http://redux.js.org/)
+> * [Redux v4](http://redux.js.org/)
 > * [React Router v4](https://github.com/ReactTraining/react-router)
 > * [Redux Thunk v2](https://github.com/gaearon/redux-thunk)
 > * [Redux Persist v5.9](https://github.com/rt2zz/redux-persist)
