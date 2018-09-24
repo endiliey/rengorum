@@ -52,13 +52,7 @@ List of available API (browseable) at /api
 * /post/{id}/delete/
 ```
 
-### Demo Screenshots:
-![Screenshot 6](preview/backend_1.PNG)
-![Screenshot 7](preview/backend_2.PNG)
-![Screenshot 8](preview/backend_3.PNG)
-![Screenshot 9](preview/backend_4.PNG)
-
-## Development setup
+## Installation
 
 Make sure you have following software installed in your system:
 * Python 3
@@ -71,28 +65,16 @@ First, we need to clone the repository
 git clone https://github.com/endiliey/rengorum.git
 ```
 
-Setup a [virtualenv](https://virtualenv.pypa.io/en/stable/)
-```
-pip install virtualenv
-```
+Install all required dependencies in an isolated environment
 
-Create an isolated environments through virtualenv, note that it must be Python 3, because I'm using latest Django version (v2)
 ```
 cd rengorum/backend
-virtualenv venv -p python3
-```
-
-Activate virtualenv
-```
+python3 -m venv venv
 source venv/bin/activate
-```
-
-Install all required dependencies for backend by typing
-```
 pip install -r requirements.txt
 ```
 
-Copy the .env.example as .env in backend folder
+Copy the `.env.example` as `.env` in `backend` folder
 ```
 cp .env.example .env
 ```
@@ -100,27 +82,24 @@ cp .env.example .env
 Install all required dependencies for frontend in rengorum/frontend folder by typing
 ```
 cd ../frontend
-npm install
+yarn
 ```
 
-Copy the .env.example as .env in frontend folder
+Copy the `.env.example` as `.env` in `frontend` folder
 ```
 cp .env.example .env
 ```
 
-*Note: Exit python virtualenv by
-```
-deactivate
-```
-
 ## Running Backend on Local Server
-Make sure you've activated your virtualenv, activate by
+
+Activate virtual environment
+
 ```
 cd backend
 source venv/bin/activate
 ```
 
-Make sure backend testcases that I've wrote is not failing
+(Optional) Run test
 ```
 python manage.py test
 ```
@@ -132,10 +111,12 @@ python manage.py runserver
 ```
 
 ## Running Frontend on Local Server
-Make sure you've installed all the dependencies for frontend before, then
+
+Start development server
+
 ```
 cd frontend
-npm start
+yarn start
 ```
 
 Frontend should be available on http://localhost:3000/
