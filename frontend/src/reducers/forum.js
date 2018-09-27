@@ -38,7 +38,13 @@ const forum = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_FORUM_REQUEST:
       return {
-        ...initialState,
+        ...forumInitialState,
+        ...state,
+        newThreadLoading: false,
+        newThreadSuccess: false,
+        newThreadId: null,
+        newThreadError: null,
+        newThreadShow: false,
         isLoading: true,
         error: null,
       };
