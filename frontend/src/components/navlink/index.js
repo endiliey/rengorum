@@ -18,7 +18,7 @@ const Navlink = () => {
       </div>
       <div className="link">
         <Icon name="github" className="navlinkIcon" />
-        <a href="https://github.com/endiliey/rengorum">Github</a>
+        <a href="https://github.com/endiliey/rengorum">GitHub</a>
       </div>
     </div>
   );

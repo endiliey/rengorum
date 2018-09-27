@@ -7,7 +7,7 @@ import './styles.css';
 
 export default class ThreadList extends Component {
   render() {
-    const {isLoading, error, name, threads} = this.props;
+    const {isLoading, error, threads} = this.props;
 
     if (error || !threads || isLoading || threads.length === 0) {
       return (
@@ -16,7 +16,7 @@ export default class ThreadList extends Component {
           errorClassName="forum-error"
           errorMessage={error}
           loading={isLoading}
-          loadingMessage={`We are fetching threads in '${name}' forum for you`}
+          loadingMessage={`We are fetching the forum for you`}
           nothing={threads && threads.length === 0}
           nothingMessage={`No threads to display`}
           nothingClassName="forum-error"
