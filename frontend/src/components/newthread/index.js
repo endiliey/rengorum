@@ -263,7 +263,7 @@ export default class NewThread extends Component {
             disabled={isLoading}
             onClick={this.onCancel}>
             <Icon name="cancel" />
-            Cancel
+            Clear
           </Button>
         </Form>
       </div>
