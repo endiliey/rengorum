@@ -121,3 +121,13 @@ yarn start
 ```
 
 Frontend should be available on http://localhost:3000/
+
+### Test User
+By default, the database for development server in `backend/db.sqlite3` is already filled with some data for ease of development. The superuser id is `irene` and password is `irene` as well.
+
+If you want to start clean. Delete `db.sqlite3` and follow this step in `backend folder`
+```py
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+```
