@@ -78,6 +78,7 @@ export default class Login extends Component {
         <Message attached="bottom" warning>
           <Icon name="help" />
           New to this site?&nbsp;
+          {/* eslint-disable-next-line */}
           <a className="login-register" onClick={showRegister}>
             Register here
           </a>

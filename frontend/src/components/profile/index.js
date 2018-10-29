@@ -27,7 +27,7 @@ class Profile extends Component {
           <div className="name">{name}</div>
           <div className="username">
             <strong>@{username}</strong>
-            <a className="staffStatus">{isStaff ? ' (Staff) ' : ''}</a>
+            <b className="staffStatus">{isStaff ? ' (Staff) ' : ''}</b>
           </div>
           <div className="status">
             <strong>Status: </strong>

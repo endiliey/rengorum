@@ -121,6 +121,7 @@ export default class Register extends Component {
         <Message attached="bottom" warning>
           <Icon name="help" />
           Already signed up?&nbsp;
+          {/* eslint-disable-next-line */}
           <a className="register-login" onClick={showLogin}>
             Login here
           </a>
