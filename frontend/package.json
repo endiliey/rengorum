@@ -12,7 +12,7 @@
     "react-dropzone": "^4.2.9",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "2.0.3",
+    "react-scripts": "2.1.1",
     "redux": "^3.7.2",
     "redux-persist": "^5.9.1",
     "redux-thunk": "^2.2.0",
