@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'semantic-ui-css/semantic.min.css';
@@ -21,7 +21,7 @@ ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={<Loader />} persistor={persistor}>
       <BrowserRouter>
-        <div>
+        <Fragment>
           <header className="header-background" />
           <div className="app-layout">
             <HeaderContainer />
@@ -35,7 +35,7 @@ ReactDOM.render(
             </Switch>
           </div>
           <ModalContainer />
-        </div>
+        </Fragment>
       </BrowserRouter>
     </PersistGate>
   </Provider>,
