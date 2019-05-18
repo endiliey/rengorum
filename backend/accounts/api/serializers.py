@@ -229,7 +229,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
         avatar = profile_data.get('avatar') or None
         if not avatar:
-            avatar = 'http://api.adorable.io/avatar/200/' + username
+            avatar = 'https://api.adorable.io/avatar/200/' + username
         profile = UserProfile(
             user = user,
             bio = profile_data.get('bio', ''),
