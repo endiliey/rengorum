@@ -29,6 +29,10 @@
   "devDependencies": {
     "prettier": "1.14.3"
   },
+  "resolutions": {
+    "lodash": ">=4.17.15",
+    "jquery": ">=3.4.0"
+  },
   "browserslist": [
     ">0.2%",
     "not dead",

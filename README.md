@@ -1,7 +1,6 @@
 # Rengorum
 Single-page forum application built in ReactJS and Django Rest Framework.
 
-## Live Demo: https://forum.endiliey.com/
 ### [https://youtu.be/t9vWwxydREs](https://youtu.be/t9vWwxydREs)
 [![Forum app in ReactJS and Django](preview/frontend_1.PNG)](http://www.youtube.com/watch?v=t9vWwxydREs "Forum app in ReactJS and Django")
 
@@ -26,7 +25,7 @@ Single-page forum application built in ReactJS and Django Rest Framework.
 > * [Djangorestframework v3.7](http://www.django-rest-framework.org/)
 > * [etc](https://github.com/endiliey/rengorum/blob/master/requirements.txt)
 
-## API endpoint for Demo: https://rengorum.endiliey.com/api
+## API endpoint
 ```
 List of available API (browseable) at /api
 * /user/
