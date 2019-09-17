@@ -12,7 +12,7 @@
     "react-dropzone": "^4.2.9",
     "react-redux": "^6.0.0",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "3.0.1",
+    "react-scripts": "^3.1.1",
     "redux": "^4.0.1",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
@@ -31,7 +31,8 @@
   },
   "resolutions": {
     "lodash": ">=4.17.15",
-    "jquery": ">=3.4.0"
+    "jquery": ">=3.4.0",
+    "set-value": ">=2.0.1"
   },
   "browserslist": [
     ">0.2%",
