@@ -8,7 +8,7 @@
     "immutable": "^3.8.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-draft-wysiwyg": "^1.13.2",
+    "react-draft-wysiwyg": "^1.14.6",
     "react-dropzone": "^4.2.9",
     "react-redux": "^6.0.0",
     "react-router-dom": "^5.1.2",
