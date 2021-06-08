@@ -2,7 +2,7 @@ dj-database-url==0.5.0
 Django==2.0.12
 django-cors-headers==2.2.0
 djangorestframework==3.9.1
-Pillow==6.2.0
+Pillow==8.2.0
 PyJWT==1.6.1
 python-decouple==3.1
 pytz==2018.3
